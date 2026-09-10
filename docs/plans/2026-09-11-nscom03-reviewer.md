@@ -165,7 +165,9 @@ git add SCHEMA.md test/ package.json && git commit -m "test: add content schema 
 
 - [ ] **Step 2: Dispatch up to 4 subagents at a time** (10 modules total), each writing to `/tmp/nscom-gen/<mod>.js` with these non-negotiables stated in the prompt: single `write_file`, never append; backtick template literals only; `node --check` must pass; report exact section/flashcard/quiz counts.
 
-- [ ] **Step 3: Validate each file as it lands** — `node --check /tmp/nscom-gen/<mod>.js`, then `grep -c 'window.NSCOM_MODULES' → 1`.
+> **Lesson (learned in this build):** the brief's own topic summary for a module can be wrong. Module 09's source file is named "Data Link Protocols - WANs" but its slides actually cover IEEE 802.11 WLAN and Bluetooth; a brief that asserted PPP/HDLC/switching nearly caused a module of fabricated content. **State the source text as the authority and require the agent to report any conflict between the brief and the slides rather than follow the brief.**
+
+- [ ] **Step 3: Validate each file as it lands** — `node --check /tmp/nscom-gen/<mod>.js`, then confirm the sandbox load pushes exactly one module (not a text count).
 
 - [ ] **Step 4: Copy validated files into `js/data/`** only after all pass; never overwrite a good file with an unvalidated one.
 

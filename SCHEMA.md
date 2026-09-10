@@ -1,14 +1,18 @@
 # Content Schema (v1)
 
-Every module is one JS file at `js/data/<id>.js`. It builds its payload in a
-single buffer and pushes it exactly once:
+Every module is one JS file at `js/data/<id>.js`. It seeds the registry and pushes
+its payload exactly once:
 
 ```js
 window.NSCOM_MODULES = window.NSCOM_MODULES || [];
 window.NSCOM_MODULES.push({ /* module object */ });
 ```
 
-`grep -c 'window.NSCOM_MODULES' js/data/m01.js` must return exactly **1**.
+The file must push **exactly one** module object — no appends, no second write.
+(The validator loads each file in a sandbox and asserts the registry grew by
+exactly 1, which is a real check; a text-level count of the string
+`window.NSCOM_MODULES` would wrongly flag the idiomatic two-line form above, in
+which that name legitimately appears twice. Write the readable form.)
 
 All HTML strings use **backtick template literals**. Never double quotes — SVG
 attributes contain raw `"`, which breaks a double-quoted JS string.
