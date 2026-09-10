@@ -1,4 +1,5 @@
-window.NSCOM_MODULES = window.NSCOM_MODULES || []; window.NSCOM_MODULES.push({
+window.NSCOM_MODULES = window.NSCOM_MODULES || [];
+window.NSCOM_MODULES.push({
   id: "m07",
   num: 7,
   title: "Media Access Control",

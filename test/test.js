@@ -84,6 +84,20 @@ test("every module has enough sections, cards and quiz items", () => {
   }
 });
 
+test("module files do not obfuscate the registry name to satisfy a text check", () => {
+  // A text-level count of "window.NSCOM_MODULES" wrongly flags the normal
+  // two-line idiom, which previously pushed agents into writing
+  // window["NSCOM" + "_MODULES"] purely to keep the count at 1. The real check
+  // is the sandbox load above; this test guards against the workaround.
+  const offenders = [];
+  for (const f of fs.readdirSync(DATA).filter((x) => x.endsWith(".js"))) {
+    const src = fs.readFileSync(path.join(DATA, f), "utf8");
+    if (/"NSCOM"\s*\+/.test(src) || /\+\s*"_MODULES"/.test(src)) offenders.push(f);
+  }
+  assert.deepStrictEqual(offenders, [],
+    `modules obfuscate the registry name: ${offenders.join(", ")}`);
+});
+
 test("section and block structure is valid", () => {
   for (const { file, mod: m } of loadModules()) {
     const secIds = new Set();

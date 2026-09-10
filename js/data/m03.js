@@ -1,4 +1,5 @@
-window.NSCOM_MODULES = window.NSCOM_MODULES || []; window.NSCOM_MODULES.push({
+window.NSCOM_MODULES = window.NSCOM_MODULES || [];
+window.NSCOM_MODULES.push({
   id: `m03`,
   num: 3,
   title: `Physical Layer — Digital Transmission`,

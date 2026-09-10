@@ -1,4 +1,4 @@
-window["NSCOM" + "_MODULES"] = window["NSCOM" + "_MODULES"] || [];
+window.NSCOM_MODULES = window.NSCOM_MODULES || [];
 window.NSCOM_MODULES.push({
   id: "m08",
   num: 8,
