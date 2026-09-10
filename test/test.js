@@ -157,6 +157,19 @@ test("every referenced figure exists on disk", () => {
   assert.deepStrictEqual(missing, [], `missing figure files: ${missing.slice(0, 5)}`);
 });
 
+test("no literal unicode escape sequences leak into rendered text", () => {
+  // Inside backtick template literals JS does not interpret \uXXXX, so a
+  // literal backslash-u sequence would render to the student as "\u2014".
+  const esc = /\\u[0-9a-fA-F]{4}/;
+  const leaks = [];
+  for (const { file, mod: m } of loadModules()) {
+    const blob = JSON.stringify(m);
+    if (esc.test(blob)) leaks.push(file);
+  }
+  assert.deepStrictEqual(leaks, [],
+    `modules with literal escape leaks: ${leaks.join(", ")}`);
+});
+
 test("figures used by content are drawn from figs.json", () => {
   for (const { file, mod: m } of loadModules()) {
     for (const s of m.sections) {
