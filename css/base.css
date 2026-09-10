@@ -207,10 +207,17 @@ a:hover { color: var(--amber); }
   opacity: .5; mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
 }
 .scope__trace {
-  position: absolute; left: 0; right: 0; top: 14%;
-  color: var(--trace); opacity: .5; pointer-events: none;
+  position: absolute; left: 0; right: 0; top: 0;
+  height: clamp(90px, 13vw, 170px);
+  color: var(--trace); opacity: .34; pointer-events: none;
+  overflow: hidden;
 }
-.scope__trace svg { display: block; width: 100%; height: 120px; }
+.scope__trace svg { display: block; width: 100%; height: 100%; }
+.scope__trace::after {
+  /* fade the trace out where content begins, so text never sits on ink */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 0%, transparent 38%, var(--ground) 96%);
+}
 .scope__view { position: relative; max-width: 78rem; }
 
 .foot {

@@ -277,8 +277,9 @@
   }
 
   function initTheme() {
-    var t = w.STORE.theme();
-    if (!t) t = w.matchMedia && w.matchMedia("(prefers-color-scheme: light)").matches ? "beam" : "phosphor";
+    // Dark phosphor is the committed world (see the direction contract); the
+    // light "beam" theme is an explicit opt-in, never a system-default flip.
+    var t = w.STORE.theme() || "phosphor";
     applyTheme(t);
     var b = D.querySelector("[data-theme-toggle]");
     if (b) b.addEventListener("click", function () {
