@@ -63,18 +63,52 @@
     }; },
 
     /* ── lessons ─────────────────────────────────────────────── */
-    markSection: function (secId) {
-      if (!secId || state.read[secId]) return;
-      state.read[secId] = true;
-      var m = /^(m\d\d)\./.exec(secId);
-      if (m) state.last = "#/m/" + m[1];
+    /* Section ids are only unique WITHIN a module (every module has s1..s16),
+       so read state must be keyed by "moduleId/sectionId". Keying by the bare
+       id made one module's progress mark the same-numbered section of all ten. */
+    key: function (modId, secId) { return modId + "/" + secId; },
+
+    markSection: function (modId, secId) {
+      if (!modId || !secId) return;
+      var k = store.key(modId, secId);
+      if (state.read[k]) return;
+      state.read[k] = true;
+      state.last = "#/m/" + modId;
       commit();
     },
-    isSectionRead: function (secId) { return !!state.read[secId]; },
-    readCount: function (ids) {
+    unmarkSection: function (modId, secId) {
+      var k = store.key(modId, secId);
+      if (!state.read[k]) return;
+      delete state.read[k];
+      commit();
+    },
+    toggleSection: function (modId, secId) {
+      if (store.isSectionRead(modId, secId)) store.unmarkSection(modId, secId);
+      else store.markSection(modId, secId);
+      return store.isSectionRead(modId, secId);
+    },
+    isSectionRead: function (modId, secId) {
+      return !!state.read[store.key(modId, secId)];
+    },
+    /* Read count for one module: pass the module id and its section ids. */
+    readCount: function (modId, ids) {
       var n = 0;
-      for (var i = 0; i < ids.length; i++) if (state.read[ids[i]]) n++;
+      for (var i = 0; i < ids.length; i++) {
+        if (state.read[store.key(modId, ids[i])]) n++;
+      }
       return n;
+    },
+    /* Progress across every module: [{modId, read, total}] with a grand total. */
+    overall: function (mods) {
+      var read = 0, total = 0, per = [];
+      for (var i = 0; i < mods.length; i++) {
+        var ids = mods[i].sections.map(function (s) { return s.id; });
+        var r = store.readCount(mods[i].id, ids);
+        read += r; total += ids.length;
+        per.push({ modId: mods[i].id, read: r, total: ids.length });
+      }
+      return { read: read, total: total,
+               pct: total ? Math.round((read / total) * 100) : 0, per: per };
     },
 
     /* ── flashcards (Leitner boxes) ──────────────────────────── */

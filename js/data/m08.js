@@ -165,7 +165,7 @@ window.NSCOM_MODULES.push({
         {
           type: "formula",
           tex: "\\underbrace{7}_{\\text{preamble}} + \\underbrace{1}_{\\text{SFD}} + \\underbrace{6}_{\\text{dest}} + \\underbrace{6}_{\\text{src}} + \\underbrace{2}_{\\text{type}} + \\underbrace{46\\ldots1500}_{\\text{data}} + \\underbrace{4}_{\\text{CRC}}",
-          text: "Adding the fields in bytes: 7 preamble + 1 start-of-frame delimiter + 6 destination address + 6 source address + 2 type + 46 to 1500 data + 4 CRC, giving a total frame length of 72 to 1526 bytes on the wire, or 64 to 1518 bytes if the preamble and delimiter are excluded.",
+          text: "Adding the fields in bytes: 7 preamble + 1 start-of-frame delimiter + 6 destination address + 6 source address + 2 type + 46 to 1500 data + 4 CRC, giving a total frame length of 72 to 1526 bytes on the wire including the preamble and delimiter, or 64 to 1518 bytes if the preamble and delimiter are excluded from the count.",
         },
         {
           type: "p",

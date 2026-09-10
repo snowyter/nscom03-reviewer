@@ -162,7 +162,7 @@
   font: 500 .62rem/1.4 var(--mono); letter-spacing: .08em;
   text-transform: uppercase; padding: .35rem 0 0;
 }
-.q__jump:hover { color: var(--amber); }
+.q__jump:hover { color: var(--ink); }
 
 .quiz__score {
   border: 1px solid var(--rule); background: var(--ground-2);
@@ -186,7 +186,7 @@
 }
 .btn:hover { color: var(--trace); border-color: var(--trace-dim); }
 .btn--go { background: var(--trace); color: var(--ground); border-color: var(--trace); }
-.btn--go:hover { background: var(--amber); border-color: var(--amber); color: #10100a; }
+.btn--go:hover { background: var(--trace); filter: brightness(1.12); }
 
 /* ── Simulators ─────────────────────────────────────────────────── */
 .sim { border: 1px solid var(--rule); background: var(--ground-2); margin-bottom: 1.4rem; }

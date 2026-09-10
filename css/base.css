@@ -16,6 +16,7 @@
   --ink-faint:   #4d6b5e;
   --warn:        #ff7b6b;
   --grid:        rgba(28, 74, 58, 0.55);
+  --band-ink:    #0a1410;   /* text on a filled colour band (e.g. sim bands) */
 
   --mono: ui-monospace, "SFMono-Regular", "IBM Plex Mono", "Cascadia Mono",
           Menlo, Consolas, monospace;
@@ -45,6 +46,7 @@
   --ink-faint:   #8a978d;
   --warn:        #a8321f;
   --grid:        rgba(120, 140, 118, 0.35);
+  --band-ink:    #f7f5ec;
   color-scheme: light;
 }
 

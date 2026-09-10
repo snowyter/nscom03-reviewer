@@ -13,7 +13,7 @@
            note: "Each channel owns a time slot, and slots repeat in a fixed frame, so every channel gets the same share whether or not it has data. That fixed share is why statistical TDM exists." }
   };
 
-  var CH_COLORS = ["#7dffb2", "#ffd166", "#4fb3d9", "#ff9f6b", "#c792ea"];
+  var CH_COLORS = ["#7dffb2", "#4fb3d9", "#ff9f6b", "#c792ea", "#8ad4c8"];
 
   function mount(root) {
     root.innerHTML = `
@@ -108,7 +108,7 @@
           var lbl = kind === "wdm"
             ? "λ" + (c2 + 1) + "  " + [1550, 1310, 980, 850, 780][c2] + " nm"
             : "Ch" + (c2 + 1) + "  " + [300, 400, 500, 600, 700][c2] + " Hz-band";
-          svg += `<text x="${x0b + 10}" y="${y2 + bh / 2 + 4}" fill="#0a1410"
+          svg += `<text x="${x0b + 10}" y="${y2 + bh / 2 + 4}" fill="var(--band-ink)"
             font-size="12" font-family="var(--mono)">${lbl}</text>`;
           svg += `<text x="${pad - 8}" y="${y2 + bh / 2 + 4}" fill="var(--ink-faint)"
             font-size="10" font-family="var(--mono)" text-anchor="end">${kind === "wdm" ? "λ" : "f"}</text>`;

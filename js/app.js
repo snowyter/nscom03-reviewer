@@ -19,19 +19,12 @@
   /* ── chrome ─────────────────────────────────────────────────── */
 
   function paintReadouts() {
-    var allSecs = [], readN = 0;
-    MODS.forEach(function (m) {
-      m.sections.forEach(function (s) {
-        allSecs.push(s.id);
-        if (w.STORE.isSectionRead(s.id)) readN++;
-      });
-    });
-    var pct = allSecs.length ? Math.round((readN / allSecs.length) * 100) : 0;
+    var prog = w.STORE.overall(MODS);
     set("modules", MODS.length);
-    set("progress", pct + "%");
+    set("progress", prog.pct + "%");
     set("due", w.STORE.dueAll(MODS));
     var f = D.querySelector("[data-foot-progress]");
-    if (f) f.textContent = readN + " / " + allSecs.length + " sections read · " + pct + "%";
+    if (f) f.textContent = prog.read + " / " + prog.total + " sections read · " + prog.pct + "%";
   }
 
   function set(name, val) {
@@ -43,7 +36,7 @@
     var list = D.querySelector("[data-rail]");
     if (!list) return;
     list.innerHTML = MODS.map(function (m) {
-      var readN = w.STORE.readCount(m.sections.map(function (s) { return s.id; }));
+      var readN = w.STORE.readCount(m.id, m.sections.map(function (s) { return s.id; }));
       var all = readN === m.sections.length;
       var cur = m.id === currentId;
       return `<li class="rail__item">
@@ -100,6 +93,7 @@
     if (b.length === 0) {
       paintRail(null);
       v.innerHTML = w.RENDER.overview(MODS, w.STORE.all(), FIGS);
+      wireOverview(v);
       w.STORE.remember("#/");
       paintReadouts();
       return;
@@ -170,6 +164,16 @@
 
   /* ── lesson wiring ──────────────────────────────────────────── */
 
+  function wireOverview(scope) {
+    scope.addEventListener("click", function (e) {
+      var clear = e.target.closest("[data-clear-progress]");
+      if (!clear) return;
+      if (!w.confirm("Clear all reading progress, card grades and quiz scores? This cannot be undone.")) return;
+      w.STORE.reset();
+      render();
+    });
+  }
+
   function wireLesson(scope, mod) {
     scope.addEventListener("click", onClick);
     teardown = function () { scope.removeEventListener("click", onClick); };
@@ -183,8 +187,8 @@
       var mk = e.target.closest("[data-mark]");
       if (mk) {
         var id = mk.getAttribute("data-mark");
-        w.STORE.markSection(id);
-        updateMark(mk, true);
+        var nowRead = w.STORE.toggleSection(mod.id, id);
+        updateMark(mk, nowRead);
         refreshSpine(mod);
         paintReadouts();
         paintRail(mod.id);
@@ -192,9 +196,20 @@
       }
       var all = e.target.closest("[data-mark-all]");
       if (all) {
-        mod.sections.forEach(function (s) { w.STORE.markSection(s.id); });
-        scope.querySelectorAll("[data-mark]").forEach(function (b2) { updateMark(b2, true); });
-        scope.querySelectorAll(".sec").forEach(function (s2) { s2.classList.add("is-read"); });
+        var ids = mod.sections.map(function (s) { return s.id; });
+        var n = w.STORE.readCount(mod.id, ids);
+        var complete = n === ids.length;
+        mod.sections.forEach(function (s) {
+          if (complete) w.STORE.unmarkSection(mod.id, s.id);
+          else w.STORE.markSection(mod.id, s.id);
+        });
+        scope.querySelectorAll("[data-mark]").forEach(function (b2) {
+          updateMark(b2, !complete);
+        });
+        scope.querySelectorAll(".sec").forEach(function (s2) {
+          s2.classList.toggle("is-read", !complete);
+        });
+        all.textContent = complete ? "Mark all read" : "Clear all marks";
         refreshSpine(mod);
         paintReadouts();
         paintRail(mod.id);
@@ -209,12 +224,13 @@
   }
 
   function refreshSpine(mod) {
-    var st = w.STORE.all();
     var bars = D.querySelectorAll(".spine__b");
     mod.sections.forEach(function (s, i) {
-      if (bars[i]) bars[i].classList.toggle("is-on", !!st.read[s.id]);
+      if (bars[i]) {
+        bars[i].classList.toggle("is-on", w.STORE.isSectionRead(mod.id, s.id));
+      }
     });
-    var n = w.STORE.readCount(mod.sections.map(function (s) { return s.id; }));
+    var n = w.STORE.readCount(mod.id, mod.sections.map(function (s) { return s.id; }));
     var lab = D.querySelector(".spine > span");
     if (lab) lab.textContent = "Read " + n + "/" + mod.sections.length;
     var pct = D.querySelector(".spine > span:last-child");
@@ -224,8 +240,11 @@
   /* ── lightbox ───────────────────────────────────────────────── */
 
   var box = null;
+  var lastTrigger = null;
+
   function openLightbox(src, alt) {
     closeLightbox();
+    lastTrigger = D.activeElement;          // remember where focus came from
     box = D.createElement("div");
     box.className = "lbox";
     box.setAttribute("role", "dialog");
@@ -236,13 +255,33 @@
     box.addEventListener("click", function (e) {
       if (e.target === box || e.target.closest(".lbox__x")) closeLightbox();
     });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Tab") {                // keep focus inside the dialog
+        var x = box.querySelector(".lbox__x");
+        if (x) { e.preventDefault(); x.focus(); }
+      }
+    });
     D.body.appendChild(box);
     var x = box.querySelector(".lbox__x");
     if (x) x.focus();
+    // hold Escape while open
+    D.addEventListener("keydown", lightboxEsc, true);
   }
+
+  function lightboxEsc(e) {
+    if (e.key === "Escape") { e.preventDefault(); closeLightbox(); }
+  }
+
   function closeLightbox() {
     if (box && box.parentNode) box.parentNode.removeChild(box);
     box = null;
+    D.removeEventListener("keydown", lightboxEsc, true);
+    // hand focus back to the figure that opened it, so a keyboard user does not
+    // lose their place in a lesson with dozens of figures
+    if (lastTrigger && lastTrigger.isConnected && lastTrigger.focus) {
+      try { lastTrigger.focus(); } catch (e) {}
+    }
+    lastTrigger = null;
   }
 
   /* ── syllabus (flat sheet index) ────────────────────────────── */
@@ -335,7 +374,6 @@
     paintRail(null);
     heroTrace();
     w.addEventListener("hashchange", render);
-    D.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLightbox(); });
     w.STORE.on(function () { paintReadouts(); });
     render();
   }

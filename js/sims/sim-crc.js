@@ -102,7 +102,14 @@
 
     function send() {
       corrupted = false;
-      var v = readInputs();
+      var v;
+      try {
+        v = readInputs();
+      } catch (err) {
+        showError(err.message);
+        return;
+      }
+      clearError();
       var deg = v.gen.length - 1;
       var appended = v.data + "0".repeat(deg);
       var r = divide(appended, v.gen);
@@ -121,6 +128,27 @@
       return codeword;
     }
 
+    function showError(msg) {
+      // The old build threw from inside the input listener, so the readout kept
+      // showing the previous codeword and the bad input looked accepted.
+      root.dataset.codeword = "";
+      root.dataset.gen = "";
+      outEl.innerHTML = `<div><dt>Input problem</dt><dd>${w.RENDER.esc(msg)}</dd></div>`;
+      stepsEl.innerHTML = "";
+      var box = root.querySelector(".sim__inline-err");
+      if (!box) {
+        box = root.ownerDocument.createElement("div");
+        box.className = "sim__err sim__inline-err";
+        outEl.parentNode.insertBefore(box, outEl);
+      }
+      box.textContent = msg;
+    }
+
+    function clearError() {
+      var box = root.querySelector(".sim__inline-err");
+      if (box && box.parentNode) box.parentNode.removeChild(box);
+    }
+
     function paintSteps(steps, gen) {
       stepsEl.innerHTML = steps.map(function (s, n) {
         var pad = " ".repeat(Math.max(0, s.i));
@@ -132,6 +160,7 @@ ${w.RENDER.esc(pad + "⊕" + s.div + "  →  " + s.res)}</li>`;
     function check() {
       var gen = root.dataset.gen, cw = root.dataset.codeword;
       if (!gen || !cw) { send(); gen = root.dataset.gen; cw = root.dataset.codeword; }
+      if (!gen || !cw) return;              // input is invalid; showError already ran
       var r = divide(cw, gen);
       var ok = /^0+$/.test(r.remainder);
       show({
@@ -145,6 +174,7 @@ ${w.RENDER.esc(pad + "⊕" + s.div + "  →  " + s.res)}</li>`;
 
     function flip() {
       if (!root.dataset.codeword) send();
+      if (!root.dataset.codeword) return;    // invalid input; nothing to corrupt
       var cw = root.dataset.codeword.split("");
       var at = 1 + Math.floor(Math.random() * (cw.length - 1));
       cw[at] = cw[at] === "1" ? "0" : "1";

@@ -223,10 +223,16 @@
     }
 
     function retryWrong() {
+      // Keep the questions answered correctly; clear only the ones missed, so
+      // the student is not forced to redo what they already knew.
       var s = score();
-      var keep = {};
-      s.wrong.forEach(function (i) { keep[i] = undefined; });
-      answered = {};
+      var wrongSet = {};
+      s.wrong.forEach(function (i) { wrongSet[i] = true; });
+      var kept = {};
+      Object.keys(answered).forEach(function (k) {
+        if (!wrongSet[k]) kept[k] = answered[k];
+      });
+      answered = kept;
       done = false;
       draw();
     }

@@ -51,7 +51,7 @@
 
       case "formula":
         return `<div class="blk blk--formula">
-          <span class="fx">${esc(b.tex)}</span>
+          <span class="fx">${w.MATH.toHtml(b.tex)}</span>
           <span class="fx__say"><b>In words:</b> ${esc(b.text)}</span></div>`;
 
       case "example": {
@@ -104,10 +104,10 @@
 
   function lesson(mod, state) {
     var ids = mod.sections.map(function (s) { return s.id; });
-    var readN = w.STORE.readCount(ids);
+    var readN = w.STORE.readCount(mod.id, ids);
     var secs = mod.sections;
     var bar = secs.map(function (s, i) {
-      var isRead = !!state.read[s.id];
+      var isRead = w.STORE.isSectionRead(mod.id, s.id);
       return `<span class="spine__b${isRead ? " is-on" : ""}" title="${esc(s.title)}"></span>`;
     }).join("");
 
@@ -126,7 +126,8 @@
         <div class="sheet__modes">
           <a class="mode" href="#/m/${mod.id}/cards">Drill cards <span class="mode__n">${mod.flashcards.length}</span></a>
           <a class="mode" href="#/m/${mod.id}/quiz">Take quiz <span class="mode__n">${mod.quiz.length}</span></a>
-          <button class="mode" type="button" data-mark-all>Mark all read</button>
+          <button class="mode" type="button" data-mark-all>${
+            readN === secs.length ? "Clear all marks" : "Mark all read"}</button>
         </div>
       </header>
 
@@ -147,10 +148,10 @@
   function overview(mods, state, figs) {
     var cards = mods.map(function (m) {
       var ids = m.sections.map(function (s) { return s.id; });
-      var readN = w.STORE.readCount(ids);
+      var readN = w.STORE.readCount(m.id, ids);
       var pct = Math.round((readN / ids.length) * 100);
       var bars = m.sections.map(function (s) {
-        return `<span class="cell__b${state.read[s.id] ? " is-on" : ""}"></span>`;
+        return `<span class="cell__b${w.STORE.isSectionRead(m.id, s.id) ? " is-on" : ""}"></span>`;
       }).join("");
       var rec = w.STORE.quizRec(m.id);
       var seen = w.STORE.cardsSeen(m.id, m.flashcards.length);
@@ -178,6 +179,7 @@
       <div class="sheet__modes" style="margin-top:1.1rem">
         <a class="mode" href="#/sims">Simulator bench</a>
         <a class="mode" href="#/syllabus">Sheet index</a>
+        <button class="mode" type="button" data-clear-progress>Clear all progress</button>
       </div>
     </div>
     <div class="grid">${cards}</div>`;

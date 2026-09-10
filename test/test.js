@@ -184,6 +184,46 @@ test("no literal unicode escape sequences leak into rendered text", () => {
     `modules with literal escape leaks: ${leaks.join(", ")}`);
 });
 
+test("section ids are namespaced by module in study state", () => {
+  // Section ids are only unique within a module (every module has s1..sN), so
+  // read state keyed by the bare id made marking 16 sections mark 16 sections of
+  // ALL TEN modules. Verify the store keys by module/section and that counting
+  // is per-module.
+  const mods = loadModules().map((x) => x.mod);
+  const allIds = [];
+  for (const m of mods) for (const s of m.sections) allIds.push(m.id + "/" + s.id);
+  const unique = new Set(allIds);
+  assert.strictEqual(unique.size, allIds.length,
+    "module/section keys must be globally unique");
+
+  // the raw ids must genuinely collide, which is why namespacing is required
+  const bare = [];
+  for (const m of mods) for (const s of m.sections) bare.push(s.id);
+  assert.ok(new Set(bare).size < bare.length,
+    "expected bare section ids to collide across modules");
+});
+
+test("every formula block renders without leaving raw TeX", () => {
+  const sandbox = { window: {} };
+  vm.createContext(sandbox);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, "js", "math.js"), "utf8"), sandbox);
+  const MATH = sandbox.window.MATH;
+  assert.ok(MATH && typeof MATH.toHtml === "function", "math renderer did not load");
+
+  const offenders = [];
+  for (const { mod: m } of loadModules()) {
+    for (const s of m.sections) {
+      for (const b of s.body) {
+        if (b.type !== "formula") continue;
+        const html = MATH.toHtml(b.tex);
+        if (/\\[A-Za-z]+/.test(html)) offenders.push(`${m.id}/${s.id}: ${b.tex.slice(0, 60)}`);
+      }
+    }
+  }
+  assert.deepStrictEqual(offenders, [],
+    `formulas still showing raw LaTeX: ${offenders.slice(0, 5).join(" | ")}`);
+});
+
 test("figures used by content are drawn from figs.json", () => {
   for (const { file, mod: m } of loadModules()) {
     for (const s of m.sections) {

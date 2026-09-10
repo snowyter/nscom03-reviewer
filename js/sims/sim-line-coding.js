@@ -72,7 +72,12 @@
         var out = [];
         for (var i = 0; i + 1 < bits.length; i += 2) out.push(map[bits.slice(i, i + 2).join("")]);
         return out;
-      }
+      },
+      // 2B1Q consumes exactly two bits per symbol, so an odd-length string has
+      // a remainder the encoder cannot carry. The caller must say so rather
+      // than silently drop the bit and print a self-contradictory readout.
+      bitsPerSymbol: 2,
+      pairAligned: true
     }
   };
 
@@ -169,6 +174,16 @@
       var b = bits();
       var key = schemeEl.value;
       var s = SCHEMES[key];
+      var warning = "";
+
+      // 2B1Q encodes two bits per symbol; an odd-length input leaves a bit the
+      // scheme cannot carry, so say so instead of dropping it silently.
+      if (s.pairAligned && b.length % 2 !== 0) {
+        warning = "2B1Q maps 2 bits to each symbol, so the last bit of an "
+                + b.length + "-bit string has no partner and is not encoded. "
+                + "Add or remove one bit to see the whole string encoded.";
+      }
+
       var levels = s.gen(b);
       var per = key === "manchester" || key === "diff-manchester" ? 2 : 1;
 
@@ -177,17 +192,33 @@
 
       var nBits = b.length;
       var nLevels = levels.length;
+      var encodedBits = s.pairAligned ? nLevels * 2 : nBits;
       var r = (key === "manchester" || key === "diff-manchester") ? "1/2"
             : key === "2b1q" ? "2" : "1";
       outEl.innerHTML = [
         ["Scheme", s.label],
         ["Bits", b.join("")],
         ["Signal elements", nLevels],
+        ["Bits encoded", encodedBits + " of " + nBits],
         ["r (bits per element)", r],
-        ["Ba = N / r (same N)", nLevels + " elements for " + nBits + " bits"]
+        ["Ba = N / r (same N)", nLevels + (nLevels === 1 ? " element for " : " elements for ")
+          + encodedBits + (encodedBits === 1 ? " bit" : " bits")]
       ].map(function (row) {
         return `<div><dt>${w.RENDER.esc(row[0])}</dt><dd>${w.RENDER.esc(row[1])}</dd></div>`;
       }).join("");
+
+      if (warning) {
+        var box = root.querySelector(".sim__inline-err");
+        if (!box) {
+          box = root.ownerDocument.createElement("div");
+          box.className = "sim__err sim__inline-err";
+          waveEl.parentNode.insertBefore(box, waveEl);
+        }
+        box.textContent = warning;
+      } else {
+        var old = root.querySelector(".sim__inline-err");
+        if (old && old.parentNode) old.parentNode.removeChild(old);
+      }
     }
 
     root.addEventListener("input", draw);
