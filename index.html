@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="phosphor">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NSCOM03 — Instrument Bench Reviewer</title>
+<meta name="description" content="An interactive study reviewer for NSCOM03 Data Communications: lessons, flashcards, quizzes and signal simulators built from the course's own lecture material.">
+<link rel="stylesheet" href="css/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a1410'/><path d='M2 16h6l3-9 4 18 4-13 3 5h8' fill='none' stroke='%237dffb2' stroke-width='2.4' stroke-linejoin='round'/></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── Instrument header ─────────────────────────────────────────── -->
+<header class="bench" role="banner">
+  <div class="bench__id">
+    <span class="bench__mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="26" height="26"><path d="M2 16h6l3-9 4 18 4-13 3 5h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
+    </span>
+    <span class="bench__text">
+      <b class="bench__name">NSCOM03</b>
+      <i class="bench__sub">Data Communications · instrument bench</i>
+    </span>
+  </div>
+
+  <div class="bench__readouts" aria-label="Study progress">
+    <div class="ro">
+      <span class="ro__label">Modules</span>
+      <span class="ro__val" data-readout="modules">10</span>
+    </div>
+    <div class="ro">
+      <span class="ro__label">Read</span>
+      <span class="ro__val" data-readout="progress">0%</span>
+    </div>
+    <div class="ro">
+      <span class="ro__label">Cards due</span>
+      <span class="ro__val" data-readout="due">0</span>
+    </div>
+  </div>
+
+  <div class="bench__ctl">
+    <button class="ctl" data-theme-toggle type="button" aria-pressed="false">
+      <span class="ctl__led" aria-hidden="true"></span>
+      <span class="ctl__txt">Beam</span>
+    </button>
+    <button class="ctl ctl--nav" data-menu-toggle type="button" aria-expanded="false" aria-controls="rail">
+      <span class="ctl__txt">Index</span>
+    </button>
+  </div>
+</header>
+
+<div class="stage">
+
+  <!-- ── Module rail ─────────────────────────────────────────────── -->
+  <nav class="rail" id="rail" aria-label="Modules">
+    <div class="rail__head">
+      <span class="rail__title">Channel select</span>
+    </div>
+    <ol class="rail__list" data-rail></ol>
+    <div class="rail__foot">
+      <a class="rail__sims" href="#/sims">Bench &mdash; simulators</a>
+      <a class="rail__sims" href="#/syllabus">Sheet index</a>
+    </div>
+  </nav>
+
+  <!-- ── Display ─────────────────────────────────────────────────── -->
+  <main class="scope" id="main" tabindex="-1">
+    <div class="scope__graticule" aria-hidden="true"></div>
+    <div class="scope__trace" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" data-hero-trace>
+        <path d="" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="scope__view" data-view></div>
+  </main>
+
+</div>
+
+<footer class="foot">
+  <span>Sourced from the NSCOM03 lecture material · depth added from standard data-communications theory</span>
+  <span data-foot-progress></span>
+</footer>
+
+<!-- ── DATA ──────────────────────────────────────────────────────── -->
+<script src="js/data/m01.js"></script>
+<script src="js/data/m02.js"></script>
+<script src="js/data/m03.js"></script>
+<script src="js/data/m04.js"></script>
+<script src="js/data/m05.js"></script>
+<script src="js/data/m06.js"></script>
+<script src="js/data/m07.js"></script>
+<script src="js/data/m08.js"></script>
+<script src="js/data/m09.js"></script>
+<script src="js/data/m10.js"></script>
+
+<!-- ── SIMS ──────────────────────────────────────────────────────── -->
+<script src="js/sims/sim-crc.js"></script>
+<script src="js/sims/sim-line-coding.js"></script>
+<script src="js/sims/sim-modulation.js"></script>
+<script src="js/sims/sim-nyquist-shannon.js"></script>
+<script src="js/sims/sim-multiplexing.js"></script>
+
+<!-- ── APP ───────────────────────────────────────────────────────── -->
+<script src="js/store.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/sims.js"></script>
+<script src="js/render.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
