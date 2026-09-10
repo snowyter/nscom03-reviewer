@@ -1,0 +1,49 @@
+{
+  "capturedAs": "code-led build (no image generation on this machine) \u2014 measurement report in place of a comp diff",
+  "viewport_inspected": "1280x~3249 full page; mobile rules verified via CSS media queries",
+  "routes_verified": [
+    "#/",
+    "#/sims",
+    "#/syllabus",
+    "#/m/m06",
+    "#/m/m06/cards",
+    "#/m/m06/quiz"
+  ],
+  "measurements": {
+    "sheetTitleFontSize": "40px",
+    "bodyFontSize": "15.2px",
+    "proseMeasurePx": 557,
+    "estimatedCharsPerLine": 73,
+    "figureWidth": 909,
+    "docScrollWidth": 1265,
+    "viewport": 1280,
+    "horizontalOverflow": false
+  },
+  "interactions_verified": {
+    "flashcard_flip": "card 1 -> answer face, got-it enabled",
+    "flashcard_grade": "advanced to card 2, deck seen 1/23, persisted to localStorage under all 10 module keys",
+    "quiz_answer": "correct option marked is-ok with check, why block rendered, jump link to source section present, score 1/24",
+    "simulators": "5 registered, 5 mounted, 0 mount errors, 4 waveforms, 4 step lists, 24 readout cells",
+    "crc_values": "data 1101011011 + gen 10011 -> remainder 1110, codeword 11010110111110 (matches independent Python)",
+    "nyquist_shannon": "3kHz/L2/20dB -> Nyquist 6.000 kbps, Shannon 19.975 kbps, Nyquist binding (matches Python)"
+  },
+  "defects_found_and_fixed": [
+    "SIMS registry used before initialisation killed the whole simulator bench (5 TypeErrors) \u2014 fixed with a bootstrap script and covered by a DOM boot test",
+    "137 literal unicode escapes rendering as \\u2014 text in backtick template literals \u2014 fixed and guarded by a test",
+    "grid background showed as a solid green block in the unfilled last row \u2014 fixed by moving hairlines onto cells",
+    "theme defaulted to light via prefers-color-scheme, weakening the committed world \u2014 fixed to dark default",
+    "stale hardcoded module count of 10 in the header \u2014 fixed to a live readout"
+  ],
+  "detector": {
+    "ran": true,
+    "findings": 1,
+    "advisory": true,
+    "detail": "codex-grid-background: the graticule. Retained deliberately \u2014 it is the oscilloscope screen grid the committed world requires, and the detector's own guidance reserves grid overlays for 'actual canvas, map, blueprint, or measurement surfaces'.",
+    "fixed": 0
+  },
+  "tests": {
+    "suite": "node --test test/",
+    "passed": 11,
+    "failed": 0
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "impeccable:design-json 1",
+  "world": "Oscilloscope phosphor bench",
+  "directionContract": ".impeccable/surfaces/index.md",
+  "modes": {
+    "surface": "read",
+    "reader": "NSCOM03 student studying before an assessment"
+  },
+  "themes": {
+    "phosphor": {
+      "role": "default, committed world",
+      "tokens": {
+        "ground": "#0a1410",
+        "ground-2": "#0d1a15",
+        "rule": "#1c4a3a",
+        "rule-soft": "#143127",
+        "trace": "#7dffb2",
+        "trace-dim": "#3d8f66",
+        "amber": "#ffd166",
+        "amber-dim": "#8a6f33",
+        "ink": "#cfe8dc",
+        "ink-dim": "#7e9d90",
+        "ink-faint": "#4d6b5e",
+        "warn": "#ff7b6b",
+        "grid": "rgba(28, 74, 58, 0.55)",
+        "mono": "ui-monospace, \"SFMono-Regular\", \"IBM Plex Mono\", \"Cascadia Mono\",\n          Menlo, Consolas, monospace",
+        "sans": "\"Helvetica Neue\", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif",
+        "measure": "66ch",
+        "pad": "clamp(0.9rem, 2.2vw, 1.6rem)",
+        "rail": "15.5rem",
+        "head": "3.9rem",
+        "r-sm": "2px"
+      }
+    },
+    "beam": {
+      "role": "opt-in light theme, same instrument under a bench lamp",
+      "tokens": {
+        "ground": "#f4f1e6",
+        "ground-2": "#eae6d6",
+        "rule": "#b9c4ae",
+        "rule-soft": "#d6dcc9",
+        "trace": "#17603f",
+        "trace-dim": "#6f9c85",
+        "amber": "#8a5a00",
+        "amber-dim": "#c9a86a",
+        "ink": "#1d2b24",
+        "ink-dim": "#4f6157",
+        "ink-faint": "#8a978d",
+        "warn": "#a8321f",
+        "grid": "rgba(120, 140, 118, 0.35)"
+      }
+    }
+  },
+  "fonts": {
+    "mono": "ui-monospace, \"SFMono-Regular\", \"IBM Plex Mono\", \"Cascadia Mono\",\n          Menlo, Consolas, monospace",
+    "sans": "\"Helvetica Neue\", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif"
+  },
+  "measure": "66ch",
+  "rules": {
+    "radius": "2px for all surfaces; circles only for spine nodes and LEDs",
+    "bans": [
+      "shadows",
+      "blur",
+      "glass",
+      "gradients as decoration",
+      "rounded pills"
+    ],
+    "amberIsReservedFor": "measured values: readouts, progress counts, section numbers, formula expressions",
+    "stateNotColourAlone": "progress uses marks, filled nodes and numerals in addition to hue"
+  },
+  "components": [
+    "bench",
+    "rail",
+    "scope",
+    "sec",
+    "fig",
+    "formula",
+    "note",
+    "example",
+    "table",
+    "card",
+    "q",
+    "sim",
+    "readout",
+    "steps",
+    "wave"
+  ],
+  "motion": {
+    "budget": "0.18s interactive transitions, one 900ms sim interval, one boot-time trace draw",
+    "reducedMotion": "all disabled under prefers-reduced-motion: reduce"
+  },
+  "accessibility": {
+    "focus": "2px amber outline with offset, never removed",
+    "contrast": "body and headings clear 4.5:1 on both grounds",
+    "keyboard": "space flips, 1/2 grades, arrows select, escape closes the lightbox",
+    "semantics": "nav with aria-current, aria-pressed theme toggle, alt text on every figure"
+  },
+  "rasters": {
+    "count": 258,
+    "origin": "course PDFs via tools/figures.py (render -> trim -> webp q82)",
+    "provenance": "assets/figs/<module>/<slug>.webp, catalogued in figs.json"
+  }
+}

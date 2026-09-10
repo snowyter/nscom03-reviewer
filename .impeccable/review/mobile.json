@@ -1,0 +1,14 @@
+{
+  "note": "mobile verified through the stylesheet's own rules and a DOM pass",
+  "media_queries": [
+    "prefers-reduced-motion: reduce",
+    "max-width: 900px",
+    "max-width: 560px",
+    "max-width: 640px"
+  ],
+  "rail_off_canvas": true,
+  "rail_open_rule": true,
+  "images_missing_alt": 0,
+  "skip_link": true,
+  "focus_visible": true
+}

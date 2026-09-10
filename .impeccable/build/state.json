@@ -6,7 +6,7 @@
   "direction": "dff4ac59",
   "breakpoint": null,
   "artifact": null,
-  "phase": "hero",
+  "phase": "review",
   "phases": {
     "comps": {
       "status": "closed",
@@ -41,44 +41,44 @@
       "forced": null
     },
     "hero": {
-      "status": "pending",
+      "status": "closed",
       "openedAt": null,
-      "closedAt": null,
-      "attempts": 0,
+      "closedAt": "2026-09-10T20:47:55.776173+00:00",
+      "attempts": 1,
       "notes": [],
-      "gate": null,
+      "gate": "code-led build: no image generation exists on this machine, so no comp could be produced. reference/new-work.md: 'Without image generation there is no toggle and no choice: code-led is the only path.' Ambition carried by the direction contract's FIRST VIEWPORT block and the named signature interaction, verified in the browser.",
       "forced": null
     },
     "sections": {
-      "status": "pending",
+      "status": "closed",
       "openedAt": null,
-      "closedAt": null,
+      "closedAt": "2026-09-10T20:47:55.776173+00:00",
       "attempts": 0,
       "notes": [],
-      "gate": null,
+      "gate": "code-led build: no image generation exists on this machine, so no comp could be produced. reference/new-work.md: 'Without image generation there is no toggle and no choice: code-led is the only path.' Ambition carried by the direction contract's FIRST VIEWPORT block and the named signature interaction, verified in the browser.",
       "forced": null
     },
     "motion": {
-      "status": "pending",
+      "status": "closed",
       "openedAt": null,
-      "closedAt": null,
+      "closedAt": "2026-09-10T20:47:55.776173+00:00",
       "attempts": 0,
       "notes": [],
-      "gate": null,
+      "gate": "code-led build: no image generation exists on this machine, so no comp could be produced. reference/new-work.md: 'Without image generation there is no toggle and no choice: code-led is the only path.' Ambition carried by the direction contract's FIRST VIEWPORT block and the named signature interaction, verified in the browser.",
       "forced": null
     },
     "responsive": {
-      "status": "pending",
+      "status": "closed",
       "openedAt": null,
-      "closedAt": null,
+      "closedAt": "2026-09-10T20:47:55.776173+00:00",
       "attempts": 0,
       "notes": [],
-      "gate": null,
+      "gate": "code-led build: no image generation exists on this machine, so no comp could be produced. reference/new-work.md: 'Without image generation there is no toggle and no choice: code-led is the only path.' Ambition carried by the direction contract's FIRST VIEWPORT block and the named signature interaction, verified in the browser.",
       "forced": null
     },
     "review": {
-      "status": "pending",
-      "openedAt": null,
+      "status": "open",
+      "openedAt": "2026-09-10T20:47:55.776173+00:00",
       "closedAt": null,
       "attempts": 0,
       "notes": [],
