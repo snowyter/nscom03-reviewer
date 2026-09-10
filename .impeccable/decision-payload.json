@@ -1,0 +1,162 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned Circuit Schematic Blueprint. Keep it, take the alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Circuit Schematic Blueprint",
+      "kicker": "THE ROLL",
+      "lineage": "engineering drafting \u2014 schematic sheets and blueprint diazo prints",
+      "thesis": "The course is a layered signal path; the reviewer is its schematic sheet. Every topic is a node on one continuous circuit from the medium up to the frame, and you trace it rather than scroll past cards.",
+      "palette": [
+        "#0b1f33",
+        "#eef4f8",
+        "#4fb3d9",
+        "#ffb020",
+        "#7fd694"
+      ],
+      "materials": [
+        "drafting vellum ground",
+        "ink line-work",
+        "cyan diazo wash",
+        "annotated call-outs"
+      ],
+      "viewport": "A full sheet: a ruled title block top-left naming the module and sheet number, a continuous signal spine running down the page with topics as tapped nodes, and the first figure already annotated with hand-drawn leader arrows into its own mechanism.",
+      "risk": "Technical-drawing grammar can read cold and forbidding; it needs the annotation warmth to stay a study aid and not a datasheet.",
+      "raised": [
+        {
+          "from": "hand-drawn-zine-explainer",
+          "raise": "Figures gain hand-drawn leader arrows and margin call-outs that explain the mechanism inside the drawing, instead of a caption sitting under a silent picture."
+        },
+        {
+          "from": "operate-a-cutting-bench-select-rail",
+          "raise": "State is a mark, not a hue: a mastered topic gets a struck ink check on the sheet, a missed quiz item a grease cross in the margin. Readable with colour stripped out."
+        },
+        {
+          "from": "architecture-inhabitable-space-daylight-section",
+          "raise": "One unbroken ruled spine runs the full page \u2014 a single continuous section \u2014 instead of stacked shadowed cards, so the module reads as one signal path rather than a feed."
+        },
+        {
+          "from": "posters-covers-sleeves-plakatstil-object-poster",
+          "raise": "The vellum ground owns whole regions and cuts hard between sheets; no fades, no soft gradients, no glassy blur."
+        },
+        {
+          "from": "textiles-weave-drape-fashion-industrial-quote-grammar",
+          "raise": "Every figure and table is labelled for literally what it is, set square on the grid \u2014 wayfinding by reading, not by decoration."
+        }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Oscilloscope Phosphor Bench",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "the instrument itself \u2014 analogue scope CRT, phosphor persistence, graticule",
+      "thesis": "The subject's own output device: waveforms are what this course is about, so the surface that shows them is the surface's native form. Readings, traces, and measurements rather than prose in boxes.",
+      "palette": [
+        "#0a1410",
+        "#123027",
+        "#7dffb2",
+        "#ffd166",
+        "#1c4a3a"
+      ],
+      "materials": [
+        "phosphor persistence",
+        "graticule rulings",
+        "measurement cursors",
+        "amber readout numerals"
+      ],
+      "viewport": "One lit graticule filling the viewport, the module's signature waveform traced across it live, with measurement cursors you drag and a readout column naming what each value means.",
+      "risk": "My own top-ranked direction, and the most familiar move in this exact category \u2014 instrument-styled technical interfaces are where most runs like this land. Charming but it can put the aesthetic before the reading.",
+      "case": "Highest audience identification of any candidate \u2014 the scope is literally the course's instrument \u2014 and the simulators would be native to it rather than guests. It loses on dense prose: long explanatory text has no honest home on a graticule."
+    },
+    {
+      "id": "challenger-competitive",
+      "label": "Copy-Shop Zine Interior",
+      "verdict": "competitive",
+      "lineage": "photocopied course handouts on coloured copy-shop stock",
+      "thesis": "The thing the student actually holds: one typed column of argument running down a coloured sheet, the heading platen-enlarged until the letters break up.",
+      "palette": [
+        "#f0a802",
+        "#d6e04a",
+        "#d94f3d",
+        "#2b6cb0",
+        "#1d1d1b"
+      ],
+      "materials": [
+        "bond and goldenrod stock",
+        "Letter Gothic type",
+        "copier generation artefacts",
+        "fibre ground"
+      ],
+      "viewport": "One goldenrod sheet square to the frame at full size, a single 65-character typed column running its length, neighbours present only as a thin strip of their stock at the edge.",
+      "case": "Holds BOTH axes: identification is very high (the audience reads photocopied handouts constantly) and clarity is genuinely strong \u2014 a fixed 65-character measure is excellent for dense reading. The honest cost is that its generation filter and sheet metaphor serve reading well but would fight the interactive simulators.",
+      "risk": "The copy-generation filter can read as a novelty filter over a normal document if the stock system is not committed to."
+    },
+    {
+      "id": "challenger-declined-1",
+      "label": "Hand-drawn Zine Explainer",
+      "verdict": "declined",
+      "lineage": "marker-and-highlighter explainer zines",
+      "thesis": "A friend sketching a hard concept on a napkin.",
+      "case": "Loses on clarity for this product: marker lettering and mascot panels cost legibility on dense technical content. Kept line: hand-drawn leader-arrow annotation now lives on the blueprint's own figures."
+    },
+    {
+      "id": "challenger-declined-2",
+      "label": "Film Cutting-Bench Select Rail",
+      "verdict": "declined",
+      "lineage": "flatbed film editing benches",
+      "thesis": "A perforated rail of punched frames, the place you stopped flagged.",
+      "case": "Loses on identification: no part of this audience's world is film editing. Kept line: state-as-mark, not state-as-colour, now marks mastered topics on the sheet."
+    },
+    {
+      "id": "challenger-declined-3",
+      "label": "Plakatstil Object Poster Wall",
+      "verdict": "declined",
+      "lineage": "Berlin poster houses \u2014 flat emblem on saturated grounds",
+      "thesis": "One product redrawn as a flat emblem across a dozen saturated sheets.",
+      "case": "Loses on clarity: an emblem per product has no place to carry a formula or a timing diagram. Kept line: total commitment to the ground \u2014 whole regions own their colour, hard cuts, no fades."
+    },
+    {
+      "id": "challenger-declined-4",
+      "label": "Daylight Section Drawing",
+      "verdict": "declined",
+      "lineage": "architectural section cuts",
+      "thesis": "Daily life gathered along the moving edge of warmth through a building.",
+      "case": "Loses on identification: beautiful, but it is a building, not a network. Kept line: the continuous unbroken section discipline, now the page's single ruled spine."
+    },
+    {
+      "id": "challenger-declined-5",
+      "label": "Industrial Streetwear Quote Grammar",
+      "verdict": "declined",
+      "lineage": "stockroom textiles and hazard-stripe apparel graphics",
+      "thesis": "Ordinary words in straight quotes with the tags left on.",
+      "case": "Loses on both axes: the fashion register reads as costume over a technical course, and quoted caps carry no explanatory load. Kept line: literal labelling \u2014 name every figure for what it is, set square on the grid."
+    }
+  ],
+  "reroll": true,
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "id": "canon",
+    "label": "The Standard Study Guide",
+    "lineage": "the category default for course review sites",
+    "thesis": "A clean sidebar-plus-content docs layout with a card grid for modules \u2014 what any reviewer site ships: light neutral ground, a sans stack, one accent, generous cards.",
+    "palette": [
+      "#ffffff",
+      "#111827",
+      "#6366f1",
+      "#f3f4f6"
+    ],
+    "materials": [
+      "flat cards",
+      "soft shadows",
+      "system sans"
+    ],
+    "viewport": "Sidebar of modules on the left, module content in a centred column, overview cards on the home route.",
+    "risk": "Predictable; it is the look every AI-generated reviewer site already has."
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": false
+  }
+}

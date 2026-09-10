@@ -1,0 +1,91 @@
+{
+  "tool": "build-phase",
+  "version": 2,
+  "startedAt": "2026-09-10T20:21:43.055Z",
+  "comp": null,
+  "direction": "dff4ac59",
+  "breakpoint": null,
+  "artifact": null,
+  "phase": "hero",
+  "phases": {
+    "comps": {
+      "status": "closed",
+      "openedAt": "2026-09-10T20:21:43.055Z",
+      "closedAt": "2026-09-10T20:22:00.558Z",
+      "attempts": 2,
+      "notes": [
+        {
+          "at": "2026-09-10T20:22:00.533Z",
+          "text": "CODE-LED BY FACT, NOT BY DRIFT: no image generation exists on this machine (context reports only ffmpeg as a converter; no harness image tool, no API keys). reference/new-work.md states: 'Without image generation there is no toggle and no choice: code-led is the only path.' The comps gate therefore cannot be satisfied by any legitimate means. Ambition is carried in the direction contract FIRST VIEWPORT + the named signature interaction (draggable measurement cursors, live readouts), audited by the finish reviewer."
+        }
+      ],
+      "gate": "skipped: no image generation on machine (code-led only path per new-work.md)",
+      "forced": null
+    },
+    "spec": {
+      "status": "closed",
+      "openedAt": null,
+      "closedAt": "2026-09-10T20:22:00.559Z",
+      "attempts": 0,
+      "notes": [],
+      "gate": "not applicable: code-led (spec/plates/hero are comp-led phases)",
+      "forced": null
+    },
+    "plates": {
+      "status": "closed",
+      "openedAt": null,
+      "closedAt": "2026-09-10T20:22:00.559Z",
+      "attempts": 0,
+      "notes": [],
+      "gate": "not applicable: code-led",
+      "forced": null
+    },
+    "hero": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "sections": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "motion": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "responsive": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    },
+    "review": {
+      "status": "pending",
+      "openedAt": null,
+      "closedAt": null,
+      "attempts": 0,
+      "notes": [],
+      "gate": null,
+      "forced": null
+    }
+  },
+  "finish": null,
+  "buildPath": "code"
+}
