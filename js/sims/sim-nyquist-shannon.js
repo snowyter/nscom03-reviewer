@@ -48,7 +48,11 @@
         from signal. Whichever limit is lower is the one that binds.
       </p>`;
 
-    var $ = function (s) { return root.querySelector(s); };
+    var $ = function (sel) {
+      // resolve both "#foo" and "[data-foo]" lookup conventions
+      var byData = sel.charAt(0) === "#" ? "[data-" + sel.slice(1) + "]" : sel;
+      return root.querySelector(sel) || root.querySelector(byData);
+    };
     var bw = $("#ns-bw"), lv = $("#ns-lv"), db = $("#ns-db");
     var out = $("#ns-out"), chart = $("#ns-chart");
 

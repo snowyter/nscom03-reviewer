@@ -150,7 +150,11 @@
       <div class="readout" data-lc-out></div>
       <p class="sim__desc" style="padding:.7rem 0 0" data-lc-note></p>`;
 
-    var $ = function (s) { return root.querySelector(s); };
+    var $ = function (sel) {
+      // resolve both "#foo" and "[data-foo]" lookup conventions
+      var byData = sel.charAt(0) === "#" ? "[data-" + sel.slice(1) + "]" : sel;
+      return root.querySelector(sel) || root.querySelector(byData);
+    };
     var bitsEl = $("#lc-bits"), schemeEl = $("#lc-scheme");
     var waveEl = $("#lc-wave"), outEl = $("#lc-out"), noteEl = $("#lc-note");
 

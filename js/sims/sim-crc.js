@@ -68,8 +68,8 @@
         <button class="btn" type="button" data-crc-check>Verify received codeword</button>
         <button class="btn" type="button" data-crc-flip>Flip a bit (corrupt)</button>
       </div>
-      <div class="readout" data-crc-out></div>
-      <ol class="steps" data-crc-steps></ol>
+      <div class="readout" id="crc-out" data-crc-out></div>
+      <ol class="steps" id="crc-steps" data-crc-steps></ol>
       <p class="sim__desc" style="padding:.7rem 0 0">
         The generator must have a degree of at least 1; its bit length is
         degree + 1. The sender appends degree-many zeros, divides, and sends the
@@ -77,7 +77,11 @@
         generator: a remainder of zero means no error was detected.
       </p>`;
 
-    var $ = function (sel) { return root.querySelector(sel); };
+    var $ = function (sel) {
+      // resolve both "#foo" and "[data-foo]" lookup conventions
+      var byData = sel.charAt(0) === "#" ? "[data-" + sel.slice(1) + "]" : sel;
+      return root.querySelector(sel) || root.querySelector(byData);
+    };
     var dataEl = $("#crc-data"), genEl = $("#crc-gen");
     var outEl = $("#crc-out"), stepsEl = $("#crc-steps");
     var corrupted = false;

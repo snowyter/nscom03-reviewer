@@ -319,6 +319,15 @@
         <p>The module data files did not load. Check the console.</p></div>`;
       return;
     }
+    var missing = [];
+    for (var i = 1; i <= 10; i++) {
+      if (!BY_ID["m" + String(i).padStart(2, "0")]) missing.push("m" + String(i).padStart(2, "0"));
+    }
+    if (missing.length) {
+      // A module file that failed to load (404, syntax error) must not take the
+      // whole surface down; name it in the console so the gap is visible.
+      if (w.console && console.warn) console.warn("NSCOM03: modules not loaded: " + missing.join(", "));
+    }
     w.RENDER.indexFigs(FIGS);
     initTheme();
     initRail();
