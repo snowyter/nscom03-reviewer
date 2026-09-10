@@ -104,15 +104,46 @@ interactive borders and the off-canvas rail only. The multiplexing simulator's
 channel highlight advances on a 900ms interval, and the hero trace is drawn once
 on boot. Everything is disabled under `prefers-reduced-motion: reduce`.
 
+## Math rendering
+
+`js/math.js` is a small dependency-free LaTeX-subset renderer. The site must work
+offline and deploy with no build step, so a full math library is not an option;
+this covers exactly the constructs the content uses — `\frac`/`\dfrac`/`\tfrac`
+(as a real stacked fraction with a rule), sub/superscripts, `\sqrt`,
+`\overline`, `\underbrace`/`\overbrace` with labels, `\text`, `\begin{cases}`
+(piecewise, with a brace rule), sizing delimiters (`\left`/`\right`), spacing
+macros, and the Greek/operator symbol set.
+
+Elements: `.fx` wraps the expression; `.mx-frac`/`.mx-num`/`.mx-den` build
+fractions, `.mx-sub`/`.mx-sup` scripts, `.mx-cases`/`.mx-case` piecewise
+definitions, `.mx-i` italic variables, `.mx-t` upright words, `.mx-op` operators.
+Unsupported macros are rendered as visible text rather than dropped, so nothing
+silently disappears. A test asserts that no formula block's rendered output
+contains a leftover `\macro`.
+
 ## Accessibility
 
 Body text and headings clear 4.5:1 on both grounds. Focus is a 2px amber outline
 with offset, never removed. A skip link precedes the header. Every figure carries
-alt text equal to its caption. The quiz and drill are fully keyboard operable
-(space to flip, 1/2 to grade, arrows to select). The rail is a real `<nav>` with
-`aria-current` on the active entry, and the theme toggle is `aria-pressed`. No
-information is conveyed by colour alone — progress uses marks, filled nodes, and
-numerals as well as hue.
+alt text that names the module and describes the diagram (not just the slide
+title). The quiz and drill are fully keyboard operable (space to flip, 1/2 to
+grade). The rail is a real `<nav>` with `aria-current` on the active entry, and
+the theme toggle is `aria-pressed`. The figure lightbox is `role="dialog"` with
+`aria-modal`, traps Tab, closes on Escape, and returns focus to the figure that
+opened it. No information is conveyed by colour alone — progress uses marks,
+filled nodes, and numerals as well as hue.
+
+## Study state
+
+Progress lives in `localStorage` under `nscom03.state.v1`. Section read state is
+keyed `moduleId/sectionId` (`"m06/s1"`), because bare section ids are only unique
+within a module — every module has `s1`…`s16`, so keying by the bare id made one
+module's progress mark the same-numbered section of all ten. Reading progress is
+reversible (per-section toggle and a global "clear all progress" control); global
+reset requires confirmation.
+
+Cards use Leitner boxes with 0/1/2/4/8/16-day intervals; quiz records keep the
+best score and the list of missed question indices.
 
 ## Provenance of rasters
 

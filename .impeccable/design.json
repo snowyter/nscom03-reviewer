@@ -23,6 +23,7 @@
         "ink-faint": "#4d6b5e",
         "warn": "#ff7b6b",
         "grid": "rgba(28, 74, 58, 0.55)",
+        "band-ink": "#0a1410",
         "mono": "ui-monospace, \"SFMono-Regular\", \"IBM Plex Mono\", \"Cascadia Mono\",\n          Menlo, Consolas, monospace",
         "sans": "\"Helvetica Neue\", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif",
         "measure": "66ch",
@@ -47,7 +48,8 @@
         "ink-dim": "#4f6157",
         "ink-faint": "#8a978d",
         "warn": "#a8321f",
-        "grid": "rgba(120, 140, 118, 0.35)"
+        "grid": "rgba(120, 140, 118, 0.35)",
+        "band-ink": "#f7f5ec"
       }
     }
   },
@@ -65,8 +67,9 @@
       "gradients as decoration",
       "rounded pills"
     ],
-    "amberIsReservedFor": "measured values: readouts, progress counts, section numbers, formula expressions",
-    "stateNotColourAlone": "progress uses marks, filled nodes and numerals in addition to hue"
+    "amberIsReservedFor": "measured values only: readouts, progress counts, section numbers, formula expressions, quiz scores, the active rail numeral; plus the focus ring and skip link as accessibility affordances. Not used for hover states or category hues.",
+    "stateNotColourAlone": "progress uses marks, filled nodes and numerals in addition to hue",
+    "sectionStateKeying": "\"<moduleId>/<sectionId>\" \u2014 bare ids collide across modules"
   },
   "components": [
     "bench",
@@ -83,7 +86,11 @@
     "sim",
     "readout",
     "steps",
-    "wave"
+    "wave",
+    "fx",
+    "mx-frac",
+    "mx-cases",
+    "lbox"
   ],
   "motion": {
     "budget": "0.18s interactive transitions, one 900ms sim interval, one boot-time trace draw",
@@ -93,11 +100,38 @@
     "focus": "2px amber outline with offset, never removed",
     "contrast": "body and headings clear 4.5:1 on both grounds",
     "keyboard": "space flips, 1/2 grades, arrows select, escape closes the lightbox",
-    "semantics": "nav with aria-current, aria-pressed theme toggle, alt text on every figure"
+    "semantics": "nav with aria-current, aria-pressed theme toggle, alt text on every figure",
+    "lightbox": "role=dialog, aria-modal, traps Tab, Escape closes, focus returns to trigger",
+    "altText": "module + description for every figure (not just the slide title)"
   },
   "rasters": {
     "count": 258,
     "origin": "course PDFs via tools/figures.py (render -> trim -> webp q82)",
     "provenance": "assets/figs/<module>/<slug>.webp, catalogued in figs.json"
+  },
+  "math": {
+    "renderer": "js/math.js",
+    "kind": "dependency-free LaTeX subset -> styled HTML",
+    "rationale": "offline, no build step, no webfont/network dependency",
+    "covers": [
+      "frac/dfrac/tfrac",
+      "sub/superscript",
+      "sqrt",
+      "overline",
+      "underbrace/overbrace with labels",
+      "text",
+      "begin{cases}",
+      "left/right delimiters",
+      "spacing macros",
+      "greek + operators"
+    ],
+    "fallback": "unsupported macros render as visible text, never dropped",
+    "tested": "a test asserts no formula block's output contains a leftover \\macro"
+  },
+  "studyState": {
+    "key": "nscom03.state.v1",
+    "sectionKeying": "moduleId/sectionId",
+    "reversible": "per-section toggle + confirmed global clear (STORE.reset is reachable)",
+    "cards": "Leitner boxes, 0/1/2/4/8/16-day intervals"
   }
 }
