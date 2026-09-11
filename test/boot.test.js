@@ -124,6 +124,56 @@ test("the simulator bench registers and mounts every simulator", () => {
   w.close();
 });
 
+test("sections are disclosures that collapse when marked read", async () => {
+  const { w, errors } = boot();
+  assert.deepStrictEqual(errors, [], `boot errors: ${errors.slice(0,3).join(" | ")}`);
+
+  // The app boots inside fetchFigs().then(boot), so the first render lands on a
+  // later microtask than script evaluation. Yield before asserting, or the view
+  // container is still empty and the test reports a routing failure that is
+  // really just a timing artefact.
+  await new Promise((r) => setTimeout(r, 80));
+
+  w.location.hash = "#/m/m01";
+  w.APP.render();
+  const secs = [...w.document.querySelectorAll(".sec")];
+  assert.ok(secs.length > 0, "no sections rendered on the lesson route");
+
+  const s = secs[0];
+  const btn = s.querySelector("[data-toggle]");
+  const panel = s.querySelector(".sec__body");
+  // Every requirement the disclosure has to satisfy, checked on the real DOM.
+  assert.ok(btn, "section head must be a toggle button");
+  assert.ok(btn.tagName === "BUTTON", "the toggle must be a real button for keyboard use");
+  assert.strictEqual(btn.getAttribute("aria-expanded"), "true",
+    "an unread section starts expanded");
+  assert.strictEqual(btn.getAttribute("aria-controls"), panel.id,
+    "aria-controls must point at the panel");
+  assert.strictEqual(panel.getAttribute("role"), "region", "the panel must be a region");
+  assert.ok(s.querySelector(".sec__chev"), "the toggle needs a chevron affordance");
+
+  // toggling closes and reopens
+  btn.click();
+  assert.ok(s.classList.contains("is-collapsed"), "clicking the head must collapse it");
+  assert.strictEqual(btn.getAttribute("aria-expanded"), "false",
+    "aria-expanded must follow the visual state");
+  btn.click();
+  assert.ok(!s.classList.contains("is-collapsed"), "clicking again must expand it");
+
+  // marking read collapses; un-marking reopens
+  const mk = s.querySelector("[data-mark]");
+  mk.click();
+  assert.ok(s.classList.contains("is-collapsed"),
+    "marking a section read must collapse it");
+  assert.strictEqual(mk.getAttribute("aria-pressed"), "true",
+    "the mark button must report pressed");
+  mk.click();
+  assert.ok(!s.classList.contains("is-collapsed"),
+    "un-marking must re-open the section so it is visible as work in progress");
+
+  w.close();
+});
+
 test("the router renders each route without throwing", () => {
   const { w, errors } = boot();
   const mods = w.NSCOM_MODULES || [];

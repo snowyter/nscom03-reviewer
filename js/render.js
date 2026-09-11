@@ -87,20 +87,46 @@
 
   function section(sec, i, total, read) {
     var body = (sec.body || []).map(block).join("");
-    return `<section class="sec${read ? " is-read" : ""}" id="${esc(sec.id)}"
+    var no = String(i + 1).padStart(2, "0");
+    // A section is a disclosure: the head is the toggle, the body is the panel.
+    // The head is a real <button> so it is keyboard-operable and announces its
+    // expanded state; the panel is a grid-rows track that animates from 0fr to
+    // 1fr, which gives a smooth height transition without measuring anything in
+    // JS (a max-height guess either clips long sections or eases unevenly).
+    //
+    // A section already marked read renders collapsed on load — the state is the
+    // initial state, not an effect that fires after paint, so there is no flash
+    // of open content on a module you have finished.
+    return `<section class="sec${read ? " is-read" : ""}${read ? " is-collapsed" : ""}"
+                     id="${esc(sec.id)}"
                      data-sec="${esc(sec.id)}" aria-labelledby="${esc(sec.id)}-t">
-      <div class="sec__head">
-        <span class="sec__no">${String(i + 1).padStart(2, "0")}</span>
-        <h2 class="sec__title" id="${esc(sec.id)}-t">${esc(sec.title)}</h2>
-      </div>
-      ${body}
-      <div class="sec__foot">
-        <button class="mark${read ? " is-on" : ""}" type="button"
-                data-mark="${esc(sec.id)}"
-                aria-pressed="${read ? "true" : "false"}">
-          <span class="mark__box" aria-hidden="true">${read ? "✓" : ""}</span>
-          <span class="mark__txt">${read ? "Read" : "Mark as read"}</span>
+      <h2 class="sec__h">
+        <button class="sec__head" type="button" data-toggle="${esc(sec.id)}"
+                aria-expanded="${read ? "false" : "true"}"
+                aria-controls="${esc(sec.id)}-b">
+          <span class="sec__no">${no}</span>
+          <span class="sec__title" id="${esc(sec.id)}-t">
+            <span class="sec__ttext">${esc(sec.title)}</span><span
+              class="sec__chev" aria-hidden="true"><svg viewBox="0 0 12 8"
+              width="11" height="8" fill="none" stroke="currentColor"
+              stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
+          </span>
         </button>
+      </h2>
+      <div class="sec__body" id="${esc(sec.id)}-b" role="region"
+           aria-labelledby="${esc(sec.id)}-t">
+        <div class="sec__inner">
+          ${body}
+          <div class="sec__foot">
+            <button class="mark${read ? " is-on" : ""}" type="button"
+                    data-mark="${esc(sec.id)}"
+                    aria-pressed="${read ? "true" : "false"}">
+              <span class="mark__box" aria-hidden="true">${read ? "✓" : ""}</span>
+              <span class="mark__txt">${read ? "Read" : "Mark as read"}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>`;
   }

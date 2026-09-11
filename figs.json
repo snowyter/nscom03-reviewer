@@ -6,7 +6,7 @@
   "slug": "m01-p02-osi-layer",
   "path": "assets/figs/m01/m01-p02-osi-layer.webp",
   "caption": "OSI Layer",
-  "alt": "Slide: the OSI Reference Model \u2014 seven layers stacked from the physical medium up to the user's application.",
+  "alt": "OSI Layer",
   "w": 1400,
   "h": 788
  },
@@ -17,7 +17,7 @@
   "slug": "m01-p03-internet-layer-vs-osi-layer",
   "path": "assets/figs/m01/m01-p03-internet-layer-vs-osi-layer.webp",
   "caption": "Internet Layer vs OSI Layer",
-  "alt": "Slide: the Internet or TCP/IP model side by side with the OSI Reference Model, showing where layers collapse.",
+  "alt": "Internet Layer vs OSI Layer",
   "w": 1400,
   "h": 788
  },
@@ -28,7 +28,7 @@
   "slug": "m01-p05-service-of-data-link-layer-to-upper",
   "path": "assets/figs/m01/m01-p05-service-of-data-link-layer-to-upper.webp",
   "caption": "Service of Data Link Layer to Upper",
-  "alt": "Slide: the services the data link layer provides to the layers above it \u2014 links, framing, sequencing, flow control, error detection and QoS.",
+  "alt": "Service of Data Link Layer to Upper",
   "w": 1400,
   "h": 788
  },
@@ -39,7 +39,7 @@
   "slug": "m01-p06-type-of-networks-in-the-data-link-la",
   "path": "assets/figs/m01/m01-p06-type-of-networks-in-the-data-link-la.webp",
   "caption": "Type of Networks in the Data Link Layer",
-  "alt": "Slide: the three network types dealt with at the data link layer \u2014 LAN, WAN and wireless networks.",
+  "alt": "Type of Networks in the Data Link Layer",
   "w": 1400,
   "h": 788
  },
@@ -50,7 +50,7 @@
   "slug": "m01-p07-local-area-network",
   "path": "assets/figs/m01/m01-p07-local-area-network.webp",
   "caption": "Local Area Network",
-  "alt": "Slide: a local area network \u2014 computers usually within 5 km, interconnected by copper or fibre and standardised by the IEEE 802 series.",
+  "alt": "Local Area Network",
   "w": 1400,
   "h": 788
  },
@@ -61,7 +61,7 @@
   "slug": "m01-p08-ieee-and-lan",
   "path": "assets/figs/m01/m01-p08-ieee-and-lan.webp",
   "caption": "IEEE and LAN",
-  "alt": "Slide: IEEE assumed responsibility for LAN standards, primarily for the physical and data link layers, using the OSI Reference Model as a framework.",
+  "alt": "IEEE and LAN",
   "w": 1400,
   "h": 788
  },
@@ -72,7 +72,7 @@
   "slug": "m01-p09-ieee-802-series",
   "path": "assets/figs/m01/m01-p09-ieee-802-series.webp",
   "caption": "IEEE 802 Series",
-  "alt": "Slide: the IEEE 802 series \u2014 the working groups that produced the LAN and MAN standards.",
+  "alt": "IEEE 802 Series",
   "w": 1400,
   "h": 788
  },
@@ -83,7 +83,7 @@
   "slug": "m01-p10-wide-area-network",
   "path": "assets/figs/m01/m01-p10-wide-area-network.webp",
   "caption": "Wide Area Network",
-  "alt": "Slide: a wide area network \u2014 submarine cable, satellite transmission and terrestrial microwave as the long-haul options.",
+  "alt": "Wide Area Network",
   "w": 1400,
   "h": 788
  },
@@ -94,7 +94,7 @@
   "slug": "m01-p11-spacex-starlink",
   "path": "assets/figs/m01/m01-p11-spacex-starlink.webp",
   "caption": "SpaceX Starlink",
-  "alt": "Slide: SpaceX Starlink \u2014 a global satellite constellation at 550 km altitude, aimed at delivering high-speed broadband internet where access has been unreliable, expensive or unavailable.",
+  "alt": "SpaceX Starlink",
   "w": 1400,
   "h": 788
  },
@@ -105,7 +105,7 @@
   "slug": "m01-p12-wireless-network",
   "path": "assets/figs/m01/m01-p12-wireless-network.webp",
   "caption": "Wireless Network",
-  "alt": "Slide: wireless networks use radio signals and microwave technology, and can serve as a PAN, a LAN or a WAN.",
+  "alt": "Wireless Network",
   "w": 1400,
   "h": 788
  },
@@ -116,7 +116,7 @@
   "slug": "m01-p15-signal-transmission",
   "path": "assets/figs/m01/m01-p15-signal-transmission.webp",
   "caption": "Signal Transmission",
-  "alt": "Slide: transmission at the physical layer may use analog or digital signalling; analog varies strength, frequency or phase, digital codes the signal in binary.",
+  "alt": "Signal Transmission",
   "w": 1400,
   "h": 788
  },
@@ -127,7 +127,7 @@
   "slug": "m01-p16-signal-transmission",
   "path": "assets/figs/m01/m01-p16-signal-transmission.webp",
   "caption": "Signal Transmission",
-  "alt": "Slide: analog transmission and digital transmission compared as signalling methods.",
+  "alt": "Signal Transmission",
   "w": 1400,
   "h": 788
  },
@@ -138,7 +138,7 @@
   "slug": "m01-p17-why-use-analog-transmission",
   "path": "assets/figs/m01/m01-p17-why-use-analog-transmission.webp",
   "caption": "Why use Analog Transmission?",
-  "alt": "Slide: analog transmission is needed when bandwidth is limited; a modulator converts the digital signal to analog for the medium and a demodulator recovers it.",
+  "alt": "Why use Analog Transmission?",
   "w": 1400,
   "h": 788
  },
@@ -149,7 +149,7 @@
   "slug": "m02-p03-signals",
   "path": "assets/figs/m02/m02-p03-signals.webp",
   "caption": "Signals",
-  "alt": "Slide: a waveform carrying a bit pattern \u2014 the signal is the physical representation of the bits.",
+  "alt": "Signals",
   "w": 1400,
   "h": 798
  },
@@ -160,7 +160,7 @@
   "slug": "m02-p04-analog-and-digital-signals",
   "path": "assets/figs/m02/m02-p04-analog-and-digital-signals.webp",
   "caption": "Analog and Digital Signals",
-  "alt": "Slide: an analog signal is continuous in amplitude; a digital signal jumps between a finite set of levels.",
+  "alt": "Analog and Digital Signals",
   "w": 1400,
   "h": 788
  },
@@ -171,7 +171,7 @@
   "slug": "m02-p05-periodic-and-non-periodic-signals",
   "path": "assets/figs/m02/m02-p05-periodic-and-non-periodic-signals.webp",
   "caption": "Periodic and Non-Periodic Signals",
-  "alt": "Slide: periodic signals repeat identically; non-periodic signals never repeat.",
+  "alt": "Periodic and Non-Periodic Signals",
   "w": 1400,
   "h": 788
  },
@@ -182,7 +182,7 @@
   "slug": "m02-p06-the-sine-wave",
   "path": "assets/figs/m02/m02-p06-the-sine-wave.webp",
   "caption": "The Sine Wave",
-  "alt": "Slide: the sine wave is the simplest periodic analog signal and the building block of all composite signals.",
+  "alt": "The Sine Wave",
   "w": 1400,
   "h": 788
  },
@@ -193,7 +193,7 @@
   "slug": "m02-p07-sine-wave-frequency-and-amplitude",
   "path": "assets/figs/m02/m02-p07-sine-wave-frequency-and-amplitude.webp",
   "caption": "Sine Wave \u2013 Frequency and Amplitude",
-  "alt": "Slide: the frequency-and-amplitude picture \u2014 four cycles in one second means f = 4 Hz and T = 1/4 s.",
+  "alt": "Sine Wave \u2013 Frequency and Amplitude",
   "w": 1400,
   "h": 788
  },
@@ -204,7 +204,7 @@
   "slug": "m02-p08-sine-wave-phase",
   "path": "assets/figs/m02/m02-p08-sine-wave-phase.webp",
   "caption": "Sine Wave - Phase",
-  "alt": "Slide: three sine waves of identical frequency and amplitude but different phase (0\u00b0, 90\u00b0, 180\u00b0).",
+  "alt": "Sine Wave - Phase",
   "w": 1400,
   "h": 788
  },
@@ -215,7 +215,7 @@
   "slug": "m02-p09-wavelength",
   "path": "assets/figs/m02/m02-p09-wavelength.webp",
   "caption": "Wavelength",
-  "alt": "Slide: wavelength binds period or frequency to the propagation speed of the medium.",
+  "alt": "Wavelength",
   "w": 1400,
   "h": 788
  },
@@ -226,7 +226,7 @@
   "slug": "m02-p10-wavelength-example",
   "path": "assets/figs/m02/m02-p10-wavelength-example.webp",
   "caption": "Wavelength Example",
-  "alt": "Slide: red light at 4 \u00d7 10\u00b9\u2074 Hz in free space has a wavelength of 0.75 \u00b5m.",
+  "alt": "Wavelength Example",
   "w": 1400,
   "h": 788
  },
@@ -237,7 +237,7 @@
   "slug": "m02-p11-composite-signals",
   "path": "assets/figs/m02/m02-p11-composite-signals.webp",
   "caption": "Composite Signals",
-  "alt": "Slide: a composite signal is made of many simple sine waves.",
+  "alt": "Composite Signals",
   "w": 1400,
   "h": 788
  },
@@ -248,7 +248,7 @@
   "slug": "m02-p12-composite-signal",
   "path": "assets/figs/m02/m02-p12-composite-signal.webp",
   "caption": "Composite Signal",
-  "alt": "Slide: three sine components at f, 3f and 9f sum to form the composite waveform.",
+  "alt": "Composite Signal",
   "w": 1400,
   "h": 788
  },
@@ -259,7 +259,7 @@
   "slug": "m02-p13-bandwidth",
   "path": "assets/figs/m02/m02-p13-bandwidth.webp",
   "caption": "Bandwidth",
-  "alt": "Slide: bandwidth is the difference between the highest and lowest frequencies in the composite signal.",
+  "alt": "Bandwidth",
   "w": 1400,
   "h": 788
  },
@@ -270,7 +270,7 @@
   "slug": "m02-p14-digital-signal",
   "path": "assets/figs/m02/m02-p14-digital-signal.webp",
   "caption": "Digital Signal",
-  "alt": "Slide: a digital signal can have more than two levels; each level needs log2 L bits.",
+  "alt": "Digital Signal",
   "w": 1400,
   "h": 788
  },
@@ -281,7 +281,7 @@
   "slug": "m02-p15-transmitting-digital-signals",
   "path": "assets/figs/m02/m02-p15-transmitting-digital-signals.webp",
   "caption": "Transmitting Digital Signals",
-  "alt": "Slide: text is encoded to a bit stream, carried as a signal, and decoded back to text at the receiver.",
+  "alt": "Transmitting Digital Signals",
   "w": 1400,
   "h": 798
  },
@@ -292,7 +292,7 @@
   "slug": "m02-p16-baseband-transmission",
   "path": "assets/figs/m02/m02-p16-baseband-transmission.webp",
   "caption": "Baseband Transmission",
-  "alt": "Slide: baseband transmission sends the digital signal directly, without converting it to analog.",
+  "alt": "Baseband Transmission",
   "w": 1400,
   "h": 788
  },
@@ -303,7 +303,7 @@
   "slug": "m02-p17-baseband-transmission",
   "path": "assets/figs/m02/m02-p17-baseband-transmission.webp",
   "caption": "Baseband Transmission",
-  "alt": "Slide: with a low-pass channel of limited bandwidth, we approximate the digital signal with an analog signal.",
+  "alt": "Baseband Transmission",
   "w": 1400,
   "h": 788
  },
@@ -314,7 +314,7 @@
   "slug": "m02-p18-broadband-transmission",
   "path": "assets/figs/m02/m02-p18-broadband-transmission.webp",
   "caption": "Broadband Transmission",
-  "alt": "Slide: broadband transmission changes the digital signal to an analog signal; modulation lets us use a bandpass channel.",
+  "alt": "Broadband Transmission",
   "w": 1400,
   "h": 788
  },
@@ -325,7 +325,7 @@
   "slug": "m02-p19-transmission-impairment",
   "path": "assets/figs/m02/m02-p19-transmission-impairment.webp",
   "caption": "Transmission Impairment",
-  "alt": "Slide: what was sent as 'Hello' can arrive as 'Heck' \u2014 a single impaired bit changes the message.",
+  "alt": "Transmission Impairment",
   "w": 1400,
   "h": 798
  },
@@ -336,7 +336,7 @@
   "slug": "m02-p20-attenuation",
   "path": "assets/figs/m02/m02-p20-attenuation.webp",
   "caption": "Attenuation",
-  "alt": "Slide: attenuation loses signal energy; an amplifier restores it.",
+  "alt": "Attenuation",
   "w": 1400,
   "h": 788
  },
@@ -347,7 +347,7 @@
   "slug": "m02-p21-decibel",
   "path": "assets/figs/m02/m02-p21-decibel.webp",
   "caption": "DeciBel",
-  "alt": "Slide: the decibel measures the relative strengths of two signals, or of one signal at two different points.",
+  "alt": "DeciBel",
   "w": 1400,
   "h": 788
  },
@@ -358,7 +358,7 @@
   "slug": "m02-p22-attenuation-example",
   "path": "assets/figs/m02/m02-p22-attenuation-example.webp",
   "caption": "Attenuation Example",
-  "alt": "Slide: attenuation example \u2014 the power is reduced to one half, so P2 = \u00bd P1.",
+  "alt": "Attenuation Example",
   "w": 1400,
   "h": 788
  },
@@ -369,7 +369,7 @@
   "slug": "m02-p23-distortion",
   "path": "assets/figs/m02/m02-p23-distortion.webp",
   "caption": "Distortion",
-  "alt": "Slide: distortion changes the form or shape of the signal.",
+  "alt": "Distortion",
   "w": 1400,
   "h": 788
  },
@@ -380,7 +380,7 @@
   "slug": "m02-p24-noise",
   "path": "assets/figs/m02/m02-p24-noise.webp",
   "caption": "Noise",
-  "alt": "Slide: the four noise types \u2014 thermal, induced, crosstalk and impulse.",
+  "alt": "Noise",
   "w": 1400,
   "h": 788
  },
@@ -391,7 +391,7 @@
   "slug": "m02-p25-signal-to-noise-ratio-snr",
   "path": "assets/figs/m02/m02-p25-signal-to-noise-ratio-snr.webp",
   "caption": "Signal to Noise Ratio (SNR)",
-  "alt": "Slide: SNR is the ratio of what is wanted (signal) to what is not wanted (noise).",
+  "alt": "Signal to Noise Ratio (SNR)",
   "w": 1400,
   "h": 788
  },
@@ -402,7 +402,7 @@
   "slug": "m02-p26-snr-example",
   "path": "assets/figs/m02/m02-p26-snr-example.webp",
   "caption": "SNR Example",
-  "alt": "Slide: SNR example \u2014 signal power 10 mW and noise power 1 \u00b5W.",
+  "alt": "SNR Example",
   "w": 1400,
   "h": 788
  },
@@ -413,7 +413,7 @@
   "slug": "m02-p27-data-rate",
   "path": "assets/figs/m02/m02-p27-data-rate.webp",
   "caption": "Data Rate",
-  "alt": "Slide: bit rate and its units \u2014 1000 kbps = 1 Mbps.",
+  "alt": "Data Rate",
   "w": 1400,
   "h": 798
  },
@@ -424,7 +424,7 @@
   "slug": "m02-p28-data-rate-limits",
   "path": "assets/figs/m02/m02-p28-data-rate-limits.webp",
   "caption": "Data Rate Limits",
-  "alt": "Slide: data rate depends on bandwidth, number of signal levels, and channel quality (noise).",
+  "alt": "Data Rate Limits",
   "w": 1400,
   "h": 788
  },
@@ -435,7 +435,7 @@
   "slug": "m02-p29-nyquist-bit-rate",
   "path": "assets/figs/m02/m02-p29-nyquist-bit-rate.webp",
   "caption": "Nyquist Bit Rate",
-  "alt": "Slide: Nyquist bit rate for a noiseless channel.",
+  "alt": "Nyquist Bit Rate",
   "w": 1400,
   "h": 788
  },
@@ -446,7 +446,7 @@
   "slug": "m02-p30-nyquist-example",
   "path": "assets/figs/m02/m02-p30-nyquist-example.webp",
   "caption": "Nyquist Example",
-  "alt": "Slide: noiseless 3000 Hz channel with two signal levels.",
+  "alt": "Nyquist Example",
   "w": 1400,
   "h": 788
  },
@@ -457,7 +457,7 @@
   "slug": "m02-p31-shannon-capacity",
   "path": "assets/figs/m02/m02-p31-shannon-capacity.webp",
   "caption": "Shannon Capacity",
-  "alt": "Slide: Shannon capacity of a channel depends on bandwidth and SNR \u2014 note there is no mention of signal levels.",
+  "alt": "Shannon Capacity",
   "w": 1400,
   "h": 788
  },
@@ -468,7 +468,7 @@
   "slug": "m02-p32-shannon-example",
   "path": "assets/figs/m02/m02-p32-shannon-example.webp",
   "caption": "Shannon Example",
-  "alt": "Slide: Shannon example on a telephone line with a 3000 Hz bandwidth and SNR of 3162.",
+  "alt": "Shannon Example",
   "w": 1400,
   "h": 788
  },
@@ -479,7 +479,7 @@
   "slug": "m02-p33-using-nyquist-and-shanon",
   "path": "assets/figs/m02/m02-p33-using-nyquist-and-shanon.webp",
   "caption": "Using Nyquist and Shanon",
-  "alt": "Slide: using both theorems on a 1 MHz channel with SNR 63 \u2014 capacity is 6 Mbps, and 4 Mbps is chosen in practice.",
+  "alt": "Using Nyquist and Shanon",
   "w": 1400,
   "h": 788
  },
@@ -490,7 +490,7 @@
   "slug": "m02-p34-performance-relationships",
   "path": "assets/figs/m02/m02-p34-performance-relationships.webp",
   "caption": "Performance Relationships",
-  "alt": "Slide: performance relationships \u2014 bandwidth in hertz, throughput, latency and jitter side by side.",
+  "alt": "Performance Relationships",
   "w": 1400,
   "h": 788
  },
@@ -501,7 +501,7 @@
   "slug": "m02-p35-latency-propagation-time-and",
   "path": "assets/figs/m02/m02-p35-latency-propagation-time-and.webp",
   "caption": "Latency, Propagation Time and",
-  "alt": "Slide: latency decomposed into propagation time, transmission time, queuing time and processing delay.",
+  "alt": "Latency, Propagation Time and",
   "w": 1400,
   "h": 788
  },
@@ -512,7 +512,7 @@
   "slug": "m02-p36-example",
   "path": "assets/figs/m02/m02-p36-example.webp",
   "caption": "Example",
-  "alt": "Slide: worked example \u2014 2.5-KB message, 1 Gbps, 12,000 km, propagation speed 2.4 \u00d7 10\u2078 m/s.",
+  "alt": "Example",
   "w": 1400,
   "h": 788
  },
@@ -523,7 +523,7 @@
   "slug": "m02-p37-example",
   "path": "assets/figs/m02/m02-p37-example.webp",
   "caption": "Example",
-  "alt": "Slide: the worked latency example completed \u2014 propagation 50 ms, transmission 0.020 ms.",
+  "alt": "Example",
   "w": 1400,
   "h": 788
  },
@@ -534,7 +534,7 @@
   "slug": "m02-p38-summary",
   "path": "assets/figs/m02/m02-p38-summary.webp",
   "caption": "Summary",
-  "alt": "Slide: summary of the physical-layer signal and capacity material.",
+  "alt": "Summary",
   "w": 1400,
   "h": 788
  },
@@ -545,7 +545,7 @@
   "slug": "m03-p02-digital-to-digital-transmission",
   "path": "assets/figs/m03/m03-p02-digital-to-digital-transmission.webp",
   "caption": "Digital to Digital Transmission",
-  "alt": "Digital data (a bit pattern) mapped onto a digital signal (a waveform).",
+  "alt": "Digital to Digital Transmission",
   "w": 1400,
   "h": 798
  },
@@ -556,7 +556,7 @@
   "slug": "m03-p03-line-coding",
   "path": "assets/figs/m03/m03-p03-line-coding.webp",
   "caption": "Line Coding",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Line Coding.",
+  "alt": "Line Coding",
   "w": 1400,
   "h": 788
  },
@@ -567,7 +567,7 @@
   "slug": "m03-p04-line-coding-and-decoding",
   "path": "assets/figs/m03/m03-p04-line-coding-and-decoding.webp",
   "caption": "Line Coding and Decoding",
-  "alt": "The encoder turns bits into a signal; the decoder turns the signal back into bits.",
+  "alt": "Line Coding and Decoding",
   "w": 1400,
   "h": 788
  },
@@ -578,7 +578,7 @@
   "slug": "m03-p05-mapping-data-symbols-onto-signal-lev",
   "path": "assets/figs/m03/m03-p05-mapping-data-symbols-onto-signal-lev.webp",
   "caption": "Mapping Data symbols onto Signal levels",
-  "alt": "One data symbol can be coded into one signal element or into several.",
+  "alt": "Mapping Data symbols onto Signal levels",
   "w": 1400,
   "h": 788
  },
@@ -589,7 +589,7 @@
   "slug": "m03-p06-relationship-between-data-rate-and-s",
   "path": "assets/figs/m03/m03-p06-relationship-between-data-rate-and-s.webp",
   "caption": "Relationship between data rate and signal",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Relationship between data rate and signal.",
+  "alt": "Relationship between data rate and signal",
   "w": 1400,
   "h": 788
  },
@@ -600,7 +600,7 @@
   "slug": "m03-p07-signal-element-versus-data-element",
   "path": "assets/figs/m03/m03-p07-signal-element-versus-data-element.webp",
   "caption": "Signal Element Versus Data Element",
-  "alt": "One signal element can span several data elements, or one data element can require several signal elements.",
+  "alt": "Signal Element Versus Data Element",
   "w": 1400,
   "h": 788
  },
@@ -611,7 +611,7 @@
   "slug": "m03-p08-data-rate-and-baud-rate",
   "path": "assets/figs/m03/m03-p08-data-rate-and-baud-rate.webp",
   "caption": "Data rate and Baud rate",
-  "alt": "The slide's statement of the baud-rate formula.",
+  "alt": "Data rate and Baud rate",
   "w": 1400,
   "h": 788
  },
@@ -622,7 +622,7 @@
   "slug": "m03-p09-a-signal-is-carrying-data-in-which-o",
   "path": "assets/figs/m03/m03-p09-a-signal-is-carrying-data-in-which-o.webp",
   "caption": "A signal is carrying data in which one data element is encoded as one",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: A signal is carrying data in which one data element is encoded as one.",
+  "alt": "A signal is carrying data in which one data element is encoded as one",
   "w": 1400,
   "h": 788
  },
@@ -633,7 +633,7 @@
   "slug": "m03-p10-note-on-bandwidth-with-digital-signa",
   "path": "assets/figs/m03/m03-p10-note-on-bandwidth-with-digital-signa.webp",
   "caption": "Note on Bandwidth with Digital Signal",
-  "alt": "The slide's statement that effective bandwidth is finite while actual bandwidth is infinite.",
+  "alt": "Note on Bandwidth with Digital Signal",
   "w": 1400,
   "h": 788
  },
@@ -644,7 +644,7 @@
   "slug": "m03-p11-considerations-for-choosing-a-good-s",
   "path": "assets/figs/m03/m03-p11-considerations-for-choosing-a-good-s.webp",
   "caption": "Considerations for choosing a good signal element",
-  "alt": "Long runs of fixed amplitude cause the baseline to wander away from its true value.",
+  "alt": "Considerations for choosing a good signal element",
   "w": 1400,
   "h": 788
  },
@@ -655,7 +655,7 @@
   "slug": "m03-p12-line-encoding-dc-components",
   "path": "assets/figs/m03/m03-p12-line-encoding-dc-components.webp",
   "caption": "Line encoding \u2013 DC Components",
-  "alt": "A constant level produces a large DC component that a bandpass channel will not carry.",
+  "alt": "Line encoding \u2013 DC Components",
   "w": 1400,
   "h": 788
  },
@@ -666,7 +666,7 @@
   "slug": "m03-p13-line-encoding-self-synchronization",
   "path": "assets/figs/m03/m03-p13-line-encoding-self-synchronization.webp",
   "caption": "Line encoding \u2013 Self Synchronization",
-  "alt": "Effects of the receiver clock running faster than the sender clock.",
+  "alt": "Line encoding \u2013 Self Synchronization",
   "w": 1400,
   "h": 788
  },
@@ -677,7 +677,7 @@
   "slug": "m03-p14-in-a-digital-transmission-the-receiv",
   "path": "assets/figs/m03/m03-p14-in-a-digital-transmission-the-receiv.webp",
   "caption": "In a digital transmission, the receiver clock is 0.1 percent faster than the",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: In a digital transmission, the receiver clock is 0.1 percent faster than the.",
+  "alt": "In a digital transmission, the receiver clock is 0.1 percent faster than the",
   "w": 1400,
   "h": 788
  },
@@ -688,7 +688,7 @@
   "slug": "m03-p15-line-encoding-error-detection",
   "path": "assets/figs/m03/m03-p15-line-encoding-error-detection.webp",
   "caption": "Line encoding \u2013 Error Detection",
-  "alt": "A transition that is not part of the code signals a symbol error to the receiver.",
+  "alt": "Line encoding \u2013 Error Detection",
   "w": 1400,
   "h": 788
  },
@@ -699,7 +699,7 @@
   "slug": "m03-p16-line-encoding-noise-and-interference",
   "path": "assets/figs/m03/m03-p16-line-encoding-noise-and-interference.webp",
   "caption": "Line encoding \u2013 Noise and Interference",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Line encoding \u2013 Noise and Interference.",
+  "alt": "Line encoding \u2013 Noise and Interference",
   "w": 1400,
   "h": 788
  },
@@ -710,7 +710,7 @@
   "slug": "m03-p17-line-encoding-complexity",
   "path": "assets/figs/m03/m03-p17-line-encoding-complexity.webp",
   "caption": "Line encoding - Complexity",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Line encoding - Complexity.",
+  "alt": "Line encoding - Complexity",
   "w": 1400,
   "h": 788
  },
@@ -721,7 +721,7 @@
   "slug": "m03-p18-line-coding-schemes",
   "path": "assets/figs/m03/m03-p18-line-coding-schemes.webp",
   "caption": "Line Coding Schemes",
-  "alt": "The family tree of line coding schemes.",
+  "alt": "Line Coding Schemes",
   "w": 1400,
   "h": 798
  },
@@ -732,7 +732,7 @@
   "slug": "m03-p19-line-coding-schemes",
   "path": "assets/figs/m03/m03-p19-line-coding-schemes.webp",
   "caption": "Line Coding Schemes",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Line Coding Schemes.",
+  "alt": "Line Coding Schemes",
   "w": 1400,
   "h": 788
  },
@@ -743,7 +743,7 @@
   "slug": "m03-p20-unipolar",
   "path": "assets/figs/m03/m03-p20-unipolar.webp",
   "caption": "Unipolar",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Unipolar.",
+  "alt": "Unipolar",
   "w": 1400,
   "h": 788
  },
@@ -754,7 +754,7 @@
   "slug": "m03-p21-unipolar-nrz-scheme",
   "path": "assets/figs/m03/m03-p21-unipolar-nrz-scheme.webp",
   "caption": "Unipolar NRZ Scheme",
-  "alt": "Unipolar NRZ: a positive level for 1, zero for 0, all above the time axis.",
+  "alt": "Unipolar NRZ Scheme",
   "w": 1400,
   "h": 788
  },
@@ -765,7 +765,7 @@
   "slug": "m03-p22-polar-nrz",
   "path": "assets/figs/m03/m03-p22-polar-nrz.webp",
   "caption": "Polar - NRZ",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Polar - NRZ.",
+  "alt": "Polar - NRZ",
   "w": 1400,
   "h": 788
  },
@@ -776,7 +776,7 @@
   "slug": "m03-p23-polar-nrz-l-and-nrz-i-schemes",
   "path": "assets/figs/m03/m03-p23-polar-nrz-l-and-nrz-i-schemes.webp",
   "caption": "Polar NRZ-L and NRZ-I Schemes",
-  "alt": "NRZ-L encodes the level; NRZ-I encodes the transition at the start of the bit.",
+  "alt": "Polar NRZ-L and NRZ-I Schemes",
   "w": 1400,
   "h": 788
  },
@@ -787,7 +787,7 @@
   "slug": "m03-p24-note-on-nrz-schemes",
   "path": "assets/figs/m03/m03-p24-note-on-nrz-schemes.webp",
   "caption": "Note on NRZ Schemes",
-  "alt": "The slide's own summary of NRZ-L versus NRZ-I.",
+  "alt": "Note on NRZ Schemes",
   "w": 1400,
   "h": 788
  },
@@ -798,7 +798,7 @@
   "slug": "m03-p25-a-system-is-using-nrz-i-to-transfer",
   "path": "assets/figs/m03/m03-p25-a-system-is-using-nrz-i-to-transfer.webp",
   "caption": "A system is using NRZ-I to transfer 1-Mbps data. What are the",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: A system is using NRZ-I to transfer 1-Mbps data. What are the.",
+  "alt": "A system is using NRZ-I to transfer 1-Mbps data. What are the",
   "w": 1400,
   "h": 788
  },
@@ -809,7 +809,7 @@
   "slug": "m03-p26-polar-rz",
   "path": "assets/figs/m03/m03-p26-polar-rz.webp",
   "caption": "Polar - RZ",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Polar - RZ.",
+  "alt": "Polar - RZ",
   "w": 1400,
   "h": 788
  },
@@ -820,7 +820,7 @@
   "slug": "m03-p27-polar-rz-scheme",
   "path": "assets/figs/m03/m03-p27-polar-rz-scheme.webp",
   "caption": "Polar RZ scheme",
-  "alt": "Polar RZ: the level always returns to zero half way through each symbol.",
+  "alt": "Polar RZ scheme",
   "w": 1400,
   "h": 788
  },
@@ -831,7 +831,7 @@
   "slug": "m03-p28-polar-biphase-manchester-and-differe",
   "path": "assets/figs/m03/m03-p28-polar-biphase-manchester-and-differe.webp",
   "caption": "Polar - Biphase: Manchester and Differential",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Polar - Biphase: Manchester and Differential.",
+  "alt": "Polar - Biphase: Manchester and Differential",
   "w": 1400,
   "h": 788
  },
@@ -842,7 +842,7 @@
   "slug": "m03-p29-polar-biphase-manchester-and",
   "path": "assets/figs/m03/m03-p29-polar-biphase-manchester-and.webp",
   "caption": "Polar biphase: Manchester and",
-  "alt": "Manchester and differential Manchester waveforms.",
+  "alt": "Polar biphase: Manchester and",
   "w": 1400,
   "h": 788
  },
@@ -853,7 +853,7 @@
   "slug": "m03-p30-notes-on-manchester-encoding",
   "path": "assets/figs/m03/m03-p30-notes-on-manchester-encoding.webp",
   "caption": "Notes on Manchester Encoding",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Notes on Manchester Encoding.",
+  "alt": "Notes on Manchester Encoding",
   "w": 1400,
   "h": 788
  },
@@ -864,7 +864,7 @@
   "slug": "m03-p31-bipolar-ami-and-pseudoternary",
   "path": "assets/figs/m03/m03-p31-bipolar-ami-and-pseudoternary.webp",
   "caption": "Bipolar - AMI and Pseudoternary",
-  "alt": "The slide's definition of the two bipolar schemes.",
+  "alt": "Bipolar - AMI and Pseudoternary",
   "w": 1400,
   "h": 788
  },
@@ -875,7 +875,7 @@
   "slug": "m03-p32-bipolar-schemes-ami-and-pseudoternar",
   "path": "assets/figs/m03/m03-p32-bipolar-schemes-ami-and-pseudoternar.webp",
   "caption": "Bipolar schemes: AMI and Pseudoternary",
-  "alt": "AMI and pseudoternary: the alternating pulses are the marks, and the zero level is the other symbol.",
+  "alt": "Bipolar schemes: AMI and Pseudoternary",
   "w": 1400,
   "h": 788
  },
@@ -886,7 +886,7 @@
   "slug": "m03-p33-notes-on-bipolar-encoding-scheme",
   "path": "assets/figs/m03/m03-p33-notes-on-bipolar-encoding-scheme.webp",
   "caption": "Notes on Bipolar Encoding Scheme",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Notes on Bipolar Encoding Scheme.",
+  "alt": "Notes on Bipolar Encoding Scheme",
   "w": 1400,
   "h": 788
  },
@@ -897,7 +897,7 @@
   "slug": "m03-p34-multilevel-schemes",
   "path": "assets/figs/m03/m03-p34-multilevel-schemes.webp",
   "caption": "Multilevel Schemes",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Multilevel Schemes.",
+  "alt": "Multilevel Schemes",
   "w": 1400,
   "h": 788
  },
@@ -908,7 +908,7 @@
   "slug": "m03-p35-code",
   "path": "assets/figs/m03/m03-p35-code.webp",
   "caption": "Code",
-  "alt": "Exact mapping versus redundant mapping: extra signals are what enable error detection.",
+  "alt": "Code",
   "w": 1400,
   "h": 788
  },
@@ -919,7 +919,7 @@
   "slug": "m03-p36-in-mbnl-schemes-a-pattern-of-m-data",
   "path": "assets/figs/m03/m03-p36-in-mbnl-schemes-a-pattern-of-m-data.webp",
   "caption": "In mBnL schemes, a pattern of m data",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: In mBnL schemes, a pattern of m data.",
+  "alt": "In mBnL schemes, a pattern of m data",
   "w": 1400,
   "h": 788
  },
@@ -930,7 +930,7 @@
   "slug": "m03-p37-representing-multilevel-codes",
   "path": "assets/figs/m03/m03-p37-representing-multilevel-codes.webp",
   "caption": "Representing Multilevel Codes",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Representing Multilevel Codes.",
+  "alt": "Representing Multilevel Codes",
   "w": 1400,
   "h": 788
  },
@@ -941,7 +941,7 @@
   "slug": "m03-p38-multilevel-2b1q-scheme",
   "path": "assets/figs/m03/m03-p38-multilevel-2b1q-scheme.webp",
   "caption": "Multilevel: 2B1Q scheme",
-  "alt": "2B1Q: four levels, two bits per signal element, no redundancy.",
+  "alt": "Multilevel: 2B1Q scheme",
   "w": 1400,
   "h": 788
  },
@@ -952,7 +952,7 @@
   "slug": "m03-p39-redundancy",
   "path": "assets/figs/m03/m03-p39-redundancy.webp",
   "caption": "Redundancy",
-  "alt": "Only one polarity of each pattern is used, and the inverted form is recognised and corrected at the receiver.",
+  "alt": "Redundancy",
   "w": 1400,
   "h": 788
  },
@@ -963,7 +963,7 @@
   "slug": "m03-p40-multilevel-8b6t-scheme",
   "path": "assets/figs/m03/m03-p40-multilevel-8b6t-scheme.webp",
   "caption": "Multilevel: 8B6T scheme",
-  "alt": "8B6T: eight bits in, six ternary symbol slots out, with a large DC-free codebook.",
+  "alt": "Multilevel: 8B6T scheme",
   "w": 1400,
   "h": 788
  },
@@ -974,7 +974,7 @@
   "slug": "m03-p41-multilevel-using-multiple-channels",
   "path": "assets/figs/m03/m03-p41-multilevel-using-multiple-channels.webp",
   "caption": "Multilevel using multiple channels",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Multilevel using multiple channels.",
+  "alt": "Multilevel using multiple channels",
   "w": 1400,
   "h": 788
  },
@@ -985,7 +985,7 @@
   "slug": "m03-p42-multilevel-4d-pam5-scheme",
   "path": "assets/figs/m03/m03-p42-multilevel-4d-pam5-scheme.webp",
   "caption": "Multilevel: 4D-PAM5 scheme",
-  "alt": "4D-PAM5: four links, PAM with five levels, 125 Mbaud per pair.",
+  "alt": "Multilevel: 4D-PAM5 scheme",
   "w": 1400,
   "h": 788
  },
@@ -996,7 +996,7 @@
   "slug": "m03-p43-multi-transition-coding",
   "path": "assets/figs/m03/m03-p43-multi-transition-coding.webp",
   "caption": "Multi-transition Coding",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Multi-transition Coding.",
+  "alt": "Multi-transition Coding",
   "w": 1400,
   "h": 788
  },
@@ -1007,7 +1007,7 @@
   "slug": "m03-p44-multi-transition-mlt-3-scheme",
   "path": "assets/figs/m03/m03-p44-multi-transition-mlt-3-scheme.webp",
   "caption": "Multi-transition: MLT-3 scheme",
-  "alt": "MLT-3: the signal cycles through three levels and never dwells on one.",
+  "alt": "Multi-transition: MLT-3 scheme",
   "w": 1400,
   "h": 788
  },
@@ -1018,7 +1018,7 @@
   "slug": "m03-p45-mlt-3",
   "path": "assets/figs/m03/m03-p45-mlt-3.webp",
   "caption": "MLT-3",
-  "alt": "A run of 1s in MLT-3 creates a periodic signal at one quarter the bit rate.",
+  "alt": "MLT-3",
   "w": 1400,
   "h": 788
  },
@@ -1029,7 +1029,7 @@
   "slug": "m03-p46-summary-of-line-coding-schemes",
   "path": "assets/figs/m03/m03-p46-summary-of-line-coding-schemes.webp",
   "caption": "Summary of Line Coding Schemes",
-  "alt": "The slide's own summary table of the line coding schemes.",
+  "alt": "Summary of Line Coding Schemes",
   "w": 1400,
   "h": 788
  },
@@ -1040,7 +1040,7 @@
   "slug": "m03-p47-block-coding",
   "path": "assets/figs/m03/m03-p47-block-coding.webp",
   "caption": "Block Coding",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Block Coding.",
+  "alt": "Block Coding",
   "w": 1400,
   "h": 798
  },
@@ -1051,7 +1051,7 @@
   "slug": "m03-p48-block-coding",
   "path": "assets/figs/m03/m03-p48-block-coding.webp",
   "caption": "Block Coding",
-  "alt": "mB/nB block coding replaces each m-bit group with an n-bit group.",
+  "alt": "Block Coding",
   "w": 1400,
   "h": 788
  },
@@ -1062,7 +1062,7 @@
   "slug": "m03-p49-block-coding-concept",
   "path": "assets/figs/m03/m03-p49-block-coding-concept.webp",
   "caption": "Block Coding Concept",
-  "alt": "Block coding in three steps: division, substitution, combination.",
+  "alt": "Block Coding Concept",
   "w": 1400,
   "h": 788
  },
@@ -1073,7 +1073,7 @@
   "slug": "m03-p50-block-coding-4b-5b-with-nrz-i-line",
   "path": "assets/figs/m03/m03-p50-block-coding-4b-5b-with-nrz-i-line.webp",
   "caption": "Block Coding 4B/5B with NRZ-I Line",
-  "alt": "4B/5B block coding feeding an NRZ-I line coder.",
+  "alt": "Block Coding 4B/5B with NRZ-I Line",
   "w": 1400,
   "h": 788
  },
@@ -1084,7 +1084,7 @@
   "slug": "m03-p51-4b-5b-mapping-codes",
   "path": "assets/figs/m03/m03-p51-4b-5b-mapping-codes.webp",
   "caption": "4B/5B Mapping Codes",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: 4B/5B Mapping Codes.",
+  "alt": "4B/5B Mapping Codes",
   "w": 1400,
   "h": 788
  },
@@ -1095,7 +1095,7 @@
   "slug": "m03-p52-substitution-in-4b-5b-block-coding",
   "path": "assets/figs/m03/m03-p52-substitution-in-4b-5b-block-coding.webp",
   "caption": "Substitution in 4B/5B Block Coding",
-  "alt": "Substitution: sixteen 4-bit data words become sixteen chosen 5-bit code words.",
+  "alt": "Substitution in 4B/5B Block Coding",
   "w": 1400,
   "h": 788
  },
@@ -1106,7 +1106,7 @@
   "slug": "m03-p53-redundancy",
   "path": "assets/figs/m03/m03-p53-redundancy.webp",
   "caption": "Redundancy",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Redundancy.",
+  "alt": "Redundancy",
   "w": 1400,
   "h": 788
  },
@@ -1117,7 +1117,7 @@
   "slug": "m03-p55-8b-10b-block-encoding",
   "path": "assets/figs/m03/m03-p55-8b-10b-block-encoding.webp",
   "caption": "8B/10B Block Encoding",
-  "alt": "8B/10B replaces each byte with a ten-bit code word chosen to control run length and DC balance.",
+  "alt": "8B/10B Block Encoding",
   "w": 1400,
   "h": 788
  },
@@ -1128,7 +1128,7 @@
   "slug": "m03-p56-more-bits-better-error-detection",
   "path": "assets/figs/m03/m03-p56-more-bits-better-error-detection.webp",
   "caption": "More bits - better error detection",
-  "alt": "More redundant bits let the code choose words that prevent long runs of one voltage level.",
+  "alt": "More bits - better error detection",
   "w": 1400,
   "h": 788
  },
@@ -1139,7 +1139,7 @@
   "slug": "m03-p57-scrambling",
   "path": "assets/figs/m03/m03-p57-scrambling.webp",
   "caption": "Scrambling",
-  "alt": "Scrambling substitutes a recognisable violation for any run of bits the line code cannot handle.",
+  "alt": "Scrambling",
   "w": 1400,
   "h": 788
  },
@@ -1150,7 +1150,7 @@
   "slug": "m03-p58-ami-used-with-scrambling",
   "path": "assets/figs/m03/m03-p58-ami-used-with-scrambling.webp",
   "caption": "AMI used with scrambling",
-  "alt": "AMI combined with scrambling: silence runs are broken by deliberate violations.",
+  "alt": "AMI used with scrambling",
   "w": 1400,
   "h": 788
  },
@@ -1161,7 +1161,7 @@
   "slug": "m03-p59-scrambling-example-b8zs",
   "path": "assets/figs/m03/m03-p59-scrambling-example-b8zs.webp",
   "caption": "Scrambling Example B8ZS",
-  "alt": "The two cases of B8ZS scrambling, differing in the polarity of the preceding pulse.",
+  "alt": "Scrambling Example B8ZS",
   "w": 1400,
   "h": 788
  },
@@ -1172,7 +1172,7 @@
   "slug": "m03-p60-scrambling-example-hdb3",
   "path": "assets/figs/m03/m03-p60-scrambling-example-hdb3.webp",
   "caption": "Scrambling Example HDB3",
-  "alt": "HDB3: four zeros become 000V or B00V depending on the parity of the preceding pulses.",
+  "alt": "Scrambling Example HDB3",
   "w": 1400,
   "h": 788
  },
@@ -1183,7 +1183,7 @@
   "slug": "m03-p61-different-situations-in-hdb3-scrambl",
   "path": "assets/figs/m03/m03-p61-different-situations-in-hdb3-scrambl.webp",
   "caption": "Different Situations in HDB3 Scrambling",
-  "alt": "The situations in HDB3 scrambling and the substitution each one triggers.",
+  "alt": "Different Situations in HDB3 Scrambling",
   "w": 1400,
   "h": 788
  },
@@ -1194,7 +1194,7 @@
   "slug": "m03-p62-pcm",
   "path": "assets/figs/m03/m03-p62-pcm.webp",
   "caption": "PCM",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: PCM.",
+  "alt": "PCM",
   "w": 1400,
   "h": 788
  },
@@ -1205,7 +1205,7 @@
   "slug": "m03-p63-components-of-pcm-encoder",
   "path": "assets/figs/m03/m03-p63-components-of-pcm-encoder.webp",
   "caption": "Components of PCM Encoder",
-  "alt": "Components of a PCM encoder: band-limiting filter, sampler, quantizer, encoder.",
+  "alt": "Components of PCM Encoder",
   "w": 1400,
   "h": 788
  },
@@ -1216,7 +1216,7 @@
   "slug": "m03-p64-sampling",
   "path": "assets/figs/m03/m03-p64-sampling.webp",
   "caption": "Sampling",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Sampling.",
+  "alt": "Sampling",
   "w": 1400,
   "h": 788
  },
@@ -1227,7 +1227,7 @@
   "slug": "m03-p65-three-different-sampling-methods-for",
   "path": "assets/figs/m03/m03-p65-three-different-sampling-methods-for.webp",
   "caption": "Three different sampling methods for",
-  "alt": "Ideal, natural and flat-top sampling compared.",
+  "alt": "Three different sampling methods for",
   "w": 1400,
   "h": 788
  },
@@ -1238,7 +1238,7 @@
   "slug": "m03-p66-nyquist-theorem",
   "path": "assets/figs/m03/m03-p66-nyquist-theorem.webp",
   "caption": "Nyquist Theorem",
-  "alt": "The Nyquist theorem states the minimum sampling rate for a baseband signal.",
+  "alt": "Nyquist Theorem",
   "w": 1400,
   "h": 788
  },
@@ -1249,7 +1249,7 @@
   "slug": "m03-p67-nyquist-sampling-rate-for-low-pass-a",
   "path": "assets/figs/m03/m03-p67-nyquist-sampling-rate-for-low-pass-a.webp",
   "caption": "Nyquist sampling rate for low-pass and",
-  "alt": "Nyquist sampling rate for low-pass and bandpass signals.",
+  "alt": "Nyquist sampling rate for low-pass and",
   "w": 1400,
   "h": 788
  },
@@ -1260,7 +1260,7 @@
   "slug": "m03-p68-example-5",
   "path": "assets/figs/m03/m03-p68-example-5.webp",
   "caption": "Example 5",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Example 5.",
+  "alt": "Example 5",
   "w": 1400,
   "h": 788
  },
@@ -1271,7 +1271,7 @@
   "slug": "m03-p69-example-6",
   "path": "assets/figs/m03/m03-p69-example-6.webp",
   "caption": "Example 6",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Example 6.",
+  "alt": "Example 6",
   "w": 1400,
   "h": 788
  },
@@ -1282,7 +1282,7 @@
   "slug": "m03-p70-example-7",
   "path": "assets/figs/m03/m03-p70-example-7.webp",
   "caption": "Example 7",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Example 7.",
+  "alt": "Example 7",
   "w": 1400,
   "h": 788
  },
@@ -1293,7 +1293,7 @@
   "slug": "m03-p71-example-8",
   "path": "assets/figs/m03/m03-p71-example-8.webp",
   "caption": "Example 8",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Example 8.",
+  "alt": "Example 8",
   "w": 1400,
   "h": 788
  },
@@ -1304,7 +1304,7 @@
   "slug": "m03-p72-quantization",
   "path": "assets/figs/m03/m03-p72-quantization.webp",
   "caption": "Quantization",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Quantization.",
+  "alt": "Quantization",
   "w": 1400,
   "h": 788
  },
@@ -1315,7 +1315,7 @@
   "slug": "m03-p73-quantization-levels",
   "path": "assets/figs/m03/m03-p73-quantization-levels.webp",
   "caption": "Quantization Levels",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Quantization Levels.",
+  "alt": "Quantization Levels",
   "w": 1400,
   "h": 788
  },
@@ -1326,7 +1326,7 @@
   "slug": "m03-p74-quantization-zones",
   "path": "assets/figs/m03/m03-p74-quantization-zones.webp",
   "caption": "Quantization Zones",
-  "alt": "Eight quantization zones spanning -20 V to +20 V, with midpoints at odd multiples of 2.5 V.",
+  "alt": "Quantization Zones",
   "w": 1400,
   "h": 788
  },
@@ -1337,7 +1337,7 @@
   "slug": "m03-p75-assigning-codes-to-zones",
   "path": "assets/figs/m03/m03-p75-assigning-codes-to-zones.webp",
   "caption": "Assigning Codes to Zones",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Assigning Codes to Zones.",
+  "alt": "Assigning Codes to Zones",
   "w": 1400,
   "h": 788
  },
@@ -1348,7 +1348,7 @@
   "slug": "m03-p76-quantization-and-encoding-of-a-sampl",
   "path": "assets/figs/m03/m03-p76-quantization-and-encoding-of-a-sampl.webp",
   "caption": "Quantization and Encoding of a Sampled",
-  "alt": "A sampled sine wave being quantized to zone midpoints and encoded into binary.",
+  "alt": "Quantization and Encoding of a Sampled",
   "w": 1400,
   "h": 788
  },
@@ -1359,7 +1359,7 @@
   "slug": "m03-p77-quantization-error",
   "path": "assets/figs/m03/m03-p77-quantization-error.webp",
   "caption": "Quantization Error",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Quantization Error.",
+  "alt": "Quantization Error",
   "w": 1400,
   "h": 788
  },
@@ -1370,7 +1370,7 @@
   "slug": "m03-p78-quantization-error-and-snqr",
   "path": "assets/figs/m03/m03-p78-quantization-error-and-snqr.webp",
   "caption": "Quantization Error and SNQR",
-  "alt": "Uniform zones give quiet signals a worse signal-to-quantization-noise ratio than loud ones.",
+  "alt": "Quantization Error and SNQR",
   "w": 1400,
   "h": 788
  },
@@ -1381,7 +1381,7 @@
   "slug": "m03-p79-bit-rate-and-bandwidth-requirements",
   "path": "assets/figs/m03/m03-p79-bit-rate-and-bandwidth-requirements.webp",
   "caption": "Bit rate and bandwidth requirements of PCM",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Bit rate and bandwidth requirements of PCM.",
+  "alt": "Bit rate and bandwidth requirements of PCM",
   "w": 1400,
   "h": 788
  },
@@ -1392,7 +1392,7 @@
   "slug": "m03-p80-we-want-to-digitize-the-human-voice",
   "path": "assets/figs/m03/m03-p80-we-want-to-digitize-the-human-voice.webp",
   "caption": "We want to digitize the human voice. What is the bit",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: We want to digitize the human voice. What is the bit.",
+  "alt": "We want to digitize the human voice. What is the bit",
   "w": 1400,
   "h": 788
  },
@@ -1403,7 +1403,7 @@
   "slug": "m03-p81-pcm-decoder",
   "path": "assets/figs/m03/m03-p81-pcm-decoder.webp",
   "caption": "PCM Decoder",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: PCM Decoder.",
+  "alt": "PCM Decoder",
   "w": 1400,
   "h": 788
  },
@@ -1414,7 +1414,7 @@
   "slug": "m03-p82-4-82",
   "path": "assets/figs/m03/m03-p82-4-82.webp",
   "caption": "4.82",
-  "alt": "Components of a PCM decoder: hold circuit followed by a low-pass reconstruction filter.",
+  "alt": "4.82",
   "w": 1400,
   "h": 788
  },
@@ -1425,7 +1425,7 @@
   "slug": "m03-p84-delta-modulation",
   "path": "assets/figs/m03/m03-p84-delta-modulation.webp",
   "caption": "Delta Modulation",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Delta Modulation.",
+  "alt": "Delta Modulation",
   "w": 1400,
   "h": 788
  },
@@ -1436,7 +1436,7 @@
   "slug": "m03-p85-the-process-of-delta-modulation",
   "path": "assets/figs/m03/m03-p85-the-process-of-delta-modulation.webp",
   "caption": "The Process of Delta Modulation",
-  "alt": "Delta modulation: the encoder tracks the signal with a staircase that steps up or down by a fixed amount.",
+  "alt": "The Process of Delta Modulation",
   "w": 1400,
   "h": 788
  },
@@ -1447,7 +1447,7 @@
   "slug": "m03-p86-delta-modulation-components",
   "path": "assets/figs/m03/m03-p86-delta-modulation-components.webp",
   "caption": "Delta Modulation Components",
-  "alt": "Delta modulation encoder: comparator, quantizer, integrator in the feedback path.",
+  "alt": "Delta Modulation Components",
   "w": 1400,
   "h": 788
  },
@@ -1458,7 +1458,7 @@
   "slug": "m03-p87-delta-demodulation-components",
   "path": "assets/figs/m03/m03-p87-delta-demodulation-components.webp",
   "caption": "Delta Demodulation Components",
-  "alt": "Delta demodulator: integrator and low-pass filter reconstruct the original signal.",
+  "alt": "Delta Demodulation Components",
   "w": 1400,
   "h": 788
  },
@@ -1469,7 +1469,7 @@
   "slug": "m03-p88-delta-pcm-dpcm",
   "path": "assets/figs/m03/m03-p88-delta-pcm-dpcm.webp",
   "caption": "Delta PCM (DPCM)",
-  "alt": "DPCM quantizes the difference rather than just its sign, trading bits for accuracy.",
+  "alt": "Delta PCM (DPCM)",
   "w": 1400,
   "h": 788
  },
@@ -1480,7 +1480,7 @@
   "slug": "m03-p90-parallel-transmission",
   "path": "assets/figs/m03/m03-p90-parallel-transmission.webp",
   "caption": "Parallel Transmission",
-  "alt": "Parallel transmission: n bits at a time over n wires, one clock tick per group.",
+  "alt": "Parallel Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1491,7 +1491,7 @@
   "slug": "m03-p91-serial-transmission",
   "path": "assets/figs/m03/m03-p91-serial-transmission.webp",
   "caption": "Serial Transmission",
-  "alt": "Serial transmission: one bit per clock tick, in three subclasses.",
+  "alt": "Serial Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1502,7 +1502,7 @@
   "slug": "m03-p92-asynchronous-transmission",
   "path": "assets/figs/m03/m03-p92-asynchronous-transmission.webp",
   "caption": "Asynchronous Transmission",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Asynchronous Transmission.",
+  "alt": "Asynchronous Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1513,7 +1513,7 @@
   "slug": "m03-p93-asynchronous-transmission",
   "path": "assets/figs/m03/m03-p93-asynchronous-transmission.webp",
   "caption": "Asynchronous Transmission",
-  "alt": "Asynchronous framing: a start bit, the data byte, and one or more stop bits.",
+  "alt": "Asynchronous Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1524,7 +1524,7 @@
   "slug": "m03-p94-synchronous-transmission",
   "path": "assets/figs/m03/m03-p94-synchronous-transmission.webp",
   "caption": "Synchronous Transmission",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Synchronous Transmission.",
+  "alt": "Synchronous Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1535,7 +1535,7 @@
   "slug": "m03-p95-synchronous-transmission",
   "path": "assets/figs/m03/m03-p95-synchronous-transmission.webp",
   "caption": "Synchronous Transmission",
-  "alt": "Synchronous transmission: a frame delimited by start and end bytes, bits packed with no gaps.",
+  "alt": "Synchronous Transmission",
   "w": 1400,
   "h": 788
  },
@@ -1546,7 +1546,7 @@
   "slug": "m03-p96-isochronous",
   "path": "assets/figs/m03/m03-p96-isochronous.webp",
   "caption": "Isochronous",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital Transmission: Isochronous.",
+  "alt": "Isochronous",
   "w": 1400,
   "h": 788
  },
@@ -1557,7 +1557,7 @@
   "slug": "m04-p04-typesof-digital-to-analog-conversion",
   "path": "assets/figs/m04/m04-p04-typesof-digital-to-analog-conversion.webp",
   "caption": "Typesof Digital to Analog Conversion",
-  "alt": "Slide: the families of digital-to-analog conversion \u2014 amplitude, frequency and phase shift keying, and their combinations.",
+  "alt": "Typesof Digital to Analog Conversion",
   "w": 1400,
   "h": 788
  },
@@ -1568,7 +1568,7 @@
   "slug": "m04-p06-an-analog-signal-carries-4-bits-per",
   "path": "assets/figs/m04/m04-p06-an-analog-signal-carries-4-bits-per.webp",
   "caption": "An analog signal carries 4 bits per signal element. If 1000 signal",
-  "alt": "Slide: a signal element can carry more than one data bit \u2014 here r = 4 bits per signal element.",
+  "alt": "An analog signal carries 4 bits per signal element. If 1000 signal",
   "w": 1400,
   "h": 788
  },
@@ -1579,7 +1579,7 @@
   "slug": "m04-p07-an-analog-signal-has-a-bit-rate-of-8",
   "path": "assets/figs/m04/m04-p07-an-analog-signal-has-a-bit-rate-of-8.webp",
   "caption": "An analog signal has a bit rate of 8000 bps and a baud rate of 1000",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital to Analog Transmission: An analog signal has a bit rate of 8000 bps and a baud rate of 1000.",
+  "alt": "An analog signal has a bit rate of 8000 bps and a baud rate of 1000",
   "w": 1400,
   "h": 788
  },
@@ -1590,7 +1590,7 @@
   "slug": "m04-p10-binary-amplitude-shift",
   "path": "assets/figs/m04/m04-p10-binary-amplitude-shift.webp",
   "caption": "Binary Amplitude Shift",
-  "alt": "Slide: binary amplitude shift keying \u2014 the carrier is present for one bit value and silenced for the other.",
+  "alt": "Binary Amplitude Shift",
   "w": 1400,
   "h": 788
  },
@@ -1601,7 +1601,7 @@
   "slug": "m04-p11-implementation-of-binary-ask",
   "path": "assets/figs/m04/m04-p11-implementation-of-binary-ask.webp",
   "caption": "Implementation of Binary ASK",
-  "alt": "Slide: implementation of binary ASK \u2014 a multiplier gates the carrier according to the incoming bit stream.",
+  "alt": "Implementation of Binary ASK",
   "w": 1400,
   "h": 788
  },
@@ -1612,7 +1612,7 @@
   "slug": "m04-p12-we-have-an-available-bandwidth-of-10",
   "path": "assets/figs/m04/m04-p12-we-have-an-available-bandwidth-of-10.webp",
   "caption": "We have an available bandwidth of 100 kHz which spans from 200 to",
-  "alt": "Slide: 100 kHz of bandwidth from 200 to 300 kHz, modulated by ASK with d = 1.",
+  "alt": "We have an available bandwidth of 100 kHz which spans from 200 to",
   "w": 1400,
   "h": 788
  },
@@ -1623,7 +1623,7 @@
   "slug": "m04-p13-bandwidth-in-full-duplex-communicati",
   "path": "assets/figs/m04/m04-p13-bandwidth-in-full-duplex-communicati.webp",
   "caption": "Bandwidth in Full-Duplex Communication",
-  "alt": "Slide: splitting the band between two directions \u2014 each carrier takes one half, halving each direction's rate.",
+  "alt": "Bandwidth in Full-Duplex Communication",
   "w": 1400,
   "h": 788
  },
@@ -1634,7 +1634,7 @@
   "slug": "m04-p14-frequencyshift-keying",
   "path": "assets/figs/m04/m04-p14-frequencyshift-keying.webp",
   "caption": "FrequencyShift Keying",
-  "alt": "Slide: frequency shift keying \u2014 the digital stream switches the carrier between f1 and f2.",
+  "alt": "FrequencyShift Keying",
   "w": 1400,
   "h": 788
  },
@@ -1645,7 +1645,7 @@
   "slug": "m04-p16-we-have-an-available-bandwidth-of-10",
   "path": "assets/figs/m04/m04-p16-we-have-an-available-bandwidth-of-10.webp",
   "caption": "We have an available bandwidth of 100 kHz which spans from 200 to",
-  "alt": "Slide: the same 100 kHz allocation, now modulated by FSK with d = 1 and 2 delta f taken as 50 kHz.",
+  "alt": "We have an available bandwidth of 100 kHz which spans from 200 to",
   "w": 1400,
   "h": 788
  },
@@ -1656,7 +1656,7 @@
   "slug": "m04-p18-multi-levelfsk",
   "path": "assets/figs/m04/m04-p18-multi-levelfsk.webp",
   "caption": "Multi levelFSK",
-  "alt": "Slide: multi-level FSK \u2014 L distinct frequencies, each representing a group of data bits.",
+  "alt": "Multi levelFSK",
   "w": 1400,
   "h": 788
  },
@@ -1667,7 +1667,7 @@
   "slug": "m04-p20-bandwidth-allocation-fromexample",
   "path": "assets/figs/m04/m04-p20-bandwidth-allocation-fromexample.webp",
   "caption": "Bandwidth Allocation fromExample",
-  "alt": "Slide: bandwidth allocation from the multi-level FSK example \u2014 eight 1 MHz slots across the 8 MHz band.",
+  "alt": "Bandwidth Allocation fromExample",
   "w": 1400,
   "h": 788
  },
@@ -1678,7 +1678,7 @@
   "slug": "m04-p22-binary-phase-shift",
   "path": "assets/figs/m04/m04-p22-binary-phase-shift.webp",
   "caption": "Binary Phase Shift",
-  "alt": "Slide: binary phase shift keying \u2014 the carrier's phase flips by 180 degrees between the two bit values.",
+  "alt": "Binary Phase Shift",
   "w": 1400,
   "h": 788
  },
@@ -1689,7 +1689,7 @@
   "slug": "m04-p23-implementation-of-psk",
   "path": "assets/figs/m04/m04-p23-implementation-of-psk.webp",
   "caption": "Implementation of PSK",
-  "alt": "Slide: implementation of PSK \u2014 the carrier is multiplied by a polar baseband waveform that takes values plus one and minus one.",
+  "alt": "Implementation of PSK",
   "w": 1400,
   "h": 788
  },
@@ -1700,7 +1700,7 @@
   "slug": "m04-p25-qpsk-and-its-implementation",
   "path": "assets/figs/m04/m04-p25-qpsk-and-its-implementation.webp",
   "caption": "QPSK and Its Implementation",
-  "alt": "Slide: QPSK and its implementation \u2014 a serial-to-parallel converter feeds an in-phase and a quadrature carrier whose sum is one of four phases.",
+  "alt": "QPSK and Its Implementation",
   "w": 1400,
   "h": 788
  },
@@ -1711,7 +1711,7 @@
   "slug": "m04-p28-concept-of-constellation-diagram",
   "path": "assets/figs/m04/m04-p28-concept-of-constellation-diagram.webp",
   "caption": "Concept of Constellation Diagram",
-  "alt": "Slide: the concept of a constellation diagram \u2014 the horizontal axis is the in-phase carrier, the vertical axis the quadrature carrier.",
+  "alt": "Concept of Constellation Diagram",
   "w": 1400,
   "h": 788
  },
@@ -1722,7 +1722,7 @@
   "slug": "m04-p29-show-the-constellation-diagrams-for",
   "path": "assets/figs/m04/m04-p29-show-the-constellation-diagrams-for.webp",
   "caption": "Show the constellation diagrams for an ASK (OOK), BPSK, and QPSK",
-  "alt": "Lecture slide from Physical Layer \u2014 Digital to Analog Transmission: Show the constellation diagrams for an ASK (OOK), BPSK, and QPSK.",
+  "alt": "Show the constellation diagrams for an ASK (OOK), BPSK, and QPSK",
   "w": 1400,
   "h": 788
  },
@@ -1733,7 +1733,7 @@
   "slug": "m04-p30-qam",
   "path": "assets/figs/m04/m04-p30-qam.webp",
   "caption": "QAM",
-  "alt": "Slide: QAM \u2014 quadrature amplitude modulation combines amplitude shift keying with phase shift keying.",
+  "alt": "QAM",
   "w": 1400,
   "h": 788
  },
@@ -1744,7 +1744,7 @@
   "slug": "m04-p31-qam",
   "path": "assets/figs/m04/m04-p31-qam.webp",
   "caption": "QAM",
-  "alt": "Slide: QAM continued \u2014 the constellation grows from 16 to 64 to 256 points as more bits are packed into each symbol.",
+  "alt": "QAM",
   "w": 1400,
   "h": 788
  },
@@ -1755,7 +1755,7 @@
   "slug": "m05-p04-frequency-division-multiplexing",
   "path": "assets/figs/m05/m05-p04-frequency-division-multiplexing.webp",
   "caption": "Frequency Division Multiplexing",
-  "alt": "Slide: FDM is an analog multiplexing technique that combines analog signals.",
+  "alt": "Frequency Division Multiplexing",
   "w": 1400,
   "h": 788
  },
@@ -1766,7 +1766,7 @@
   "slug": "m05-p06-fdm-demultiplexing-example",
   "path": "assets/figs/m05/m05-p06-fdm-demultiplexing-example.webp",
   "caption": "FDM Demultiplexing Example",
-  "alt": "Slide figure for the 20\u201332 kHz example: three 4 kHz voice channels shifted and combined, then filtered and shifted back.",
+  "alt": "FDM Demultiplexing Example",
   "w": 1400,
   "h": 788
  },
@@ -1777,7 +1777,7 @@
   "slug": "m05-p09-wavelength-division-multiplexing",
   "path": "assets/figs/m05/m05-p09-wavelength-division-multiplexing.webp",
   "caption": "Wavelength-division multiplexing",
-  "alt": "Slide: WDM is an analog multiplexing technique to combine optical signals.",
+  "alt": "Wavelength-division multiplexing",
   "w": 1400,
   "h": 788
  },
@@ -1788,7 +1788,7 @@
   "slug": "m05-p10-time-division-mulitplexing",
   "path": "assets/figs/m05/m05-p10-time-division-mulitplexing.webp",
   "caption": "Time Division Mulitplexing",
-  "alt": "Slide: TDM is a digital multiplexing technique for combining several low-rate channels into one high-rate one.",
+  "alt": "Time Division Mulitplexing",
   "w": 1400,
   "h": 788
  },
@@ -1799,7 +1799,7 @@
   "slug": "m05-p11-synchronous-time-division-multiplexi",
   "path": "assets/figs/m05/m05-p11-synchronous-time-division-multiplexi.webp",
   "caption": "Synchronous time-division multiplexing",
-  "alt": "Slide: in synchronous TDM the data rate of the link is n times faster and the unit duration is n times shorter.",
+  "alt": "Synchronous time-division multiplexing",
   "w": 1400,
   "h": 788
  },
@@ -1810,7 +1810,7 @@
   "slug": "m05-p14-tdm-slot-comparison",
   "path": "assets/figs/m05/m05-p14-tdm-slot-comparison.webp",
   "caption": "TDM Slot Comparison",
-  "alt": "Slide: the same five lines under synchronous TDM (fixed slots, including empty ones) and statistical TDM (only active lines are packed in).",
+  "alt": "TDM Slot Comparison",
   "w": 1400,
   "h": 788
  },
@@ -1821,7 +1821,7 @@
   "slug": "m06-p01-error-detection",
   "path": "assets/figs/m06/m06-p01-error-detection.webp",
   "caption": "Error Detection",
-  "alt": "Slide: redundancy is the central concept in detecting or correcting errors.",
+  "alt": "Error Detection",
   "w": 1400,
   "h": 788
  },
@@ -1832,7 +1832,7 @@
   "slug": "m06-p04-single-bit-error",
   "path": "assets/figs/m06/m06-p04-single-bit-error.webp",
   "caption": "Single Bit Error",
-  "alt": "Slide: Single Bit Error \u2014 one bit of the data unit is inverted.",
+  "alt": "Single Bit Error",
   "w": 1400,
   "h": 788
  },
@@ -1843,7 +1843,7 @@
   "slug": "m06-p08-two-dimensional-parity-check",
   "path": "assets/figs/m06/m06-p08-two-dimensional-parity-check.webp",
   "caption": "Two Dimensional Parity Check",
-  "alt": "Slide: Two Dimensional Parity Check \u2014 row parity plus column parity.",
+  "alt": "Two Dimensional Parity Check",
   "w": 1400,
   "h": 788
  },
@@ -1854,7 +1854,7 @@
   "slug": "m06-p11-crc-computation",
   "path": "assets/figs/m06/m06-p11-crc-computation.webp",
   "caption": "CRC Computation",
-  "alt": "Slide: CRC computation by long-hand division with the remainder attached.",
+  "alt": "CRC Computation",
   "w": 1400,
   "h": 788
  },
@@ -1865,7 +1865,7 @@
   "slug": "m06-p16-checksum-diagram",
   "path": "assets/figs/m06/m06-p16-checksum-diagram.webp",
   "caption": "Checksum Diagram",
-  "alt": "Slide: Checksum Diagram \u2014 the message is divided into units, summed, and a checksum unit is appended.",
+  "alt": "Checksum Diagram",
   "w": 1400,
   "h": 788
  },
@@ -1876,7 +1876,7 @@
   "slug": "m07-p05-random-access-protocols",
   "path": "assets/figs/m07/m07-p05-random-access-protocols.webp",
   "caption": "Random Access Protocols",
-  "alt": "Lecture slide from Media Access Control: Random Access Protocols.",
+  "alt": "Random Access Protocols",
   "w": 1400,
   "h": 798
  },
@@ -1887,7 +1887,7 @@
   "slug": "m07-p06-random-access",
   "path": "assets/figs/m07/m07-p06-random-access.webp",
   "caption": "Random Access",
-  "alt": "Lecture slide from Media Access Control: Random Access.",
+  "alt": "Random Access",
   "w": 1400,
   "h": 788
  },
@@ -1898,7 +1898,7 @@
   "slug": "m07-p07-aloha",
   "path": "assets/figs/m07/m07-p07-aloha.webp",
   "caption": "ALOHA",
-  "alt": "Lecture slide from Media Access Control: ALOHA.",
+  "alt": "ALOHA",
   "w": 1400,
   "h": 788
  },
@@ -1909,7 +1909,7 @@
   "slug": "m07-p08-frames-in-aloha-network",
   "path": "assets/figs/m07/m07-p08-frames-in-aloha-network.webp",
   "caption": "Frames in ALOHA Network",
-  "alt": "Lecture slide from Media Access Control: Frames in ALOHA Network.",
+  "alt": "Frames in ALOHA Network",
   "w": 1400,
   "h": 788
  },
@@ -1920,7 +1920,7 @@
   "slug": "m07-p09-procedure-for-pure-aloha",
   "path": "assets/figs/m07/m07-p09-procedure-for-pure-aloha.webp",
   "caption": "Procedure for Pure ALOHA",
-  "alt": "Lecture slide from Media Access Control: Procedure for Pure ALOHA.",
+  "alt": "Procedure for Pure ALOHA",
   "w": 1400,
   "h": 788
  },
@@ -1931,7 +1931,7 @@
   "slug": "m07-p10-frames-in-slotted-aloha",
   "path": "assets/figs/m07/m07-p10-frames-in-slotted-aloha.webp",
   "caption": "Frames in Slotted ALOHA",
-  "alt": "Lecture slide from Media Access Control: Frames in Slotted ALOHA.",
+  "alt": "Frames in Slotted ALOHA",
   "w": 1400,
   "h": 788
  },
@@ -1942,7 +1942,7 @@
   "slug": "m07-p11-vulnerable-time-in-slotted-aloha",
   "path": "assets/figs/m07/m07-p11-vulnerable-time-in-slotted-aloha.webp",
   "caption": "Vulnerable Time in Slotted ALOHA",
-  "alt": "Lecture slide from Media Access Control: Vulnerable Time in Slotted ALOHA.",
+  "alt": "Vulnerable Time in Slotted ALOHA",
   "w": 1400,
   "h": 788
  },
@@ -1953,7 +1953,7 @@
   "slug": "m07-p12-carrier-sense-multiple-access-csma",
   "path": "assets/figs/m07/m07-p12-carrier-sense-multiple-access-csma.webp",
   "caption": "Carrier Sense Multiple Access (CSMA)",
-  "alt": "Lecture slide from Media Access Control: Carrier Sense Multiple Access (CSMA).",
+  "alt": "Carrier Sense Multiple Access (CSMA)",
   "w": 1400,
   "h": 788
  },
@@ -1964,7 +1964,7 @@
   "slug": "m07-p13-vulnerable-time-in-csma",
   "path": "assets/figs/m07/m07-p13-vulnerable-time-in-csma.webp",
   "caption": "Vulnerable Time in CSMA",
-  "alt": "Lecture slide from Media Access Control: Vulnerable Time in CSMA.",
+  "alt": "Vulnerable Time in CSMA",
   "w": 1400,
   "h": 788
  },
@@ -1975,7 +1975,7 @@
   "slug": "m07-p14-csma-persistence-methods",
   "path": "assets/figs/m07/m07-p14-csma-persistence-methods.webp",
   "caption": "CSMA Persistence Methods",
-  "alt": "Lecture slide from Media Access Control: CSMA Persistence Methods.",
+  "alt": "CSMA Persistence Methods",
   "w": 1400,
   "h": 788
  },
@@ -1986,7 +1986,7 @@
   "slug": "m07-p15-csma-persistent-flow",
   "path": "assets/figs/m07/m07-p15-csma-persistent-flow.webp",
   "caption": "CSMA Persistent Flow",
-  "alt": "Lecture slide from Media Access Control: CSMA Persistent Flow.",
+  "alt": "CSMA Persistent Flow",
   "w": 1400,
   "h": 788
  },
@@ -1997,7 +1997,7 @@
   "slug": "m07-p16-carrier-sense-multiple-access-collis",
   "path": "assets/figs/m07/m07-p16-carrier-sense-multiple-access-collis.webp",
   "caption": "Carrier Sense Multiple Access / Collision",
-  "alt": "Lecture slide from Media Access Control: Carrier Sense Multiple Access / Collision.",
+  "alt": "Carrier Sense Multiple Access / Collision",
   "w": 1400,
   "h": 788
  },
@@ -2008,7 +2008,7 @@
   "slug": "m07-p17-collision-of-the-first-bit-in-csma-c",
   "path": "assets/figs/m07/m07-p17-collision-of-the-first-bit-in-csma-c.webp",
   "caption": "Collision of the First Bit in CSMA/CD",
-  "alt": "Lecture slide from Media Access Control: Collision of the First Bit in CSMA/CD.",
+  "alt": "Collision of the First Bit in CSMA/CD",
   "w": 1400,
   "h": 788
  },
@@ -2019,7 +2019,7 @@
   "slug": "m07-p18-collision-and-abortion-in-csma-cd",
   "path": "assets/figs/m07/m07-p18-collision-and-abortion-in-csma-cd.webp",
   "caption": "Collision and Abortion in CSMA/CD",
-  "alt": "Lecture slide from Media Access Control: Collision and Abortion in CSMA/CD.",
+  "alt": "Collision and Abortion in CSMA/CD",
   "w": 1400,
   "h": 788
  },
@@ -2030,7 +2030,7 @@
   "slug": "m07-p19-flow-diagram-for-the-csma-cd",
   "path": "assets/figs/m07/m07-p19-flow-diagram-for-the-csma-cd.webp",
   "caption": "Flow Diagram for the CSMA/CD",
-  "alt": "Lecture slide from Media Access Control: Flow Diagram for the CSMA/CD.",
+  "alt": "Flow Diagram for the CSMA/CD",
   "w": 1400,
   "h": 788
  },
@@ -2041,7 +2041,7 @@
   "slug": "m07-p20-carrier-sense-multiple-access-collis",
   "path": "assets/figs/m07/m07-p20-carrier-sense-multiple-access-collis.webp",
   "caption": "Carrier Sense Multiple Access / Collision",
-  "alt": "Lecture slide from Media Access Control: Carrier Sense Multiple Access / Collision.",
+  "alt": "Carrier Sense Multiple Access / Collision",
   "w": 1400,
   "h": 788
  },
@@ -2052,7 +2052,7 @@
   "slug": "m07-p21-flow-diagram-csma-ca",
   "path": "assets/figs/m07/m07-p21-flow-diagram-csma-ca.webp",
   "caption": "Flow Diagram CSMA/CA",
-  "alt": "Lecture slide from Media Access Control: Flow Diagram CSMA/CA.",
+  "alt": "Flow Diagram CSMA/CA",
   "w": 1400,
   "h": 788
  },
@@ -2063,7 +2063,7 @@
   "slug": "m07-p22-timing-in-csma-ca",
   "path": "assets/figs/m07/m07-p22-timing-in-csma-ca.webp",
   "caption": "Timing in CSMA/CA",
-  "alt": "Lecture slide from Media Access Control: Timing in CSMA/CA.",
+  "alt": "Timing in CSMA/CA",
   "w": 1400,
   "h": 788
  },
@@ -2074,7 +2074,7 @@
   "slug": "m07-p23-csma-ca-frame-exchange",
   "path": "assets/figs/m07/m07-p23-csma-ca-frame-exchange.webp",
   "caption": "CSMA/CA Frame Exchange",
-  "alt": "Lecture slide from Media Access Control: CSMA/CA Frame Exchange.",
+  "alt": "CSMA/CA Frame Exchange",
   "w": 1400,
   "h": 788
  },
@@ -2085,7 +2085,7 @@
   "slug": "m07-p24-network-allocation-vector-nav",
   "path": "assets/figs/m07/m07-p24-network-allocation-vector-nav.webp",
   "caption": "Network Allocation Vector (NAV)",
-  "alt": "Lecture slide from Media Access Control: Network Allocation Vector (NAV).",
+  "alt": "Network Allocation Vector (NAV)",
   "w": 1400,
   "h": 788
  },
@@ -2096,7 +2096,7 @@
   "slug": "m07-p25-hidden-node-problem",
   "path": "assets/figs/m07/m07-p25-hidden-node-problem.webp",
   "caption": "Hidden Node Problem",
-  "alt": "Lecture slide from Media Access Control: Hidden Node Problem.",
+  "alt": "Hidden Node Problem",
   "w": 1400,
   "h": 788
  },
@@ -2107,7 +2107,7 @@
   "slug": "m07-p26-controlled-access-protocols",
   "path": "assets/figs/m07/m07-p26-controlled-access-protocols.webp",
   "caption": "Controlled Access Protocols",
-  "alt": "Lecture slide from Media Access Control: Controlled Access Protocols.",
+  "alt": "Controlled Access Protocols",
   "w": 1400,
   "h": 798
  },
@@ -2118,7 +2118,7 @@
   "slug": "m07-p27-controlled-access",
   "path": "assets/figs/m07/m07-p27-controlled-access.webp",
   "caption": "Controlled Access",
-  "alt": "Lecture slide from Media Access Control: Controlled Access.",
+  "alt": "Controlled Access",
   "w": 1400,
   "h": 788
  },
@@ -2129,7 +2129,7 @@
   "slug": "m07-p28-reservation-method",
   "path": "assets/figs/m07/m07-p28-reservation-method.webp",
   "caption": "Reservation Method",
-  "alt": "Lecture slide from Media Access Control: Reservation Method.",
+  "alt": "Reservation Method",
   "w": 1400,
   "h": 788
  },
@@ -2140,7 +2140,7 @@
   "slug": "m07-p29-polling",
   "path": "assets/figs/m07/m07-p29-polling.webp",
   "caption": "Polling",
-  "alt": "Lecture slide from Media Access Control: Polling.",
+  "alt": "Polling",
   "w": 1400,
   "h": 788
  },
@@ -2151,7 +2151,7 @@
   "slug": "m07-p30-polling",
   "path": "assets/figs/m07/m07-p30-polling.webp",
   "caption": "Polling",
-  "alt": "Lecture slide from Media Access Control: Polling.",
+  "alt": "Polling",
   "w": 1400,
   "h": 788
  },
@@ -2162,7 +2162,7 @@
   "slug": "m07-p31-token-passing",
   "path": "assets/figs/m07/m07-p31-token-passing.webp",
   "caption": "Token Passing",
-  "alt": "Lecture slide from Media Access Control: Token Passing.",
+  "alt": "Token Passing",
   "w": 1400,
   "h": 788
  },
@@ -2173,7 +2173,7 @@
   "slug": "m07-p32-logical-ring-in-token-passing",
   "path": "assets/figs/m07/m07-p32-logical-ring-in-token-passing.webp",
   "caption": "Logical Ring in Token Passing",
-  "alt": "Lecture slide from Media Access Control: Logical Ring in Token Passing.",
+  "alt": "Logical Ring in Token Passing",
   "w": 1400,
   "h": 788
  },
@@ -2184,7 +2184,7 @@
   "slug": "m07-p33-channelization",
   "path": "assets/figs/m07/m07-p33-channelization.webp",
   "caption": "Channelization",
-  "alt": "Lecture slide from Media Access Control: Channelization.",
+  "alt": "Channelization",
   "w": 1400,
   "h": 798
  },
@@ -2195,7 +2195,7 @@
   "slug": "m07-p34-channelization",
   "path": "assets/figs/m07/m07-p34-channelization.webp",
   "caption": "Channelization",
-  "alt": "Lecture slide from Media Access Control: Channelization.",
+  "alt": "Channelization",
   "w": 1400,
   "h": 788
  },
@@ -2206,7 +2206,7 @@
   "slug": "m07-p35-frequency-division-multiple-access",
   "path": "assets/figs/m07/m07-p35-frequency-division-multiple-access.webp",
   "caption": "Frequency Division Multiple Access",
-  "alt": "Lecture slide from Media Access Control: Frequency Division Multiple Access.",
+  "alt": "Frequency Division Multiple Access",
   "w": 1400,
   "h": 788
  },
@@ -2217,7 +2217,7 @@
   "slug": "m07-p36-difference-between-fdma-and-fdm",
   "path": "assets/figs/m07/m07-p36-difference-between-fdma-and-fdm.webp",
   "caption": "Difference Between FDMA and FDM",
-  "alt": "Lecture slide from Media Access Control: Difference Between FDMA and FDM.",
+  "alt": "Difference Between FDMA and FDM",
   "w": 1400,
   "h": 788
  },
@@ -2228,7 +2228,7 @@
   "slug": "m07-p37-time-division-multiple-access-tdma",
   "path": "assets/figs/m07/m07-p37-time-division-multiple-access-tdma.webp",
   "caption": "Time Division Multiple Access (TDMA)",
-  "alt": "Lecture slide from Media Access Control: Time Division Multiple Access (TDMA).",
+  "alt": "Time Division Multiple Access (TDMA)",
   "w": 1400,
   "h": 788
  },
@@ -2239,7 +2239,7 @@
   "slug": "m07-p38-code-division-multiple-access-cdma",
   "path": "assets/figs/m07/m07-p38-code-division-multiple-access-cdma.webp",
   "caption": "Code Division Multiple Access (CDMA)",
-  "alt": "Lecture slide from Media Access Control: Code Division Multiple Access (CDMA).",
+  "alt": "Code Division Multiple Access (CDMA)",
   "w": 1400,
   "h": 788
  },
@@ -2250,7 +2250,7 @@
   "slug": "m07-p39-digital-signal-created-by-four-stati",
   "path": "assets/figs/m07/m07-p39-digital-signal-created-by-four-stati.webp",
   "caption": "Digital signal created by four stations in",
-  "alt": "Lecture slide from Media Access Control: Digital signal created by four stations in.",
+  "alt": "Digital signal created by four stations in",
   "w": 1400,
   "h": 788
  },
@@ -2261,7 +2261,7 @@
   "slug": "m07-p40-decoding-of-the-composite-signal-for",
   "path": "assets/figs/m07/m07-p40-decoding-of-the-composite-signal-for.webp",
   "caption": "Decoding of the composite signal for one",
-  "alt": "Lecture slide from Media Access Control: Decoding of the composite signal for one.",
+  "alt": "Decoding of the composite signal for one",
   "w": 1400,
   "h": 788
  },
@@ -2272,7 +2272,7 @@
   "slug": "m08-p02-ieee-802-project",
   "path": "assets/figs/m08/m08-p02-ieee-802-project.webp",
   "caption": "IEEE 802 Project",
-  "alt": "Slide: the IEEE 802 Project \u2014 the umbrella effort under which LAN standards are written.",
+  "alt": "IEEE 802 Project",
   "w": 1400,
   "h": 798
  },
@@ -2283,7 +2283,7 @@
   "slug": "m08-p03-ieee-802-project",
   "path": "assets/figs/m08/m08-p03-ieee-802-project.webp",
   "caption": "IEEE 802 Project",
-  "alt": "Slide: the scope of Project 802 \u2014 the physical layer and data-link layer of the major LAN protocols, split into LLC and MAC sublayers.",
+  "alt": "IEEE 802 Project",
   "w": 1400,
   "h": 788
  },
@@ -2294,7 +2294,7 @@
   "slug": "m08-p05-ethernet",
   "path": "assets/figs/m08/m08-p05-ethernet.webp",
   "caption": "Ethernet",
-  "alt": "Slide: the Ethernet LAN and the two names behind it.",
+  "alt": "Ethernet",
   "w": 1400,
   "h": 788
  },
@@ -2305,7 +2305,7 @@
   "slug": "m08-p06-ethernet-characteristics",
   "path": "assets/figs/m08/m08-p06-ethernet-characteristics.webp",
   "caption": "Ethernet Characteristics",
-  "alt": "Slide: Ethernet service characteristics \u2014 connectionless, unreliable, with silent frame drops.",
+  "alt": "Ethernet Characteristics",
   "w": 1400,
   "h": 788
  },
@@ -2316,7 +2316,7 @@
   "slug": "m08-p07-ethernet-characteristics",
   "path": "assets/figs/m08/m08-p07-ethernet-characteristics.webp",
   "caption": "Ethernet Characteristics",
-  "alt": "Slide: the Ethernet frame \u2014 preamble, SFD, destination address, source address, type, data and CRC.",
+  "alt": "Ethernet Characteristics",
   "w": 1400,
   "h": 788
  },
@@ -2327,7 +2327,7 @@
   "slug": "m08-p08-ethernet-characteristics",
   "path": "assets/figs/m08/m08-p08-ethernet-characteristics.webp",
   "caption": "Ethernet Characteristics",
-  "alt": "Slide: frame length restrictions, addressing, and the broadcast nature of Ethernet transmission.",
+  "alt": "Ethernet Characteristics",
   "w": 1400,
   "h": 788
  },
@@ -2338,7 +2338,7 @@
   "slug": "m08-p09-ethernet-access-method",
   "path": "assets/figs/m08/m08-p09-ethernet-access-method.webp",
   "caption": "Ethernet Access Method",
-  "alt": "Slide: Ethernet uses CSMA/CD with the 1-persistent method, and Manchester encoding at the physical layer.",
+  "alt": "Ethernet Access Method",
   "w": 1400,
   "h": 788
  },
@@ -2349,7 +2349,7 @@
   "slug": "m08-p10-ethernet-implementations",
   "path": "assets/figs/m08/m08-p10-ethernet-implementations.webp",
   "caption": "Ethernet Implementations",
-  "alt": "Slide: the four standard Ethernet implementations at 10 Mbps.",
+  "alt": "Ethernet Implementations",
   "w": 1400,
   "h": 788
  },
@@ -2360,7 +2360,7 @@
   "slug": "m08-p11-switched-ethernet",
   "path": "assets/figs/m08/m08-p11-switched-ethernet.webp",
   "caption": "Switched Ethernet",
-  "alt": "Slide: switched Ethernet began with bridged Ethernet, raising bandwidth and separating collision domains.",
+  "alt": "Switched Ethernet",
   "w": 1400,
   "h": 788
  },
@@ -2371,7 +2371,7 @@
   "slug": "m08-p12-fast-ethernet",
   "path": "assets/figs/m08/m08-p12-fast-ethernet.webp",
   "caption": "Fast Ethernet",
-  "alt": "Slide: Fast Ethernet runs at 100 Mbps, uses a hub or switch design, stays compatible with standard Ethernet, and supports auto-negotiation.",
+  "alt": "Fast Ethernet",
   "w": 1400,
   "h": 788
  },
@@ -2382,7 +2382,7 @@
   "slug": "m08-p13-gigabit-ethernet",
   "path": "assets/figs/m08/m08-p13-gigabit-ethernet.webp",
   "caption": "Gigabit Ethernet",
-  "alt": "Slide: Gigabit Ethernet has full-duplex and half-duplex modes, a 512-byte minimum frame and frame bursting.",
+  "alt": "Gigabit Ethernet",
   "w": 1400,
   "h": 788
  },
@@ -2393,7 +2393,7 @@
   "slug": "m09-p02-ieee-802-standards-working-groups",
   "path": "assets/figs/m09/m09-p02-ieee-802-standards-working-groups.webp",
   "caption": "IEEE 802 Standards Working Groups",
-  "alt": "The IEEE 802 working groups named in the slides, including 802.11 for wireless LANs and 802.16 for broadband wireless access.",
+  "alt": "IEEE 802 Standards Working Groups",
   "w": 1400,
   "h": 788
  },
@@ -2404,7 +2404,7 @@
   "slug": "m09-p03-introduction",
   "path": "assets/figs/m09/m09-p03-introduction.webp",
   "caption": "Introduction",
-  "alt": "The four topics the slides introduce for the wireless LAN: architecture, physical layer, MAC layer and addressing mechanism.",
+  "alt": "Introduction",
   "w": 1400,
   "h": 788
  },
@@ -2415,7 +2415,7 @@
   "slug": "m09-p04-ieee-802-11-architecture",
   "path": "assets/figs/m09/m09-p04-ieee-802-11-architecture.webp",
   "caption": "IEEE 802.11 - Architecture",
-  "alt": "The 802.11 architecture, showing basic service sets and how they compose into an extended service set.",
+  "alt": "IEEE 802.11 - Architecture",
   "w": 1400,
   "h": 788
  },
@@ -2426,7 +2426,7 @@
   "slug": "m09-p05-basic-service-set",
   "path": "assets/figs/m09/m09-p05-basic-service-set.webp",
   "caption": "Basic Service Set",
-  "alt": "A basic service set: stations plus, optionally, a central access point.",
+  "alt": "Basic Service Set",
   "w": 1400,
   "h": 788
  },
@@ -2437,7 +2437,7 @@
   "slug": "m09-p06-ess-extended-service-set",
   "path": "assets/figs/m09/m09-p06-ess-extended-service-set.webp",
   "caption": "ESS \u2013 Extended Service Set",
-  "alt": "An extended service set: two or more basic service sets joined by a distribution system, usually a wired LAN.",
+  "alt": "ESS \u2013 Extended Service Set",
   "w": 1400,
   "h": 788
  },
@@ -2448,7 +2448,7 @@
   "slug": "m09-p07-station-types",
   "path": "assets/figs/m09/m09-p07-station-types.webp",
   "caption": "Station Types",
-  "alt": "The three station mobility classes: no transition, BSS transition and ESS transition.",
+  "alt": "Station Types",
   "w": 1400,
   "h": 788
  },
@@ -2459,7 +2459,7 @@
   "slug": "m09-p09-fhss-frequency-hopping-spread-spectr",
   "path": "assets/figs/m09/m09-p09-fhss-frequency-hopping-spread-spectr.webp",
   "caption": "FHSS \u2013 Frequency hopping spread spectrum",
-  "alt": "Frequency-hopping spread spectrum: the carrier steps through a repeating sequence of narrow channels.",
+  "alt": "FHSS \u2013 Frequency hopping spread spectrum",
   "w": 1362,
   "h": 826
  },
@@ -2470,7 +2470,7 @@
   "slug": "m09-p10-frequency-hopping-example",
   "path": "assets/figs/m09/m09-p10-frequency-hopping-example.webp",
   "caption": "Frequency-Hopping example",
-  "alt": "A worked frequency-hopping example, showing the carrier occupying successive narrow subbands in time.",
+  "alt": "Frequency-Hopping example",
   "w": 1400,
   "h": 788
  },
@@ -2481,7 +2481,7 @@
   "slug": "m09-p11-dsss-direct-sequence-spread-spectrum",
   "path": "assets/figs/m09/m09-p11-dsss-direct-sequence-spread-spectrum.webp",
   "caption": "DSSS \u2013 direct sequence spread spectrum",
-  "alt": "Direct sequence spread spectrum: each data bit is replaced by a chip code, widening the occupied band.",
+  "alt": "DSSS \u2013 direct sequence spread spectrum",
   "w": 1361,
   "h": 826
  },
@@ -2492,7 +2492,7 @@
   "slug": "m09-p12-802-11",
   "path": "assets/figs/m09/m09-p12-802-11.webp",
   "caption": "802.11",
-  "alt": "The original 802.11 physical-layer variants, including infrared and FHSS, with their bands, channels and dwell time.",
+  "alt": "802.11",
   "w": 1400,
   "h": 788
  },
@@ -2503,7 +2503,7 @@
   "slug": "m09-p13-802-11a-b-g",
   "path": "assets/figs/m09/m09-p13-802-11a-b-g.webp",
   "caption": "802.11a,b,g",
-  "alt": "802.11a, b and g compared: OFDM in the 5 GHz band, HR-DSSS in 2.4 GHz, and OFDM again in 2.4 GHz with backward compatibility.",
+  "alt": "802.11a,b,g",
   "w": 1400,
   "h": 788
  },
@@ -2514,7 +2514,7 @@
   "slug": "m09-p14-802-11a-b-g-cont-d",
   "path": "assets/figs/m09/m09-p14-802-11a-b-g-cont-d.webp",
   "caption": "802.11a,b,g (cont\u2019d)",
-  "alt": "Lecture slide from Data Link Protocols \u2014 WANs: 802.11a,b,g (cont\u2019d).",
+  "alt": "802.11a,b,g (cont\u2019d)",
   "w": 1400,
   "h": 788
  },
@@ -2525,7 +2525,7 @@
   "slug": "m09-p15-mac-layers-in-ieee-802-11-standard",
   "path": "assets/figs/m09/m09-p15-mac-layers-in-ieee-802-11-standard.webp",
   "caption": "MAC layers in IEEE 802.11 standard",
-  "alt": "The MAC sublayer organisation: PCF layered on top of DCF, and DCF as the mandatory contention-based function.",
+  "alt": "MAC layers in IEEE 802.11 standard",
   "w": 1400,
   "h": 788
  },
@@ -2536,7 +2536,7 @@
   "slug": "m09-p16-csma-ca",
   "path": "assets/figs/m09/m09-p16-csma-ca.webp",
   "caption": "CSMA/CA",
-  "alt": "Why CSMA/CD does not transfer to the wireless medium: half-duplex radio, the hidden terminal, and signal fading with distance.",
+  "alt": "CSMA/CA",
   "w": 1400,
   "h": 788
  },
@@ -2547,7 +2547,7 @@
   "slug": "m09-p17-hidden-and-exposed-terminals",
   "path": "assets/figs/m09/m09-p17-hidden-and-exposed-terminals.webp",
   "caption": "Hidden and Exposed Terminals",
-  "alt": "The hidden station problem and the exposed station problem, side by side.",
+  "alt": "Hidden and Exposed Terminals",
   "w": 1358,
   "h": 826
  },
@@ -2558,7 +2558,7 @@
   "slug": "m09-p18-another-example-for-exposed-terminal",
   "path": "assets/figs/m09/m09-p18-another-example-for-exposed-terminal.webp",
   "caption": "Another Example for Exposed Terminal",
-  "alt": "A second exposed-terminal example showing a station needlessly deferring because it hears an unrelated neighbour.",
+  "alt": "Another Example for Exposed Terminal",
   "w": 1400,
   "h": 788
  },
@@ -2569,7 +2569,7 @@
   "slug": "m09-p19-csma-ca-flowchart",
   "path": "assets/figs/m09/m09-p19-csma-ca-flowchart.webp",
   "caption": "CSMA/CA flowchart",
-  "alt": "The CSMA/CA procedure: carrier sense, deferral, backoff countdown, transmission and positive acknowledgement.",
+  "alt": "CSMA/CA flowchart",
   "w": 1360,
   "h": 826
  },
@@ -2580,7 +2580,7 @@
   "slug": "m09-p20-csma-ca-and-nav",
   "path": "assets/figs/m09/m09-p20-csma-ca-and-nav.webp",
   "caption": "CSMA/CA and NAV",
-  "alt": "CSMA/CA timing with DIFS and SIFS, the RTS/CTS handshake and the network allocation vector protecting the exchange.",
+  "alt": "CSMA/CA and NAV",
   "w": 1362,
   "h": 826
  },
@@ -2591,7 +2591,7 @@
   "slug": "m09-p21-frame-format",
   "path": "assets/figs/m09/m09-p21-frame-format.webp",
   "caption": "Frame format",
-  "alt": "The 802.11 frame format, with the frame control field, duration, addresses, sequence control, frame body and checksum.",
+  "alt": "Frame format",
   "w": 1400,
   "h": 788
  },
@@ -2602,7 +2602,7 @@
   "slug": "m09-p22-subfields-in-fc-frame-control-field",
   "path": "assets/figs/m09/m09-p22-subfields-in-fc-frame-control-field.webp",
   "caption": "Subfields in FC (frame control) field",
-  "alt": "The subfields inside the frame control field and what each one means.",
+  "alt": "Subfields in FC (frame control) field",
   "w": 1361,
   "h": 826
  },
@@ -2613,7 +2613,7 @@
   "slug": "m09-p23-control-frames",
   "path": "assets/figs/m09/m09-p23-control-frames.webp",
   "caption": "Control frames",
-  "alt": "Control frames in 802.11, and the subtype values that identify RTS, CTS and ACK.",
+  "alt": "Control frames",
   "w": 1360,
   "h": 826
  },
@@ -2624,7 +2624,7 @@
   "slug": "m09-p24-values-of-subfields-in-control-frame",
   "path": "assets/figs/m09/m09-p24-values-of-subfields-in-control-frame.webp",
   "caption": "Values of subfields in control frames",
-  "alt": "The subtype assignments for the control frame type, including RTS 1011, CTS 1100 and ACK 1101.",
+  "alt": "Values of subfields in control frames",
   "w": 1367,
   "h": 826
  },
@@ -2635,7 +2635,7 @@
   "slug": "m09-p25-subfields-in-fc-field",
   "path": "assets/figs/m09/m09-p25-subfields-in-fc-field.webp",
   "caption": "Subfields in FC field",
-  "alt": "The addressing table: how the To DS and From DS bits select the meaning of address fields 1 through 4.",
+  "alt": "Subfields in FC field",
   "w": 1367,
   "h": 826
  },
@@ -2646,7 +2646,7 @@
   "slug": "m09-p26-addressing-mechanism-case-1",
   "path": "assets/figs/m09/m09-p26-addressing-mechanism-case-1.webp",
   "caption": "Addressing mechanism: case 1",
-  "alt": "Addressing case 1: To DS 0, From DS 0, station to station inside one BSS.",
+  "alt": "Addressing mechanism: case 1",
   "w": 1400,
   "h": 788
  },
@@ -2657,7 +2657,7 @@
   "slug": "m09-p27-addressing-mechanism-case-2",
   "path": "assets/figs/m09/m09-p27-addressing-mechanism-case-2.webp",
   "caption": "Addressing mechanism: case 2",
-  "alt": "Addressing case 2: To DS 0, From DS 1, the frame comes from the distribution system via an access point to a station.",
+  "alt": "Addressing mechanism: case 2",
   "w": 1362,
   "h": 826
  },
@@ -2668,7 +2668,7 @@
   "slug": "m09-p28-addressing-mechanism-case-3",
   "path": "assets/figs/m09/m09-p28-addressing-mechanism-case-3.webp",
   "caption": "Addressing mechanism: case 3",
-  "alt": "Addressing case 3: To DS 1, From DS 0, the frame goes from a station through an access point into the distribution system.",
+  "alt": "Addressing mechanism: case 3",
   "w": 1362,
   "h": 826
  },
@@ -2679,7 +2679,7 @@
   "slug": "m09-p29-addressing-mechanism-case-4",
   "path": "assets/figs/m09/m09-p29-addressing-mechanism-case-4.webp",
   "caption": "Addressing mechanism: case 4",
-  "alt": "Addressing case 4: To DS 1, From DS 1, an access point to access point frame over a wireless distribution system.",
+  "alt": "Addressing mechanism: case 4",
   "w": 1362,
   "h": 826
  },
@@ -2690,7 +2690,7 @@
   "slug": "m09-p30-bluetooth",
   "path": "assets/figs/m09/m09-p30-bluetooth.webp",
   "caption": "Bluetooth",
-  "alt": "Bluetooth as a wireless personal area network, with its architecture, radio layer, baseband layer and upper layers including L2CAP.",
+  "alt": "Bluetooth",
   "w": 1400,
   "h": 788
  },
@@ -2701,7 +2701,7 @@
   "slug": "m09-p31-architecture-two-types-of-networks",
   "path": "assets/figs/m09/m09-p31-architecture-two-types-of-networks.webp",
   "caption": "Architecture - Two Types of Networks",
-  "alt": "The two Bluetooth network types: the single-cell piconet and the combined scatternet.",
+  "alt": "Architecture - Two Types of Networks",
   "w": 1400,
   "h": 788
  },
@@ -2712,7 +2712,7 @@
   "slug": "m09-p32-piconet",
   "path": "assets/figs/m09/m09-p32-piconet.webp",
   "caption": "Piconet",
-  "alt": "A piconet: one master, up to seven active slaves, and up to eight more parked slaves.",
+  "alt": "Piconet",
   "w": 1362,
   "h": 826
  },
@@ -2723,7 +2723,7 @@
   "slug": "m09-p33-scatternet",
   "path": "assets/figs/m09/m09-p33-scatternet.webp",
   "caption": "Scatternet",
-  "alt": "A scatternet: piconets overlapping, with a station acting as slave in one and master in another.",
+  "alt": "Scatternet",
   "w": 1361,
   "h": 826
  },
@@ -2734,7 +2734,7 @@
   "slug": "m09-p34-bluetooth-layers",
   "path": "assets/figs/m09/m09-p34-bluetooth-layers.webp",
   "caption": "Bluetooth layers",
-  "alt": "The Bluetooth layer stack, from the radio layer through the baseband and link manager to L2CAP and the upper layers.",
+  "alt": "Bluetooth layers",
   "w": 1358,
   "h": 826
  },
@@ -2745,7 +2745,7 @@
   "slug": "m09-p35-radio-layers",
   "path": "assets/figs/m09/m09-p35-radio-layers.webp",
   "caption": "Radio Layers",
-  "alt": "The Bluetooth radio layer: 2.4 GHz ISM band, frequency-hopping spread spectrum and GFSK modulation.",
+  "alt": "Radio Layers",
   "w": 1400,
   "h": 788
  },
@@ -2756,7 +2756,7 @@
   "slug": "m09-p36-baseband-layer",
   "path": "assets/figs/m09/m09-p36-baseband-layer.webp",
   "caption": "Baseband Layer",
-  "alt": "The Bluetooth baseband layer: TDMA access with TDD-TDMA half-duplex slot alternation between master and slave.",
+  "alt": "Baseband Layer",
   "w": 1400,
   "h": 788
  },
@@ -2767,7 +2767,7 @@
   "slug": "m09-p37-single-slave-communication",
   "path": "assets/figs/m09/m09-p37-single-slave-communication.webp",
   "caption": "Single-slave Communication",
-  "alt": "Single-slave communication: the master transmits in even slots, the slave in odd slots.",
+  "alt": "Single-slave Communication",
   "w": 1400,
   "h": 788
  },
@@ -2778,7 +2778,7 @@
   "slug": "m09-p38-multiple-slave-communication",
   "path": "assets/figs/m09/m09-p38-multiple-slave-communication.webp",
   "caption": "Multiple-slave communication",
-  "alt": "Multiple-slave communication: a slave replies in the next odd slot only when the previous slot was addressed to it.",
+  "alt": "Multiple-slave communication",
   "w": 1400,
   "h": 788
  },
@@ -2789,7 +2789,7 @@
   "slug": "m09-p39-physical-links",
   "path": "assets/figs/m09/m09-p39-physical-links.webp",
   "caption": "Physical Links",
-  "alt": "Bluetooth physical links: SCO for synchronous, latency-sensitive traffic and ACL for asynchronous, integrity-sensitive traffic.",
+  "alt": "Physical Links",
   "w": 1400,
   "h": 788
  },
@@ -2800,7 +2800,7 @@
   "slug": "m09-p40-frame-format-types",
   "path": "assets/figs/m09/m09-p40-frame-format-types.webp",
   "caption": "Frame Format Types",
-  "alt": "Bluetooth frame format types at the baseband.",
+  "alt": "Frame Format Types",
   "w": 1358,
   "h": 826
  },
@@ -2811,7 +2811,7 @@
   "slug": "m09-p41-l2cap-data-packet-format",
   "path": "assets/figs/m09/m09-p41-l2cap-data-packet-format.webp",
   "caption": "L2CAP data packet format",
-  "alt": "The L2CAP data packet format: length and channel identifier fields ahead of the payload.",
+  "alt": "L2CAP data packet format",
   "w": 1358,
   "h": 826
  },
@@ -2822,9 +2822,9 @@
   "slug": "m10-p01-microwave-oven-signal-interference-m",
   "path": "assets/figs/m10/m10-p01-microwave-oven-signal-interference-m.webp",
   "caption": "MICROWAVE OVEN SIGNAL INTERFERENCE MITIGATION FOR WI-FI COMMUNICATION SYSTEMS",
-  "alt": "Paper front page: microwave oven signal interference mitigation for Wi-Fi communication systems (Taher, Misurac, LoCicero and Ucci).",
+  "alt": "MICROWAVE OVEN SIGNAL INTERFERENCE MITIGATION FOR WI-FI COMMUNICATION SYSTEMS",
   "w": 840,
-  "h": 1142
+  "h": 1110
  },
  {
   "id": "m10-p02-fig-3-case-1-no-mitigation",
@@ -2833,8 +2833,8 @@
   "slug": "m10-p02-fig-3-case-1-no-mitigation",
   "path": "assets/figs/m10/m10-p02-fig-3-case-1-no-mitigation.webp",
   "caption": "Fig. 3.  Case 1: No mitigation",
-  "alt": "Paper figure: Case 1 spectrogram \u2014 Wi-Fi transmitted at 2.46 GHz with no mitigation, inside the MWO's AM-FM region.",
+  "alt": "Fig. 3.  Case 1: No mitigation",
   "w": 825,
-  "h": 1142
+  "h": 1110
  }
 ]

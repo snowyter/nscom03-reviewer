@@ -142,6 +142,10 @@
         v.innerHTML = w.RENDER.lesson(mod, w.STORE.all());
         wireLesson(v, mod);
         var node = D.getElementById(b[3]);
+        // A deep link must reveal what it points at: a section that is already
+        // marked read renders collapsed, and scrolling to a closed disclosure
+        // would show nothing at all.
+        if (node && node.classList.contains("is-collapsed")) setOpen(node, true);
         if (node) node.scrollIntoView({ block: "start" });
       } else {
         v.innerHTML = missing(b.slice(2).join("/"));
@@ -184,6 +188,11 @@
         openLightbox(zoom.getAttribute("data-zoom"), zoom.getAttribute("data-zoom-alt"));
         return;
       }
+      var tog = e.target.closest("[data-toggle]");
+      if (tog) {
+        setOpen(tog.closest(".sec"), !isOpen(tog.closest(".sec")));
+        return;
+      }
       var mk = e.target.closest("[data-mark]");
       if (mk) {
         var id = mk.getAttribute("data-mark");
@@ -192,6 +201,10 @@
         refreshSpine(mod);
         paintReadouts();
         paintRail(mod.id);
+        // Marking a section read collapses it: the reading is done, so the sheet
+        // gets out of the way and the student sees how much is left. Un-marking
+        // re-opens it, because the section is back to being work in progress.
+        setOpen(mk.closest(".sec"), !nowRead);
         return;
       }
       var all = e.target.closest("[data-mark-all]");
@@ -208,6 +221,7 @@
         });
         scope.querySelectorAll(".sec").forEach(function (s2) {
           s2.classList.toggle("is-read", !complete);
+          setOpen(s2, complete);          // mark all -> close all, clear -> open
         });
         all.textContent = complete ? "Mark all read" : "Clear all marks";
         refreshSpine(mod);
@@ -215,6 +229,19 @@
         paintRail(mod.id);
       }
     }
+  }
+
+  /* ── section disclosure ─────────────────────────────────────── */
+
+  function isOpen(sec) {
+    return !!sec && !sec.classList.contains("is-collapsed");
+  }
+
+  function setOpen(sec, open) {
+    if (!sec) return;
+    var btn = sec.querySelector("[data-toggle]");
+    sec.classList.toggle("is-collapsed", !open);
+    if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
   function updateMark(btn, read) {

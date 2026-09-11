@@ -17,6 +17,9 @@ import shutil
 import subprocess
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import _probe_clean as CLEAN
+
 HOME = pathlib.Path.home()
 PAGES = HOME / "academics" / "nscom_pages"
 TXT = HOME / "academics" / "nscom_txt"
@@ -179,8 +182,20 @@ def main():
                 print(f"!! missing png {src_png}", file=sys.stderr)
                 continue
 
+            # Strip the course chrome first: the date, the course/term line and
+            # the decorative character are not part of the figure and must not
+            # ship. This runs before the border trim so the trim sees a clean page.
+            #
+            # The cleaner erases the character per-pixel using its exact measured
+            # silhouette and refills from neighbouring pixels, which is what keeps
+            # a diagram the character overlaps intact. Cropping the character's
+            # column instead (an earlier attempt) decapitated a figure on 113 of
+            # the 227 standard pages, because half of them carry content there.
+            deattr_png = scratch / f"{slug}-deattr.png"
+            CLEAN.clean_slide(str(src_png), str(deattr_png))
+
             trimmed = scratch / f"{slug}.png"
-            trim_uniform_border(src_png, trimmed)
+            trim_uniform_border(deattr_png, trimmed)
             dst = FIXT / mod / f"{slug}.webp"
             if not convert_webp(trimmed, dst):
                 print(f"!! ffmpeg failed {slug}", file=sys.stderr)

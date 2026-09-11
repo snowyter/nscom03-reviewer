@@ -36,7 +36,7 @@ if app.exists():
             return m.group(0)
         h = hashlib.sha256(f.read_bytes()).hexdigest()[:8]
         return f'@import url("{fname}?v={h}");'
-    app.write_text(re.sub(r'@import url\("([a-z-]+\.css)"\);', stamp_import, src))
+    app.write_text(re.sub(r'@import url\("([a-z-]+)\.css(?:\?v=[a-f0-9]+)?"\);', stamp_import, src))
 
 # Then stamp every local js/css url in index.html. app.css gets a hash over the
 # whole CSS graph so a change in any imported sheet invalidates it.
@@ -56,7 +56,7 @@ def stamp(m):
     h = hashlib.sha256(f.read_bytes()).hexdigest()[:8]
     return f'{attr}="{path}?v={h}"'
 
-new, n = re.subn(r'(src|href)="((?:js|css)/[^"?]+)"', stamp, html)
+new, n = re.subn(r'(src|href)="((?:js|css)/[^"?]+)(?:\?v=[a-f0-9]+)?"', stamp, html)
 if new != html:
     idx.write_text(new)
 print(f"  stamped {n} asset urls (css graph hash {h_all})")
