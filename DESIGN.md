@@ -83,10 +83,20 @@ pills, no gradients as decoration.**
 - **Section spine** (`.sec`): one unbroken ruled line down the lesson with a
   tapped node per section; the node fills solid when read. Sections are a
   continuous signal path, never stacked cards.
-- **Blocks**: `p`, `h3` (uppercase mono sub-head), `list`, `table` (mono, amber
-  caps headers), `fig` (framed, captioned, slide-numbered, click to enlarge),
-  `formula` (amber expression + plain-English reading), `note` (amber-ruled exam
-  callout), `example` (trace-ruled worked example with numbered steps).
+- **Mark-as-read** (`.mark`, in `.sec__foot`): a solid boxed control at the **end**
+  of every section, after the content — never in the heading, where it was both
+  easy to miss and hard to read. It is a checkbox glyph plus a label
+  ("Mark as read" → "Read"), on a solid `--ground-2` ground with a visible border
+  and a 38px tap target, so it never dissolves into the graticule. `aria-pressed`
+  carries the state.
+- **Blocks**: `p`, `h3` (uppercase mono sub-head), `list`, `table`, `fig`
+  (framed, captioned, slide-numbered, click to enlarge), `formula` (amber
+  expression + plain-English reading), `note` (amber-ruled exam callout),
+  `example` (trace-ruled worked example with numbered steps).
+- **Table**: sits on a solid `--ground-2` panel with a 1px border, an amber-tinted
+  header row under a 2px rule, a 1px rule between every row, and a faint
+  alternating row tint. Rules are `--rule`, not the near-invisible `--rule-soft`,
+  because on the graticule ground the softer rule made rows run together.
 - **Card** (`.card`): the flashcard — full-width flip surface with a face label,
   section reference, and two grade controls that stay disabled until revealed.
 - **Question** (`.q`): quiz item. Options are instrument keys (a/b/c/d); correct

@@ -218,9 +218,15 @@
   }
 
   function updateMark(btn, read) {
-    btn.textContent = read ? "read ✓" : "mark read";
+    // the button carries a checkbox glyph plus its own label, so both change
+    var box = btn.querySelector(".mark__box");
+    var txt = btn.querySelector(".mark__txt");
+    if (box) box.textContent = read ? "✓" : "";
+    if (txt) txt.textContent = read ? "Read" : "Mark as read";
+    btn.classList.toggle("is-on", !!read);
+    btn.setAttribute("aria-pressed", read ? "true" : "false");
     var sec = btn.closest(".sec");
-    if (sec) sec.classList.toggle("is-read", read);
+    if (sec) sec.classList.toggle("is-read", !!read);
   }
 
   function refreshSpine(mod) {

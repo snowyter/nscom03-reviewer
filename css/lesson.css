@@ -71,13 +71,6 @@
   text-transform: uppercase; color: var(--trace-dim);
   border: 1px solid var(--rule); padding: .2rem .38rem;
 }
-.sec__link {
-  margin-left: auto;
-  font: 500 .62rem/1 var(--mono); letter-spacing: .1em;
-  text-transform: uppercase; color: var(--ink-faint);
-  background: none; border: 0; cursor: pointer; padding: .2rem 0;
-}
-.sec__link:hover { color: var(--trace); }
 
 /* ── Blocks ─────────────────────────────────────────────────────── */
 .blk { max-width: var(--measure); }
@@ -163,23 +156,69 @@
 }
 .blk--formula .fx__say b { color: var(--ink); font-weight: 600; }
 
+/* ── Mark-as-read control (end of every section) ─────────────────── */
+.sec__foot {
+  margin-top: 1.5rem; padding-top: .9rem;
+  border-top: 1px dashed var(--rule-soft);
+  max-width: var(--measure);
+}
+.mark {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--ground-2);           /* solid box, never transparent */
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  padding: .58rem .85rem;
+  color: var(--ink); cursor: pointer;
+  font: 500 .76rem/1 var(--mono);
+  letter-spacing: .1em; text-transform: uppercase;
+  min-height: 2.4rem;                     /* comfortable tap target */
+}
+.mark:hover {
+  border-color: var(--trace-dim); color: var(--trace);
+  background: var(--ground);
+}
+.mark__box {
+  width: 1.05rem; height: 1.05rem; flex: 0 0 auto;
+  border: 1.5px solid var(--ink-faint);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .72rem; line-height: 1; color: var(--ground);
+  background: transparent;
+}
+.mark.is-on {
+  border-color: var(--trace); color: var(--trace);
+  background: color-mix(in srgb, var(--trace) 12%, var(--ground-2));
+}
+.mark.is-on .mark__box {
+  background: var(--trace); border-color: var(--trace); color: var(--ground);
+}
+.mark:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
 /* ── Tables ─────────────────────────────────────────────────────── */
 .blk--table { max-width: 100%; overflow-x: auto; }
 .blk--table table {
   border-collapse: collapse; width: 100%;
   font-size: .84rem; font-family: var(--mono);
+  background: var(--ground-2);            /* solid ground so rules read */
+  border: 1px solid var(--rule);
 }
 .blk--table th {
   text-align: left; font-weight: 600; color: var(--amber);
   font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
-  border-bottom: 1px solid var(--rule); padding: .45rem .6rem;
-  white-space: nowrap;
+  border-bottom: 2px solid var(--rule);
+  padding: .55rem .7rem; white-space: nowrap;
+  background: color-mix(in srgb, var(--amber) 6%, var(--ground-2));
 }
 .blk--table td {
-  border-bottom: 1px solid var(--rule-soft);
-  padding: .45rem .6rem; color: var(--ink); vertical-align: top;
+  border-bottom: 1px solid var(--rule);   /* visible row rule */
+  padding: .5rem .7rem; color: var(--ink); vertical-align: top;
 }
-.blk--table tr:hover td { background: var(--ground-2); }
+.blk--table tbody tr:last-child td { border-bottom: 0; }
+.blk--table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--trace) 4%, transparent);
+}
+.blk--table tbody tr:hover td {
+  background: color-mix(in srgb, var(--trace) 9%, transparent);
+}
 
 /* ── Figures ────────────────────────────────────────────────────── */
 .blk--fig { max-width: 100%; }

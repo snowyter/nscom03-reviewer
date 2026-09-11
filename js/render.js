@@ -92,11 +92,16 @@
       <div class="sec__head">
         <span class="sec__no">${String(i + 1).padStart(2, "0")}</span>
         <h2 class="sec__title" id="${esc(sec.id)}-t">${esc(sec.title)}</h2>
-        <button class="sec__link" type="button" data-mark="${esc(sec.id)}">
-          ${read ? "read ✓" : "mark read"}
-        </button>
       </div>
       ${body}
+      <div class="sec__foot">
+        <button class="mark${read ? " is-on" : ""}" type="button"
+                data-mark="${esc(sec.id)}"
+                aria-pressed="${read ? "true" : "false"}">
+          <span class="mark__box" aria-hidden="true">${read ? "✓" : ""}</span>
+          <span class="mark__txt">${read ? "Read" : "Mark as read"}</span>
+        </button>
+      </div>
     </section>`;
   }
 
