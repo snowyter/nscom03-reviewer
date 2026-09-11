@@ -254,6 +254,27 @@ test("CRC steps align the divisor under the dividend", () => {
   }
 });
 
+test("CRC step markup keeps the divisor in the dividend's column", () => {
+  // The subtraction row must not place the ⊕ inside the padded run: that consumes
+  // a character column and shifts the whole divisor one bit right of the bits it
+  // subtracts from, which is what made the trace look misaligned.
+  const src = fs.readFileSync(path.join(ROOT, "js", "sims", "sim-crc.js"), "utf8");
+  const row = /class="step__row step__row--sub">([\s\S]*?)<\/span>\s*<\/li>/m.exec(src);
+  assert.ok(row, "could not find the subtraction row markup");
+  const markup = row[1];
+  // ⊕ and the padded bits must be separate siblings, with ⊕ first
+  assert.ok(/step__op">⊕<\/span><span class="step__bits">/.test(markup),
+    "⊕ must sit in its own gutter immediately before the padded bit span");
+  // the padded run must not be preceded by the operator inside the same span
+  assert.ok(!/step__bits">⊕/.test(markup),
+    "the ⊕ must not be inside the padded bit span");
+  // both rows must use the step__row wrapper so the gutter column exists on each
+  const rowOpeners = src.match(/class="step__row/g) || [];
+  assert.strictEqual(rowOpeners.length, 2,
+    "expected one step__row wrapper per rendered row (dividend + subtraction)");
+  assert.ok(/step__bits/.test(markup), "the subtraction row must use step__bits");
+});
+
 test("figures used by content are drawn from figs.json", () => {
   for (const { file, mod: m } of loadModules()) {
     for (const s of m.sections) {

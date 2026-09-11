@@ -283,14 +283,25 @@
   color: var(--ink-faint); font-size: .6rem;
   text-align: center; line-height: 1.15rem;
 }
+/* Long-division trace. Every row is a grid of [operator gutter | operand | arrow |
+   result], and the gutter is always present (empty on the dividend row), so the
+   bit columns line up perfectly down the whole trace. The ⊕ must never sit
+   inside the padded run, or it consumes a character column and shifts the
+   divisor one bit right of the bits it subtracts from. */
 .step__row {
   grid-column: 2;
-  display: block;
-  white-space: pre;                     /* preserve the nbsp indent exactly */
+  display: grid;
+  grid-template-columns: 1.2em auto auto auto;
+  align-items: baseline;
+  justify-content: start;
+  white-space: pre;
   overflow-x: auto;
 }
+.step__op { grid-column: 1; color: var(--trace-dim); }
+.step__bits { grid-column: 2; }
+.step__arrow { grid-column: 3; color: var(--ink-faint); padding: 0 .5em; }
+.step__row--sub > .step__bits:last-child { grid-column: 4; }
 .step__row--sub { color: var(--trace); }
-.step__arrow { color: var(--ink-faint); padding: 0 .55em; }
 .steps li.is-hit { color: var(--trace); }
 .steps li.is-hit::before { border-color: var(--trace); color: var(--trace); }
 

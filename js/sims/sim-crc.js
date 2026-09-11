@@ -151,17 +151,19 @@
 
     function paintSteps(steps, gen) {
       if (!steps.length) { stepsEl.innerHTML = ""; return; }
-      // Long division is read as a column: each remainder is shifted right by the
-      // position of the bit that was divided, and the divisor sits beneath it.
-      // Leading spaces inside HTML collapse, so the indent must be real
-      // characters — nbsp — or the maths does not line up.
+      // Long division is read strictly as a column: each step's dividend and the
+      // divisor subtracted from it must start at the SAME character column, which
+      // is the column of the leftmost 1 being divided. The ⊕ belongs in its own
+      // gutter to the left, never inside the padded run, or it consumes a column
+      // and pushes the divisor one character past the bits it subtracts from.
+      // Leading spaces inside HTML collapse, so the indent is nbsp.
       var indent = function (n) { return "\u00a0".repeat(Math.max(0, n)); };
 
-      stepsEl.innerHTML = steps.map(function (s, n) {
+      stepsEl.innerHTML = steps.map(function (s) {
         var pad = indent(s.i);
         return `<li class="step">
-          <span class="step__row">${w.RENDER.esc(pad)}${w.RENDER.esc(s.seg)}</span>
-          <span class="step__row step__row--sub">${w.RENDER.esc(pad)}⊕${w.RENDER.esc(s.div)}<span class="step__arrow">→</span>${w.RENDER.esc(s.res)}</span>
+          <span class="step__row"><span class="step__op" aria-hidden="true"></span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.seg)}</span></span>
+          <span class="step__row step__row--sub"><span class="step__op">⊕</span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.div)}</span><span class="step__arrow">→</span><span class="step__bits">${w.RENDER.esc(s.res)}</span></span>
         </li>`;
       }).join("");
     }
