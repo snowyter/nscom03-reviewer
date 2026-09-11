@@ -15,6 +15,27 @@ const BLOCK_TYPES = new Set([
   "p", "h3", "list", "table", "fig", "formula", "note", "example", "deep", "viz",
 ]);
 
+// Load the real renderer in a sandbox and expose its section() function under the
+// name RENDER.section, so a test can assert what the markup actually produces
+// rather than trusting a regex over the source.
+function loadRenderer() {
+  const src = fs.readFileSync(path.join(ROOT, "js", "render.js"), "utf8");
+  const sandbox = {
+    window: {}, document: { createElement: () => ({ style: {}, setAttribute() {} }) },
+    esc: (s) => String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;"),
+  };
+  vm.createContext(sandbox);
+  // render.js calls MATH.toHtml for formula blocks, so the maths renderer has to
+  // be present or section() throws part-way through and the test fails for the
+  // wrong reason.
+  vm.runInContext(fs.readFileSync(path.join(ROOT, "js", "math.js"), "utf8"),
+                  sandbox, { filename: "math.js" });
+  vm.runInContext(src, sandbox, { filename: "render.js" });
+  return sandbox.window.RENDER || sandbox.RENDER || null;
+}
+
 function loadModules(dir = DATA) {
   if (!fs.existsSync(dir)) return [];
   const mods = [];
@@ -170,6 +191,19 @@ test("section and block structure is valid", () => {
       const inPanel = deeps.some((d) => d.body.some((b) => b.type === "viz"));
       assert.ok(!inPanel,
         `${file} ${s.id} hides a viz inside the deep panel; move it into the scan layer`);
+
+      // The header MUST carry an interactive marker for any section holding an
+      // aid. Sections start collapsed, so without the marker the aid is
+      // undiscoverable -- the student sees only a list of titles and has no
+      // reason to open this one. Assert the marker and the content agree, in
+      // both directions, so neither can drift from the other.
+      const hasViz = s.body.some((b) => b.type === "viz");
+      const R = loadRenderer();
+      assert.ok(R && typeof R.section === "function", "renderer did not export section()");
+      const html = R.section(s, 0, 1, false);
+      const marked = /class="sec__viz"/.test(html);
+      assert.ok(hasViz === marked,
+        `${file} ${s.id}: hasViz=${hasViz} but marker=${marked}; the header tag and the body must agree`);
       if (m.sections.some((x) => x.body.some((b) => b.type === "deep"))) {
         // Only prose the student must READ counts toward the budget. A figure
         // block carries a caption and alt text, which are not reading load --

@@ -63,7 +63,7 @@
   /* A disclosure row must clear the 44px tap floor at every width. A one-line
      title is only ~26px tall on its own, so the row carries a min-height and
      centres its contents; a wrapped title simply grows past it. */
-  display: flex; align-items: center; gap: .7rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .7rem;
   width: 100%; text-align: left; cursor: pointer;
   background: none; border: 0;
   padding: .35rem 0;
@@ -71,7 +71,10 @@
   color: inherit; font: inherit;
 }
 .sec__head > .sec__no { flex: 0 0 auto; }
-.sec__head > .sec__title { flex: 1 1 auto; min-width: 0; }
+/* The title takes the remaining width so the marker can ride at the end of the
+   same line; it is allowed to shrink and wrap, and only when it has wrapped to a
+   full line does the marker drop below (flex-wrap on the head). */
+.sec__head > .sec__title { flex: 1 1 12ch; min-width: 0; }
 /* The done badge rides at the far end of the header row. It is the only signal
    that survives the collapse, so it must be legible at a glance while scrolling:
    phosphor green on a tinted plate, reading "Done". Reserved space (min-width)
@@ -89,6 +92,34 @@
   transition: opacity .28s ease, transform .28s cubic-bezier(.22,.61,.36,1);
 }
 .sec.is-read .sec__state { opacity: 1; transform: none; }
+
+/* The interactive marker in a collapsed section's header.
+   Sections start collapsed, so an aid buried in the body is invisible until the
+   student opens the section. This tag is the only signal that expanding *this*
+   row reveals something they can operate — so it must be legible at a glance in
+   a long list of collapsed titles, yet quiet enough not to compete with the
+   title itself. It is a bordered pill in the rule colour with an amber dot, not
+   a filled badge: a filled chip at this weight reads as a call to action. */
+.sec__viz {
+  flex: 0 0 auto;
+  display: inline-flex; align-items: center; gap: .34rem;
+  padding: .22rem .42rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font: 600 .55rem/1 var(--mono);
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--amber);
+  white-space: nowrap;
+}
+.sec__vizdot {
+  width: .3rem; height: .3rem; border-radius: 50%;
+  background: var(--amber);
+  flex: 0 0 auto;
+}
+/* The head is a grid on wide screens and wraps on narrow ones, so the marker
+   must be able to drop to its own line rather than squeeze the title. */
+.sec__head:hover .sec__viz,
+.sec__head:focus-visible .sec__viz { border-color: var(--amber); }
 /* A finished section reads green down its whole header: the number, the rule
    under the head and the title all shift to the trace colour, so the state is
    obvious even in a fast scroll past a list of collapsed rows. */

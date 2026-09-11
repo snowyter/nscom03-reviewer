@@ -145,6 +145,12 @@
   function section(sec, i, total, read) {
     var body = (sec.body || []).map(block).join("");
     var no = String(i + 1).padStart(2, "0");
+    // Does this section hold an interactive aid? Sections start collapsed, so
+    // without a marker in the header there is nothing to tell the student that
+    // expanding this particular section reveals something they can operate. The
+    // flag is derived from the body, so it can never disagree with what is
+    // actually rendered inside.
+    var hasViz = (sec.body || []).some(function (b) { return b && b.type === "viz"; });
     // A section is a disclosure: the head is the toggle, the body is the panel.
     // The head is a real <button> so it is keyboard-operable and announces its
     // expanded state; the panel is a grid-rows track that animates from 0fr to
@@ -175,6 +181,8 @@
               stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
           </span>
           <span class="sec__state" aria-hidden="true">${read ? "Read" : ""}</span>
+          ${hasViz ? `<span class="sec__viz" title="This section contains an interactive aid">
+            <span class="sec__vizdot" aria-hidden="true"></span>Interactive</span>` : ""}
         </button>
       </h2>
       <div class="sec__body" id="${esc(sec.id)}-b" role="region"
