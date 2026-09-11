@@ -192,6 +192,18 @@ test("sections are disclosures that collapse when marked read", async () => {
   assert.ok(Math.abs(topAfter - topBefore) < 2,
     `the section must stay put when it collapses (moved ${(topAfter - topBefore).toFixed(1)}px)`);
 
+  // The phone case: the reader has scrolled INSIDE a long section to reach the
+  // Mark button at its foot, so the header is off-screen. Collapsing then leaves
+  // the document shorter than the current scroll offset and the browser clamps
+  // to the bottom of the page. The header must instead come to the top of the
+  // viewport. jsdom has no real layout, so the geometry itself is asserted in the
+  // browser; here we pin the contract the branch relies on -- every section
+  // exposes a header anchor and a state slot for the badge.
+  assert.ok(s.querySelector(".sec__h"), "the section must have a header to anchor on");
+  assert.ok(s.querySelector(".sec__state"), "the header needs a state slot");
+  assert.strictEqual(mk.getAttribute("aria-pressed"), "true",
+    "after the zero-drift check the section is marked read again");
+
   w.close();
 });
 

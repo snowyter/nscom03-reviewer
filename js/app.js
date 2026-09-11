@@ -255,28 +255,51 @@
     if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
-  // Collapsing a section deletes height from the document. The browser holds the
-  // scroll offset in pixels, so everything under the section jumps upward by the
-  // amount removed. Keep the section's own top edge where the eye left it.
+  // Collapsing a section deletes height from the document, so the browser's
+  // pixel scroll offset no longer points at the same content. Two cases:
   //
-  // The panel animates its height over .42s (a grid track going 1fr to 0fr), so
-  // measuring once after the class flips would read the pre-animation geometry
-  // and correct nothing. Re-anchor on every frame of the transition instead: the
-  // header the student just tapped stays pinned and the next section slides up
-  // into place beside it, which is the motion they expect.
+  //  * The section's header is still on screen (the section is short, or the
+  //    reader is near its top). Keep that header pinned where it was, so the row
+  //    that was tapped stays under the thumb and the next section rises to meet
+  //    it.
+  //
+  //  * The reader has scrolled down inside the section to reach the Mark button
+  //    at its foot — the normal case on a phone, where a section is taller than
+  //    the viewport. The header is far above the screen and the whole panel is
+  //    about to disappear; pinning the header would drag the view up hundreds of
+  //    pixels. Worse, the document then shrinks below the current scroll offset
+  //    and the browser CLAMPS the scroll to the new maximum, which lands the
+  //    reader at the bottom of the page. Instead, bring the collapsed header to
+  //    the top of the viewport: the reader is left looking at the start of the
+  //    next section, which is what they asked to see.
+  //
+  // The panel animates over .42s (a grid track 1fr -> 0fr), so a single
+  // measurement after the class flips would read the pre-animation geometry and
+  // correct nothing. Correct on every frame, and once more after it settles.
   function setOpenAnchored(sec, open) {
     if (!sec) return;
-    var anchor = sec.getBoundingClientRect().top;
-    var settle = function () {
-      var now = sec.getBoundingClientRect().top;
-      if (now !== anchor) w.scrollBy(0, now - anchor);
-    };
+    var before = sec.getBoundingClientRect().top;
+    var vh = w.innerHeight || 600;
+    // Was the header on screen when the tap happened?
+    var headerVisible = before >= 0 && before < vh;
     setOpen(sec, open);
-    // Run for slightly longer than the CSS transition so the final resting
-    // layout is corrected too; a frame that has no work to do is a no-op.
+
     var t0 = (w.performance || Date).now();
     (function tick() {
-      settle();
+      if (!sec.isConnected) return;
+      var now = sec.getBoundingClientRect().top;
+      if (open) {
+        // Opening only grows the document, so the pixel offset stays valid;
+        // pin the header if it was in view.
+        if (headerVisible && now !== before) w.scrollBy(0, now - before);
+      } else if (headerVisible) {
+        w.scrollBy(0, now - before);
+      } else {
+        // The header was off-screen: target it at the top of the viewport. Doing
+        // this every frame also keeps the document from clamping us to the
+        // bottom while the height is still shrinking.
+        if (now !== 0) w.scrollBy(0, now);
+      }
       if ((w.performance || Date).now() - t0 < 520) w.requestAnimationFrame(tick);
     })();
   }
