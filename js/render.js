@@ -94,15 +94,20 @@
     // 1fr, which gives a smooth height transition without measuring anything in
     // JS (a max-height guess either clips long sections or eases unevenly).
     //
-    // A section already marked read renders collapsed on load — the state is the
-    // initial state, not an effect that fires after paint, so there is no flash
-    // of open content on a module you have finished.
-    return `<section class="sec${read ? " is-read" : ""}${read ? " is-collapsed" : ""}"
+    // EVERY section starts collapsed, read or not. A module is a list of section
+    // titles until the student opens one, which is what makes the page navigable
+    // on a phone: a 15-section module is otherwise thousands of pixels of scroll
+    // before you reach section 2. It also means expanding a section is a
+    // deliberate act, so the reading order is theirs.
+    //
+    // The state is the initial markup, not an effect that fires after paint, so
+    // there is no flash of open content.
+    return `<section class="sec is-collapsed${read ? " is-read" : ""}"
                      id="${esc(sec.id)}"
                      data-sec="${esc(sec.id)}" aria-labelledby="${esc(sec.id)}-t">
       <h2 class="sec__h">
         <button class="sec__head" type="button" data-toggle="${esc(sec.id)}"
-                aria-expanded="${read ? "false" : "true"}"
+                aria-expanded="false"
                 aria-controls="${esc(sec.id)}-b">
           <span class="sec__no">${no}</span>
           <span class="sec__title" id="${esc(sec.id)}-t">
@@ -112,6 +117,7 @@
               stroke-width="1.7" stroke-linecap="round"
               stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
           </span>
+          <span class="sec__state" aria-hidden="true">${read ? "Read" : ""}</span>
         </button>
       </h2>
       <div class="sec__body" id="${esc(sec.id)}-b" role="region"

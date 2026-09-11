@@ -197,6 +197,7 @@
       if (mk) {
         var id = mk.getAttribute("data-mark");
         var nowRead = w.STORE.toggleSection(mod.id, id);
+        var sec = mk.closest(".sec");
         updateMark(mk, nowRead);
         refreshSpine(mod);
         paintReadouts();
@@ -204,7 +205,15 @@
         // Marking a section read collapses it: the reading is done, so the sheet
         // gets out of the way and the student sees how much is left. Un-marking
         // re-opens it, because the section is back to being work in progress.
-        setOpen(mk.closest(".sec"), !nowRead);
+        //
+        // Collapsing removes height from the document, so the browser keeps the
+        // scroll offset in pixels and everything below slides up by the height
+        // that was removed — on a phone, where a section can be many screens
+        // tall, that reads as the page jumping and then scrolling. Anchor
+        // instead: note where this section starts in the viewport, collapse,
+        // then put that same point back. The section the student just finished
+        // stays put under the thumb and the next section is exactly below it.
+        setOpenAnchored(sec, !nowRead);
         return;
       }
       var all = e.target.closest("[data-mark-all]");
@@ -221,6 +230,8 @@
         });
         scope.querySelectorAll(".sec").forEach(function (s2) {
           s2.classList.toggle("is-read", !complete);
+          var st = s2.querySelector(".sec__state");
+          if (st) st.textContent = complete ? "" : "Done";
           setOpen(s2, complete);          // mark all -> close all, clear -> open
         });
         all.textContent = complete ? "Mark all read" : "Clear all marks";
@@ -244,6 +255,32 @@
     if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
   }
 
+  // Collapsing a section deletes height from the document. The browser holds the
+  // scroll offset in pixels, so everything under the section jumps upward by the
+  // amount removed. Keep the section's own top edge where the eye left it.
+  //
+  // The panel animates its height over .42s (a grid track going 1fr to 0fr), so
+  // measuring once after the class flips would read the pre-animation geometry
+  // and correct nothing. Re-anchor on every frame of the transition instead: the
+  // header the student just tapped stays pinned and the next section slides up
+  // into place beside it, which is the motion they expect.
+  function setOpenAnchored(sec, open) {
+    if (!sec) return;
+    var anchor = sec.getBoundingClientRect().top;
+    var settle = function () {
+      var now = sec.getBoundingClientRect().top;
+      if (now !== anchor) w.scrollBy(0, now - anchor);
+    };
+    setOpen(sec, open);
+    // Run for slightly longer than the CSS transition so the final resting
+    // layout is corrected too; a frame that has no work to do is a no-op.
+    var t0 = (w.performance || Date).now();
+    (function tick() {
+      settle();
+      if ((w.performance || Date).now() - t0 < 520) w.requestAnimationFrame(tick);
+    })();
+  }
+
   function updateMark(btn, read) {
     // the button carries a checkbox glyph plus its own label, so both change
     var box = btn.querySelector(".mark__box");
@@ -253,7 +290,15 @@
     btn.classList.toggle("is-on", !!read);
     btn.setAttribute("aria-pressed", read ? "true" : "false");
     var sec = btn.closest(".sec");
-    if (sec) sec.classList.toggle("is-read", !!read);
+    if (sec) {
+      sec.classList.toggle("is-read", !!read);
+      // The section collapses the moment it is marked, so the button that was
+      // tapped is no longer on screen. Carry the state onto the header, which
+      // IS visible: a done section shows the word "Done" and goes green, so the
+      // student can see at a glance which sections are finished while scrolling.
+      var state = sec.querySelector(".sec__state");
+      if (state) state.textContent = read ? "Done" : "";
+    }
   }
 
   function refreshSpine(mod) {

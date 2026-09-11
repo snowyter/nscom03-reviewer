@@ -145,31 +145,52 @@ test("sections are disclosures that collapse when marked read", async () => {
   // Every requirement the disclosure has to satisfy, checked on the real DOM.
   assert.ok(btn, "section head must be a toggle button");
   assert.ok(btn.tagName === "BUTTON", "the toggle must be a real button for keyboard use");
-  assert.strictEqual(btn.getAttribute("aria-expanded"), "true",
-    "an unread section starts expanded");
+  // Every section starts collapsed, read or not: a module has to be a navigable
+  // list of titles on a phone rather than thousands of pixels of open content.
+  assert.strictEqual(btn.getAttribute("aria-expanded"), "false",
+    "every section starts collapsed, including unread ones");
+  assert.ok(s.classList.contains("is-collapsed"),
+    "an unread section is collapsed on first render");
   assert.strictEqual(btn.getAttribute("aria-controls"), panel.id,
     "aria-controls must point at the panel");
   assert.strictEqual(panel.getAttribute("role"), "region", "the panel must be a region");
   assert.ok(s.querySelector(".sec__chev"), "the toggle needs a chevron affordance");
 
-  // toggling closes and reopens
+  // toggling opens and closes
   btn.click();
-  assert.ok(s.classList.contains("is-collapsed"), "clicking the head must collapse it");
-  assert.strictEqual(btn.getAttribute("aria-expanded"), "false",
+  assert.ok(!s.classList.contains("is-collapsed"), "clicking the head must expand it");
+  assert.strictEqual(btn.getAttribute("aria-expanded"), "true",
     "aria-expanded must follow the visual state");
   btn.click();
-  assert.ok(!s.classList.contains("is-collapsed"), "clicking again must expand it");
+  assert.ok(s.classList.contains("is-collapsed"), "clicking again must collapse it");
 
-  // marking read collapses; un-marking reopens
+  // marking read collapses it and the header carries the done state, because the
+  // button that was tapped is no longer on screen once the panel closes.
   const mk = s.querySelector("[data-mark]");
   mk.click();
   assert.ok(s.classList.contains("is-collapsed"),
     "marking a section read must collapse it");
   assert.strictEqual(mk.getAttribute("aria-pressed"), "true",
     "the mark button must report pressed");
+  assert.ok(s.classList.contains("is-read"),
+    "a read section must carry the is-read class for the green done styling");
+  assert.strictEqual(s.querySelector(".sec__state").textContent, "Done",
+    "a read section must show Done on its header, the only part still visible");
+
+  // un-marking reopens it and clears the badge
   mk.click();
   assert.ok(!s.classList.contains("is-collapsed"),
     "un-marking must re-open the section so it is visible as work in progress");
+  assert.strictEqual(s.querySelector(".sec__state").textContent, "",
+    "un-marking must clear the done badge");
+
+  // marking a read section does not move it: collapsing removes height from the
+  // document, and the anchor must absorb that so the page does not jump.
+  const topBefore = s.getBoundingClientRect().top;
+  mk.click();
+  const topAfter = s.getBoundingClientRect().top;
+  assert.ok(Math.abs(topAfter - topBefore) < 2,
+    `the section must stay put when it collapses (moved ${(topAfter - topBefore).toFixed(1)}px)`);
 
   w.close();
 });

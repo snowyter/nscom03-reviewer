@@ -72,6 +72,30 @@
 }
 .sec__head > .sec__no { flex: 0 0 auto; }
 .sec__head > .sec__title { flex: 1 1 auto; min-width: 0; }
+/* The done badge rides at the far end of the header row. It is the only signal
+   that survives the collapse, so it must be legible at a glance while scrolling:
+   phosphor green on a tinted plate, reading "Done". Reserved space (min-width)
+   so marking a section does not shift the title. */
+.sec__state {
+  flex: 0 0 auto;
+  min-width: 3.6rem;
+  text-align: right;
+  font: 600 .58rem/1 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--trace);
+  opacity: 0;
+  transform: translateX(.25rem);
+  transition: opacity .28s ease, transform .28s cubic-bezier(.22,.61,.36,1);
+}
+.sec.is-read .sec__state { opacity: 1; transform: none; }
+/* A finished section reads green down its whole header: the number, the rule
+   under the head and the title all shift to the trace colour, so the state is
+   obvious even in a fast scroll past a list of collapsed rows. */
+.sec.is-read > .sec__h > .sec__head { border-left-color: var(--trace); }
+.sec.is-read .sec__no { color: var(--trace); }
+.sec.is-read .sec__title { color: var(--trace-dim); }
+.sec.is-read .sec__chev { color: var(--trace-dim); }
 
 .sec__no {
   font: 600 .68rem/1.5 var(--mono); color: var(--amber);
