@@ -145,7 +145,11 @@
         // A deep link must reveal what it points at: a section that is already
         // marked read renders collapsed, and scrolling to a closed disclosure
         // would show nothing at all.
-        if (node && node.classList.contains("is-collapsed")) setOpen(node, true);
+        if (node && node.classList.contains("is-collapsed")) {
+          setOpen(node, true);
+          // the deep link just revealed this section's visual aid; start it
+          if (w.VIZ && w.VIZ.scan) w.VIZ.scan(node);
+        }
         if (node) node.scrollIntoView({ block: "start" });
       } else {
         v.innerHTML = missing(b.slice(2).join("/"));
@@ -191,9 +195,13 @@
       var tog = e.target.closest("[data-toggle]");
       if (tog) {
         var sec2 = tog.closest(".sec");
+        var willOpen = !isOpen(sec2);
         // A section opening must not scroll the page: expanding only adds height
         // below the header, so the anchor holds the header where it already is.
-        setOpenAnchored(sec2, !isOpen(sec2));
+        setOpenAnchored(sec2, willOpen);
+        // A visual aid in the scan layer becomes visible with the section, so it
+        // starts now rather than at page load.
+        if (willOpen && w.VIZ && w.VIZ.scan) w.VIZ.scan(sec2);
         return;
       }
       var dp = e.target.closest("[data-deep]");
@@ -211,6 +219,10 @@
           var want = dp.getBoundingClientRect().top;
           w.scrollBy(0, want - top0);
         }
+        // A visual aid inside the panel starts now, on first open, rather than
+        // at page load: several aids across a module would otherwise all be
+        // live before the student has read a single section.
+        if (!wasOpen && w.VIZ && w.VIZ.scan && box) w.VIZ.scan(box);
         return;
       }
       var mk = e.target.closest("[data-mark]");

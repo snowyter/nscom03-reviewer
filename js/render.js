@@ -113,6 +113,30 @@
         </div>`;
       }
 
+      // An inline interactive visual aid. It is deliberately framed like a
+      // figure -- same plate, same caption slot -- because to the student it is
+      // the same kind of object: a picture of the thing being explained. The
+      // only difference is the INTERACTIVE tag, which tells them it responds.
+      //
+      // It mounts lazily: the runtime starts it only once the Go deeper panel
+      // holding it is open, so a module with several aids does not spin up a
+      // pile of timers on page load.
+      case "viz": {
+        var vd = w.VIZ ? w.VIZ.get(b.viz) : null;
+        if (!vd) return "";
+        return `<figure class="viz" data-viz="${esc(b.viz)}">
+          <div class="viz__bar">
+            <span class="viz__tag">Interactive</span>
+            <span class="viz__t">${esc(b.title || vd.title || "")}</span>
+          </div>
+          <div class="viz__body" role="group"
+               aria-label="${esc((b.title || vd.title || "Interactive figure") )}"></div>
+          <figcaption class="viz__cap">
+            ${esc(b.note || vd.note || "")}
+          </figcaption>
+        </figure>`;
+      }
+
       default:
         return "";
     }

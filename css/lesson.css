@@ -182,17 +182,17 @@
 .deep.is-open .deep__panel { grid-template-rows: 1fr; }
 .deep__inner {
   overflow: hidden; min-height: 0;
-  /* a rule down the left ties the explanation to the bullets above it */
-  border-left: 2px solid var(--rule);
-  padding-left: 0;
-  transition: padding-left .42s cubic-bezier(.22,.61,.36,1);
+  /* The rule that ties the explanation to the bullets above it, at the 1px the
+     craft floor allows (a thick coloured side border is the category tell). */
+  border-left: 1px solid var(--rule);
+  /* The indent is applied instantly rather than transitioned: animating
+     padding-left forces a reflow of every block in the panel on each frame, and
+     the deep panel can hold a table and several paragraphs. The panel's own
+     grid-template-rows transition already carries the motion. */
+  padding-left: 1rem;
 }
-.deep.is-open .deep__inner { padding-left: 1rem; }
-.deep__inner > *:last-child { margin-bottom: 0; }
-/* The panel's first block needs a little air once it is open, but no margin
-   while closed or the 0fr track would still reserve space. */
 .deep__inner > *:first-child { margin-top: 0; }
-.deep.is-open .deep__inner { padding-top: .2rem; }
+.deep__inner > *:last-child { margin-bottom: 0; }
 .sec__flag {
   font: 500 .58rem/1 var(--mono); letter-spacing: .14em;
   text-transform: uppercase; color: var(--trace-dim);
@@ -368,6 +368,188 @@
 .fig__cap b { color: var(--trace); font-weight: 600; }
 .fig__slide { color: var(--ink-faint); font-size: .62rem; letter-spacing: .08em; }
 
+/* ── Inline visual aid ──────────────────────────────────────────────────────
+   Framed exactly like .fig, because to the student it is the same kind of
+   object: a picture of the thing being explained. Only the header bar and the
+   INTERACTIVE tag distinguish it, so the page reads as one continuous column of
+   figures rather than two competing widgets. */
+.viz {
+  margin: 1.3rem 0 1.6rem; border: 1px solid var(--rule); background: var(--ground-2);
+}
+.viz__bar {
+  display: flex; gap: .6rem; align-items: center; flex-wrap: wrap;
+  padding: .5rem .7rem; border-bottom: 1px solid var(--rule);
+}
+.viz__tag {
+  font: 600 .56rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ground); background: var(--trace);
+  padding: .26rem .42rem; border-radius: 2px;
+}
+.viz__t {
+  font: 500 .72rem/1.3 var(--mono); color: var(--ink);
+}
+.viz__body { padding: .85rem .7rem .2rem; }
+.viz__cap {
+  padding: .5rem .7rem .6rem;
+  font: 400 .7rem/1.45 var(--mono); color: var(--ink-dim);
+}
+.viz__err { font: 400 .72rem/1.4 var(--mono); color: var(--amber); }
+/* A viz's own canvas fills the plate width and never overflows on a phone. */
+.viz canvas { display: block; width: 100%; height: auto; max-width: 100%; }
+/* Controls reuse the sims' .ctlrow, but tighten the spacing inside a section. */
+.viz .ctlrow { margin-bottom: .55rem; }
+.viz .ctlrow:last-child { margin-bottom: 0; }
+.viz .readout { margin-top: .7rem; }
+/* A step button pair for student-driven playback. */
+.viz__steps { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .7rem; }
+.viz__steps button {
+  font: 600 .62rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink); background: none;
+  border: 1px solid var(--rule); border-radius: 2px; padding: .42rem .6rem;
+  cursor: pointer;
+}
+.viz__steps button:hover:not(:disabled),
+.viz__steps button:focus-visible:not(:disabled) {
+  color: var(--trace); border-color: var(--trace-dim);
+}
+.viz__steps button:disabled { opacity: .4; cursor: default; }
+.viz__note { margin: .5rem 0 0; font: 400 .7rem/1.45 var(--mono); color: var(--ink-faint); }
+
+/* A single labelled control row under a viz. One row per control, never several
+   controls sharing a line, so the label and the input cannot collide. */
+.viz__ctl { display: flex; flex-direction: column; gap: .3rem; margin-top: .7rem; }
+.viz__ctl label {
+  font: 600 .6rem/1 var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.viz__ctl input[type="range"] {
+  width: 100%; accent-color: var(--trace); cursor: pointer;
+}
+
+/* The frame-field strip. Each field is a button whose width is the field's share
+   of the frame, so the bar is to scale. Two fields (the 1-byte SFD and the
+   2-byte length/type) are too narrow at true scale to hold their own label --
+   a 12px box cannot show "1 byte" -- so the bar is drawn above a labelled list
+   instead of putting the text inside the proportional boxes. */
+.viz__fields {
+  display: flex; align-items: stretch; gap: 1px;
+  margin-top: .3rem; height: 26px;
+  background: var(--rule-soft);
+}
+.viz__field {
+  flex: 0 0 var(--w); min-width: 0; overflow: hidden;
+  padding: 0; background: var(--ground-2);
+  border: 1px solid transparent; border-radius: 0;
+  cursor: pointer; position: relative;
+}
+.viz__field::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--ink-faint); opacity: .35;
+}
+.viz__field:hover::after { opacity: .55; }
+.viz__field.is-on { border-color: var(--trace); }
+.viz__field.is-on::after { background: var(--trace); opacity: .55; }
+
+/* The labels, below the to-scale bar, as a list that can always fit its text. */
+.viz__fieldlist {
+  display: flex; flex-direction: column; gap: .3rem;
+  margin: .6rem 0 0; padding: 0; list-style: none;
+}
+.viz__fieldlist li {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  /* column-gap separates the pair; row-gap applies only if the count wraps to
+     its own line, which is what keeps narrow widths collision-free. */
+  column-gap: .45rem; row-gap: .15rem;
+  font: 400 .68rem/1.4 var(--mono); color: var(--ink-dim);
+}
+/* Neither span may be squeezed: the count wraps rather than overlapping. */
+.viz__fieldlist .n, .viz__fieldlist .b { flex: 0 0 auto; }
+/* The name takes the space it needs and the byte count follows. A fixed-width
+   count column collided with long names at phone width, so the count simply
+   flows after the name and wraps if the row is narrow. */
+.viz__fieldlist .n { color: var(--ink); }
+.viz__fieldlist .b { color: var(--ink-faint); }
+.viz__fieldlist li.is-on .n { color: var(--trace); }
+
+/* A field row inside the frame aid's list: name on the left, byte count in a
+   fixed column so the counts line up down the list. */
+.viz__fieldrow {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  column-gap: .5rem; row-gap: .15rem;
+  width: 100%; padding: .22rem .3rem; background: none;
+  border: 1px solid transparent; border-radius: 2px;
+  font: inherit; color: inherit; text-align: left; cursor: pointer;
+}
+.viz__fieldrow:hover { border-color: var(--rule); }
+.viz__fieldlist li.is-on .viz__fieldrow { border-color: var(--trace-dim); background: var(--ground-2); }
+.viz__fieldlist li.is-on .b { color: var(--ink-dim); }
+
+/* A tab strip for a viz that switches between named cases. */
+.viz__tabs { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .6rem; }
+.viz__tab {
+  font: 600 .6rem/1 var(--mono); letter-spacing: .06em;
+  color: var(--ink-dim); background: none;
+  border: 1px solid var(--rule); border-radius: 2px; padding: .34rem .5rem;
+  cursor: pointer;
+}
+.viz__tab:hover { color: var(--ink); border-color: var(--trace-dim); }
+.viz__tab.is-on { color: var(--ground); background: var(--trace); border-color: var(--trace); }
+
+/* The "why" line inside a verdict: prose, so sans, and set off by a rule above
+   it rather than a coloured stripe. */
+.viz__why { display: block; color: var(--ink-dim); }
+.viz__why i { color: var(--ink-faint); font-style: normal; }
+
+/* The verdict line — the instrument's own readout styling.
+   It must NOT reuse .readout: that is a stat grid for the simulators, so a single
+   sentence dropped into it stretches across one wide cell and the two halves fly
+   apart. It must also not take a thick coloured side border, which is the
+   category's most recognisable tell and belongs to no world this page committed
+   to. Instead the verdict is a ruled readout cell: a full hairline box in the
+   same --rule the graticule uses, an amber label, and prose in the sans face
+   because it is a sentence to read, not a measured value (amber mono is reserved
+   for numerals). The outcome is carried by the label's glyph and word, and by the
+   rule warming to trace-green on a good result or warn-red on a bad one. */
+.viz__verdict {
+  display: flex; flex-direction: column; align-items: flex-start; gap: .3rem;
+  margin-top: .9rem; padding: .6rem .7rem;
+  border: 1px solid var(--rule); background: var(--ground);
+  transition: border-color .18s ease;
+}
+.viz__verdict.is-bad { border-color: var(--warn); }
+.viz__verdict.is-good { border-color: var(--trace-dim); }
+/* The outcome word, set as a labelled cell like every other readout on the page. */
+.viz__verdict > b {
+  font: 700 .6rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+}
+/* The sentence itself: sans, because it is prose, and full width so it wraps. */
+.viz__verdict > span { display: block; width: 100%;
+  font: 400 .82rem/1.5 var(--sans); color: var(--ink);
+}
+/* The stat line sits between them as a compact mono row of measurements. */
+.viz__verdict .viz__stats {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem;
+  margin: 0; padding: 0; border: 0; width: 100%;
+  font: 400 .7rem/1.4 var(--mono); color: var(--ink-dim);
+}
+.viz__verdict .viz__stats i {
+  color: var(--amber); font-style: normal; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A two-or-three way mode switch, used where a viz offers distinct modes rather
+   than a continuous value (pure vs slotted, half vs full duplex). Reads as one
+   control rather than a row of loose buttons. */
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+.seg button {
+  font: 600 .6rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint); background: none; border: 0;
+  padding: .45rem .6rem; cursor: pointer;
+}
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button:hover { color: var(--ink); }
+.seg button.is-on { background: var(--trace); color: var(--ground); }
+
 /* Lightbox */
 .lbox {
   position: fixed; inset: 0; z-index: 80;
@@ -393,3 +575,10 @@
 .spine__bars { display: flex; gap: 2px; flex: 1 1 auto; max-width: 22rem; }
 .spine__b { height: 5px; flex: 1 1 0; background: var(--rule-soft); }
 .spine__b.is-on { background: var(--trace); }
+
+/* Visually hidden but available to assistive tech. Used where a control's text
+   lives elsewhere (the to-scale frame bar). */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

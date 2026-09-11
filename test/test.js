@@ -12,7 +12,7 @@ const FIG_IDS = new Set(FIGS.map((f) => f.id));
 const FIG_PATHS = new Set(FIGS.map((f) => f.path));
 
 const BLOCK_TYPES = new Set([
-  "p", "h3", "list", "table", "fig", "formula", "note", "example", "deep",
+  "p", "h3", "list", "table", "fig", "formula", "note", "example", "deep", "viz",
 ]);
 
 function loadModules(dir = DATA) {
@@ -162,6 +162,14 @@ test("section and block structure is valid", () => {
       // and failing every test on it would hide real regressions behind noise.
       const deeps = s.body.filter((b) => b.type === "deep");
       assert.ok(deeps.length <= 1, `${file} ${s.id} has ${deeps.length} deep blocks, expected at most 1`);
+
+      // An interactive aid belongs in the SCAN LAYER, not inside the Go deeper
+      // panel. Putting it in the panel means the student has to open the
+      // explanation before discovering there is something to play with, which
+      // defeats the point of a visual aid.
+      const inPanel = deeps.some((d) => d.body.some((b) => b.type === "viz"));
+      assert.ok(!inPanel,
+        `${file} ${s.id} hides a viz inside the deep panel; move it into the scan layer`);
       if (m.sections.some((x) => x.body.some((b) => b.type === "deep"))) {
         // Only prose the student must READ counts toward the budget. A figure
         // block carries a caption and alt text, which are not reading load --
@@ -200,6 +208,63 @@ test("every referenced figure exists on disk", () => {
     if (!fs.existsSync(path.join(ROOT, f.path))) missing.push(f.path);
   }
   assert.deepStrictEqual(missing, [], `missing figure files: ${missing.slice(0, 5)}`);
+});
+
+test("every viz referenced by content is a registered visual aid", () => {
+  // A typo in a viz id would render an empty plate with no error, which is the
+  // kind of failure nobody notices until a student reports a blank box. The
+  // registry is read straight out of the viz sources so this stays honest.
+  const dir = path.join(ROOT, "js", "viz");
+  const registered = new Set();
+  if (fs.existsSync(dir)) {
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".js"))) {
+      const src = fs.readFileSync(path.join(dir, f), "utf8");
+      for (const m of src.matchAll(/VIZ\.register\(\s*"([^"]+)"/g)) registered.add(m[1]);
+    }
+  }
+  assert.ok(registered.size > 0, "no visual aids are registered at all");
+
+  const used = new Set();
+  const walk = (blocks) => {
+    for (const b of blocks) {
+      if (b.type === "viz") used.add(b.viz);
+      if (b.type === "deep" && Array.isArray(b.body)) walk(b.body);
+    }
+  };
+  for (const { mod: m } of loadModules()) {
+    for (const s of m.sections) walk(s.body);
+  }
+
+  const missing = [...used].filter((id) => !registered.has(id));
+  assert.deepStrictEqual(missing, [],
+    `content references viz ids that are not registered: ${missing.join(", ")}`);
+
+  // And the runtime must be wired into the page, or the plates stay empty.
+  const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  for (const id of used) {
+    const file = fs.readdirSync(dir).find((f) =>
+      fs.readFileSync(path.join(dir, f), "utf8").includes(`VIZ.register("${id}"`));
+    if (file) {
+      assert.ok(html.includes(`js/viz/${file}`),
+        `index.html does not load ${file}, so viz "${id}" would never mount`);
+    }
+  }
+
+  // Every attribute selector a viz queries must exist in its own markup. A
+  // mismatch is silent at load -- the helper returns null and the first use
+  // throws, which the runtime catches and renders as a generic failure, so the
+  // student sees an empty plate with no clue why. Static check, cheap, and it
+  // catches the exact mistake that cost the most time here.
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".js"))) {
+    const src = fs.readFileSync(path.join(dir, f), "utf8");
+    const sels = new Set([...src.matchAll(/\$\("(\[[^\]]+\])"\)/g)].map((m) => m[1]));
+    const orphans = [...sels].filter((sel) => {
+      const attr = sel.slice(1, -1);
+      return !new RegExp(`\\s${attr}[\\s>=]`).test(src);
+    });
+    assert.deepStrictEqual(orphans, [],
+      `${f} queries attributes that its markup never sets: ${orphans.join(", ")}`);
+  }
 });
 
 test("no literal unicode escape sequences leak into rendered text", () => {

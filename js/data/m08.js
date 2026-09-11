@@ -244,6 +244,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "ethernet-frame",
+        },
       ],
     },
     {
@@ -626,6 +631,11 @@ window.NSCOM_MODULES.push({
               text: "Exam tip: a switch separates collision domains but not broadcast domains; a router separates both. Also remember that the switch learns from the source address and forwards on the destination address — reversing those two verbs in an answer loses the mark.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "collision-domain",
         },
       ],
     },
@@ -1048,6 +1058,11 @@ window.NSCOM_MODULES.push({
               text: "Exam tip: remember the four verbs in order — learn from the source, forward on the destination, flood when unknown, filter when source and destination share a port. Ageing is what makes the table adapt when a station moves.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "switch-table",
         },
       ],
     },

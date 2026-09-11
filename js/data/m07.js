@@ -228,6 +228,10 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+        {
+          type: "viz",
+          viz: "aloha-collision",
+        },
       ],
     },
     {
@@ -428,6 +432,10 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+        {
+          type: "viz",
+          viz: "backoff",
+        },
       ],
     },
     {
@@ -498,6 +506,10 @@ window.NSCOM_MODULES.push({
               text: "The size of a slot is fixed by the physical layer. The slide gives 50 microseconds for 802.11 frequency-hopping and 20 microseconds for 802.11 direct sequence. A slot must be at least as long as the time needed for a station to sense the medium and then begin transmitting, since otherwise two stations could still decide to transmit in the same apparent slot.",
             },
           ],
+        },
+        {
+          type: "viz",
+          viz: "csma-cd-vs-ca",
         },
       ],
     },
@@ -938,6 +950,10 @@ window.NSCOM_MODULES.push({
               text: "The elegance of CDMA is that the decoder needs no schedule, no frequency allocation, and no coordination — only the target station's chip sequence. Orthogonality does all the work, which is why CDMA scales gracefully when many stations transmit continuously.",
             },
           ],
+        },
+        {
+          type: "viz",
+          viz: "cdma-orthogonality",
         },
       ],
     },

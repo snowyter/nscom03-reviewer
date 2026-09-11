@@ -522,6 +522,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "hidden-terminal",
+        },
       ],
     },
     {
@@ -588,6 +593,11 @@ window.NSCOM_MODULES.push({
               text: "Exam tip: the ordering SIFS < DIFS is the whole reason an acknowledged exchange cannot be interrupted. If DIFS were shorter than SIFS, a new station could pre-empt a station that was mid-exchange, and acknowledgements would be useless.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "csma-ca",
         },
       ],
     },
@@ -746,6 +756,11 @@ window.NSCOM_MODULES.push({
               text: "A reliable way to remember the table: address 1 is who should hear this transmission next, address 2 is who is speaking, address 3 is the far end of the journey, and address 4 exists only when the middle of the journey is also wireless.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "wifi-addressing",
         },
       ],
     },
