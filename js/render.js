@@ -14,6 +14,18 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  // A deliberately tiny inline markup pass, applied AFTER escaping: `**x**` for
+  // emphasis and `*x*` for a lighter touch. Content is authored as plain strings
+  // all over the data files, and a scan bullet reads much better with three or
+  // four emphasised terms in it than as flat prose. Escaping happens first, so
+  // no markup in the source can ever introduce an element -- the only tags this
+  // can produce are the two below.
+  function inline(s) {
+    return esc(s)
+      .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+      .replace(/(^|[^*])\*([^*]+)\*/g, "$1<i>$2</i>");
+  }
+
   function indexFigs(list) {
     FIG = {}; (list || []).forEach(function (f) { FIG[f.id] = f; });
     FIG_READY = true;
@@ -27,23 +39,23 @@
     if (!b || !b.type) return "";
     switch (b.type) {
       case "p":
-        return `<p class="blk blk--p">${esc(b.text)}</p>`;
+        return `<p class="blk blk--p">${inline(b.text)}</p>`;
 
       case "h3":
-        return `<h3 class="blk blk--h3">${esc(b.text)}</h3>`;
+        return `<h3 class="blk blk--h3">${inline(b.text)}</h3>`;
 
       case "list":
         return `<ul class="blk blk--list">` +
-          (b.items || []).map(function (t) { return `<li>${esc(t)}</li>`; }).join("") +
+          (b.items || []).map(function (t) { return `<li>${inline(t)}</li>`; }).join("") +
           `</ul>`;
 
       case "note":
-        return `<div class="blk blk--note" role="note">${esc(b.text)}</div>`;
+        return `<div class="blk blk--note" role="note">${inline(b.text)}</div>`;
 
       case "table": {
-        var head = (b.head || []).map(function (h) { return `<th>${esc(h)}</th>`; }).join("");
+        var head = (b.head || []).map(function (h) { return `<th>${inline(h)}</th>`; }).join("");
         var rows = (b.rows || []).map(function (r) {
-          return `<tr>` + r.map(function (c) { return `<td>${esc(c)}</td>`; }).join("") + `</tr>`;
+          return `<tr>` + r.map(function (c) { return `<td>${inline(c)}</td>`; }).join("") + `</tr>`;
         }).join("");
         return `<div class="blk blk--table"><table>
           <thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
@@ -52,15 +64,15 @@
       case "formula":
         return `<div class="blk blk--formula">
           <span class="fx">${w.MATH.toHtml(b.tex)}</span>
-          <span class="fx__say"><b>In words:</b> ${esc(b.text)}</span></div>`;
+          <span class="fx__say"><b>In words:</b> ${inline(b.text)}</span></div>`;
 
       case "example": {
         var steps = b.steps && b.steps.length
-          ? `<ol>` + b.steps.map(function (s) { return `<li>${esc(s)}</li>`; }).join("") + `</ol>`
+          ? `<ol>` + b.steps.map(function (s) { return `<li>${inline(s)}</li>`; }).join("") + `</ol>`
           : "";
         return `<div class="blk blk--example">
           <span class="blk__k">Worked example</span>
-          <span>${esc(b.text)}</span>${steps}</div>`;
+          <span>${inline(b.text)}</span>${steps}</div>`;
       }
 
       case "fig": {
@@ -78,6 +90,27 @@
             <span class="fig__slide">slide ${f.slide}</span>
           </figcaption>
         </figure>`;
+      }
+
+      // A "Go deeper" disclosure. The section's scan layer (the short bullets)
+      // is the part every student reads; this holds the full explanation for the
+      // ones who want it, behind one click. It reuses the same 1fr -> 0fr grid
+      // track the section panel uses, so it animates identically and there is no
+      // second disclosure mechanism to keep in step.
+      case "deep": {
+        var inner = (b.body || []).map(block).join("");
+        if (!inner) return "";
+        return `<div class="deep">
+          <button class="deep__btn" type="button" data-deep aria-expanded="false">
+            <span class="deep__k">${esc(b.label || "Go deeper")}</span>
+            <span class="deep__hint">${esc(b.hint || "why this works")}</span>
+            <span class="deep__chev" aria-hidden="true"><svg viewBox="0 0 12 8"
+              width="11" height="8" fill="none" stroke="currentColor"
+              stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
+          </button>
+          <div class="deep__panel"><div class="deep__inner">${inner}</div></div>
+        </div>`;
       }
 
       default:

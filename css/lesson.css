@@ -143,6 +143,56 @@
 .sec__inner > *:last-child { margin-bottom: 0; }
 .sec__body { margin-top: .9rem; }
 .sec.is-collapsed .sec__body { margin-top: 0; }
+
+/* ── "Go deeper" disclosure ─────────────────────────────────────────────────
+   The scan layer is what every student reads; this sits under it and holds the
+   full explanation for anyone who wants it. Same 1fr -> 0fr grid track as the
+   section panel, so the motion is identical and there is one animation idiom on
+   the page rather than two. */
+.deep { margin-top: 1rem; }
+.deep__btn {
+  display: flex; align-items: baseline; gap: .6rem; width: 100%;
+  text-align: left; cursor: pointer; font: inherit; color: inherit;
+  background: none; border: 0; padding: 0;
+}
+.deep__k {
+  font: 600 .66rem/1.4 var(--mono); letter-spacing: .13em;
+  text-transform: uppercase; color: var(--trace-dim);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: .3rem .5rem;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.deep__btn:hover .deep__k,
+.deep__btn:focus-visible .deep__k {
+  color: var(--trace); border-color: var(--trace-dim);
+}
+.deep__hint {
+  flex: 1 1 auto; min-width: 0;
+  font: 400 .74rem/1.4 var(--mono); color: var(--ink-faint);
+}
+.deep__chev {
+  flex: 0 0 auto; align-self: center; color: var(--ink-faint);
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+}
+.deep.is-open .deep__chev { transform: rotate(180deg); }
+.deep__panel {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows .42s cubic-bezier(.22,.61,.36,1);
+}
+.deep.is-open .deep__panel { grid-template-rows: 1fr; }
+.deep__inner {
+  overflow: hidden; min-height: 0;
+  /* a rule down the left ties the explanation to the bullets above it */
+  border-left: 2px solid var(--rule);
+  padding-left: 0;
+  transition: padding-left .42s cubic-bezier(.22,.61,.36,1);
+}
+.deep.is-open .deep__inner { padding-left: 1rem; }
+.deep__inner > *:last-child { margin-bottom: 0; }
+/* The panel's first block needs a little air once it is open, but no margin
+   while closed or the 0fr track would still reserve space. */
+.deep__inner > *:first-child { margin-top: 0; }
+.deep.is-open .deep__inner { padding-top: .2rem; }
 .sec__flag {
   font: 500 .58rem/1 var(--mono); letter-spacing: .14em;
   text-transform: uppercase; color: var(--trace-dim);

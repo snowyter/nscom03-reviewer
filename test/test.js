@@ -12,7 +12,7 @@ const FIG_IDS = new Set(FIGS.map((f) => f.id));
 const FIG_PATHS = new Set(FIGS.map((f) => f.path));
 
 const BLOCK_TYPES = new Set([
-  "p", "h3", "list", "table", "fig", "formula", "note", "example",
+  "p", "h3", "list", "table", "fig", "formula", "note", "example", "deep",
 ]);
 
 function loadModules(dir = DATA) {
@@ -141,6 +141,37 @@ test("section and block structure is valid", () => {
           assert.ok(typeof b.text === "string" && b.text.length >= 40,
             `${file} ${s.id} example too short`);
         }
+        if (b.type === "deep") {
+          assert.ok(Array.isArray(b.body) && b.body.length > 0,
+            `${file} ${s.id} deep block needs a body`);
+          assert.ok(typeof b.hint === "string" && b.hint.trim(),
+            `${file} ${s.id} deep block needs a hint naming the question it answers`);
+          for (const inner of b.body) {
+            assert.ok(BLOCK_TYPES.has(inner.type) && inner.type !== "deep",
+              `${file} ${s.id} deep block may not nest a ${inner.type}`);
+          }
+        }
+      }
+
+      // A section is a scan layer plus depth, not one wall of prose. The student
+      // should be able to read the part outside the deep block in well under a
+      // minute, or the page is discouraging rather than reviewing.
+      //
+      // Only enforced for modules that have adopted the deep block: a module
+      // written before the split is a migration backlog, not a broken invariant,
+      // and failing every test on it would hide real regressions behind noise.
+      const deeps = s.body.filter((b) => b.type === "deep");
+      assert.ok(deeps.length <= 1, `${file} ${s.id} has ${deeps.length} deep blocks, expected at most 1`);
+      if (m.sections.some((x) => x.body.some((b) => b.type === "deep"))) {
+        // Only prose the student must READ counts toward the budget. A figure
+        // block carries a caption and alt text, which are not reading load --
+        // counting them flagged sections whose scan layer was actually 40 words.
+        const scanWords = s.body
+          .filter((b) => b.type !== "deep" && b.type !== "fig")
+          .map((b) => JSON.stringify(b).replace(/[^A-Za-z\s]/g, " ").split(/\s+/).filter(Boolean).length)
+          .reduce((a, c) => a + c, 0);
+        assert.ok(scanWords <= 140,
+          `${file} ${s.id} scan layer is ${scanWords} words; keep it under 140 so the section stays skimmable`);
       }
     }
     for (const c of m.flashcards) {

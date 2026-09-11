@@ -51,6 +51,22 @@ attributes contain raw `"`, which breaks a double-quoted JS string.
 | `formula` | `tex` (string), `text` (plain-English reading) | |
 | `note` | `text` | callout / exam tip |
 | `example` | `text`, optional `steps` (array) | worked example |
+| `deep` | `body` (array of blocks), optional `label`, `hint` | collapsible "Go deeper" |
+
+### The `deep` block (content shape)
+
+A section is a **scan layer plus depth**, never one wall of prose:
+
+- The blocks before the `deep` are what every student reads: a `fig` of the
+  slide, then a short `list` of 2–4 tight bullets. Target ~60–90 words total.
+- Everything else — the explanation, the derivation, the worked `example`, the
+  `table`, the `note` — goes inside a single `deep` block, whose `body` holds
+  those blocks. A student who understood the bullets never opens it.
+
+One `deep` per section. `label` defaults to "Go deeper"; `hint` should name the
+specific question it answers ("why the transition matters", "how to read the
+table"), because a hint the student can match to their own confusion is what
+makes the disclosure worth clicking.
 
 ## Flashcard
 

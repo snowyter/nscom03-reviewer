@@ -190,7 +190,27 @@
       }
       var tog = e.target.closest("[data-toggle]");
       if (tog) {
-        setOpen(tog.closest(".sec"), !isOpen(tog.closest(".sec")));
+        var sec2 = tog.closest(".sec");
+        // A section opening must not scroll the page: expanding only adds height
+        // below the header, so the anchor holds the header where it already is.
+        setOpenAnchored(sec2, !isOpen(sec2));
+        return;
+      }
+      var dp = e.target.closest("[data-deep]");
+      if (dp) {
+        // "Go deeper" grows the section in place. Anchor it so the reader keeps
+        // looking at the same line they clicked, rather than being thrown
+        // further down the page by the height it just added.
+        var host = dp.closest(".sec");
+        var wasOpen = dp.getAttribute("aria-expanded") === "true";
+        var top0 = dp.getBoundingClientRect().top;
+        dp.setAttribute("aria-expanded", wasOpen ? "false" : "true");
+        var box = dp.parentNode;
+        if (box) box.classList.toggle("is-open", !wasOpen);
+        if (host) {
+          var want = dp.getBoundingClientRect().top;
+          w.scrollBy(0, want - top0);
+        }
         return;
       }
       var mk = e.target.closest("[data-mark]");
