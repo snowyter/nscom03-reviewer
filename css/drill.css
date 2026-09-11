@@ -284,30 +284,39 @@
   text-align: center; line-height: 1.15rem;
 }
 /* Long-division trace.
-   Alignment rule: the first bit of the divisor must sit in the same character
-   column as the first bit of the dividend. The operator therefore lives in a
-   fixed-measure gutter whose advance equals exactly one character of the bit
-   font, so both rows start their bits at the same x no matter which glyph the
-   browser picks for ⊕. */
+   Alignment rules, both of which the trace has broken before:
+   1. The divisor's first bit must sit in the same CHARACTER COLUMN as the
+      dividend's first bit. The operator therefore lives in a gutter whose advance
+      is pinned to exactly one character of the bit font (1ch) — the ⊕ glyph
+      itself advances wider than a digit in most monospace faces, so leaving its
+      width to the font shifts the whole divisor one bit right.
+   2. The operator must stay in a straight vertical line down the whole trace.
+      It is therefore absolutely positioned at the left edge of the step row, so
+      the per-step indent shifts only the bits, never the operator. Without this
+      the ⊕ drifts right as the division shifts. */
 .step__row {
   grid-column: 2;
   display: block;
+  position: relative;
+  padding-left: 2ch;          /* reserve the fixed operator column */
   white-space: pre;
   overflow-x: auto;
   font-variant-ligatures: none;
 }
 .step__op {
-  display: inline-block;
-  width: 1ch;                 /* exactly one character of the row's font */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2ch;                 /* fixed operator column, same on every row */
   text-align: center;
   color: var(--trace-dim);
-  overflow: hidden;
 }
 .step__bits { display: inline; }
 .step__arrow {
   display: inline-block; width: 3ch; text-align: center;
   color: var(--ink-faint);
 }
+.step__row--sub > .step__op { color: var(--trace); }
 .step__row--sub { color: var(--trace); }
 .steps li.is-hit { color: var(--trace); }
 .steps li.is-hit::before { border-color: var(--trace); color: var(--trace); }

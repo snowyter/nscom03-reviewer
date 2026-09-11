@@ -161,9 +161,9 @@
 
       stepsEl.innerHTML = steps.map(function (s) {
         var pad = indent(s.i);
-        // The operator gutter is a real character on BOTH rows, so the bit
-        // columns line up even if the grid stylesheet has not applied yet.
-        // A plain space would collapse, so the gutter is a nbsp.
+        // The operator sits in its own fixed gutter on BOTH rows, so the divisor's
+        // bit columns line up exactly with the dividend's. The gutter is an nbsp
+        // rather than a space because HTML collapses runs of plain spaces.
         return `<li class="step">
           <span class="step__row"><span class="step__op" aria-hidden="true">\u00a0</span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.seg)}</span></span>
           <span class="step__row step__row--sub"><span class="step__op">⊕</span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.div)}</span><span class="step__arrow">→</span><span class="step__bits">${w.RENDER.esc(s.res)}</span></span>

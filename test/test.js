@@ -278,10 +278,22 @@ test("CRC steps align at the character level — the bug that shipped three time
   const css = fs.readFileSync(path.join(ROOT, "css", "drill.css"), "utf8");
   const opRule = /\.step__op\s*\{([\s\S]*?)\}/.exec(css);
   assert.ok(opRule, ".step__op rule missing from drill.css");
-  assert.ok(/display:\s*inline-block/.test(opRule[1]),
-    "the ⊕ gutter must be inline-block so its advance can be pinned");
-  assert.ok(/width:\s*1ch/.test(opRule[1]),
-    "the ⊕ gutter must be exactly 1ch wide");
+  assert.ok(/width:\s*2ch/.test(opRule[1]),
+    "the ⊕ column must be a fixed 2ch wide so the bits start at a known offset");
+  // The operator must also stay in a straight VERTICAL line down the trace: the
+  // per-step indent shifts the bits, never the ⊕. It is absolutely positioned in
+  // a reserved column to achieve that; inline flow would drift it right as the
+  // division shifts (the second bug the user caught in a screenshot).
+  const rowRule = /\.step__row\s*\{([\s\S]*?)\}/.exec(css);
+  assert.ok(rowRule, ".step__row rule missing from drill.css");
+  assert.ok(/position:\s*relative/.test(rowRule[1]),
+    ".step__row must be a positioning context for the operator column");
+  assert.ok(/padding-left:\s*2ch/.test(rowRule[1]),
+    ".step__row must reserve a fixed operator column via padding-left");
+  assert.ok(/position:\s*absolute/.test(opRule[1]),
+    "the ⊕ must be absolutely positioned so the indent cannot shift it");
+  assert.ok(/left:\s*0/.test(opRule[1]),
+    "the ⊕ must be pinned to the left edge of the reserved column");
 });
 
 test("figures used by content are drawn from figs.json", () => {
