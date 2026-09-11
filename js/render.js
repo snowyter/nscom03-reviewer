@@ -173,16 +173,19 @@
                 aria-expanded="false"
                 aria-controls="${esc(sec.id)}-b">
           <span class="sec__no">${no}</span>
-          <span class="sec__title" id="${esc(sec.id)}-t">
-            <span class="sec__ttext">${esc(sec.title)}</span><span
-              class="sec__chev" aria-hidden="true"><svg viewBox="0 0 12 8"
-              width="11" height="8" fill="none" stroke="currentColor"
-              stroke-width="1.7" stroke-linecap="round"
-              stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
+          <span class="sec__title">
+            <span class="sec__tline">
+              <span class="sec__ttext" id="${esc(sec.id)}-t">${esc(sec.title)}</span><span
+                class="sec__chev" aria-hidden="true"><svg viewBox="0 0 12 8"
+                width="11" height="8" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg></span>
+            </span>
+            ${hasViz ? `<span class="sec__viz">
+              <span class="sec__vizdot" aria-hidden="true"></span>Interactive
+              <span class="sec__vizhint" aria-hidden="true">tap to open</span></span>` : ""}
           </span>
           <span class="sec__state" aria-hidden="true">${read ? "Read" : ""}</span>
-          ${hasViz ? `<span class="sec__viz" title="This section contains an interactive aid">
-            <span class="sec__vizdot" aria-hidden="true"></span>Interactive</span>` : ""}
         </button>
       </h2>
       <div class="sec__body" id="${esc(sec.id)}-b" role="region"

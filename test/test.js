@@ -204,6 +204,19 @@ test("section and block structure is valid", () => {
       const marked = /class="sec__viz"/.test(html);
       assert.ok(hasViz === marked,
         `${file} ${s.id}: hasViz=${hasViz} but marker=${marked}; the header tag and the body must agree`);
+
+      // The marker must live INSIDE the title column, so it reads as a caption
+      // for its heading. As a sibling of the title it floated to the far edge of
+      // the row and looked marooned beside a short title.
+      if (marked) {
+        const titleOpen = html.indexOf('class="sec__title"');
+        const markerAt = html.indexOf('class="sec__viz"');
+        // The title column closes right before the read-state span; anything
+        // between those two offsets is inside the column.
+        const titleClose = html.indexOf('class="sec__state"', titleOpen);
+        assert.ok(markerAt > titleOpen && markerAt < titleClose,
+          `${file} ${s.id}: the interactive marker is not inside the title column`);
+      }
       if (m.sections.some((x) => x.body.some((b) => b.type === "deep"))) {
         // Only prose the student must READ counts toward the budget. A figure
         // block carries a caption and alt text, which are not reading load --

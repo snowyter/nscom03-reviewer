@@ -63,24 +63,46 @@
   /* A disclosure row must clear the 44px tap floor at every width. A one-line
      title is only ~26px tall on its own, so the row carries a min-height and
      centres its contents; a wrapped title simply grows past it. */
-  display: flex; flex-wrap: wrap; align-items: center; gap: .7rem;
   width: 100%; text-align: left; cursor: pointer;
   background: none; border: 0;
   padding: .35rem 0;
   min-height: 44px;
   color: inherit; font: inherit;
+  /* A three-track grid: number | title column | read state. A grid is used
+     rather than flex because the title column needs to be able to overflow into
+     a second row cleanly, and because `minmax(0, 1fr)` lets the column shrink
+     without a width measurement -- the flex version crushed the interactive tag
+     to 18px at narrow widths, because a shrinking flex child has no floor. */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: .7rem;
+  row-gap: .3rem;
 }
 .sec__head > .sec__no { flex: 0 0 auto; }
-/* The title takes the remaining width so the marker can ride at the end of the
-   same line; it is allowed to shrink and wrap, and only when it has wrapped to a
-   full line does the marker drop below (flex-wrap on the head). */
-.sec__head > .sec__title { flex: 1 1 12ch; min-width: 0; }
+/* The title column absorbs the remaining width and stacks its own contents: the
+   title text, then the interactive marker directly beneath it. Keeping the
+   marker inside this column is what anchors it to the title -- as a sibling of
+   the title it floated to the far edge of the row, visually marooned in the
+   empty space next to a short heading. */
+.sec__head > .sec__title {
+  min-width: 0;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: .3rem;
+}
+/* Inside the column the tag keeps its own width; the title line above it is what
+   wraps when the column is narrow. */
+.sec__head > .sec__title > .sec__viz { flex: 0 0 auto; max-width: 100%; }
+/* Explicit placement: the number in track 1, the title column in track 2, the
+   read state in track 3. Stating it avoids relying on source order. */
+.sec__head > .sec__no    { grid-column: 1; grid-row: 1; }
+.sec__head > .sec__title { grid-column: 2; grid-row: 1; }
+.sec__head > .sec__state { grid-column: 3; grid-row: 1; }
 /* The done badge rides at the far end of the header row. It is the only signal
    that survives the collapse, so it must be legible at a glance while scrolling:
    phosphor green on a tinted plate, reading "Done". Reserved space (min-width)
    so marking a section does not shift the title. */
 .sec__state {
-  flex: 0 0 auto;
   min-width: 3.6rem;
   text-align: right;
   font: 600 .58rem/1 var(--mono);
@@ -93,33 +115,59 @@
 }
 .sec.is-read .sec__state { opacity: 1; transform: none; }
 
-/* The interactive marker in a collapsed section's header.
-   Sections start collapsed, so an aid buried in the body is invisible until the
-   student opens the section. This tag is the only signal that expanding *this*
-   row reveals something they can operate — so it must be legible at a glance in
-   a long list of collapsed titles, yet quiet enough not to compete with the
-   title itself. It is a bordered pill in the rule colour with an amber dot, not
-   a filled badge: a filled chip at this weight reads as a call to action. */
+/* The interactive marker inside a collapsed section's title column.
+   Sections start collapsed, so an aid in the body is invisible until the student
+   opens that section. This marker sits directly UNDER the title it belongs to --
+   it is a caption for the heading, not a badge for the row.
+   It is a bordered pill with an amber dot and a short hint, so it reads as a
+   label attached to the title rather than a control floating in empty space.
+   When the section expands the marker is no longer needed: the aid itself
+   carries an identical INTERACTIVE tag at the top of its frame, so the two would
+   be saying the same thing twice. The marker therefore fades out as the body
+   opens, which is the "it moves to its designated spot" behaviour: the tag has
+   handed off to the real thing. */
 .sec__viz {
-  flex: 0 0 auto;
-  display: inline-flex; align-items: center; gap: .34rem;
-  padding: .22rem .42rem;
+  display: inline-flex; align-items: center; gap: .38rem;
+  padding: .28rem .5rem;
   border: 1px solid var(--rule);
   border-radius: 2px;
-  font: 600 .55rem/1 var(--mono);
-  letter-spacing: .12em; text-transform: uppercase;
+  background: var(--ground-2);
+  /* 0.68rem keeps the label legible on a phone; the previous 0.55rem rendered
+     at 8.8px, which is below comfortable reading size for a tag whose whole job
+     is to be noticed in a long list of collapsed rows. */
+  font: 600 .68rem/1 var(--mono);
+  letter-spacing: .1em; text-transform: uppercase;
   color: var(--amber);
   white-space: nowrap;
+  /* The tag sizes to its own content and never shrinks below it, so the label is
+     always readable; the title line above wraps instead. `max-width` keeps it
+     inside its column and the hint inside yields before the label does. */
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  transition: opacity .2s ease, transform .2s ease;
 }
 .sec__vizdot {
-  width: .3rem; height: .3rem; border-radius: 50%;
+  width: .34rem; height: .34rem; border-radius: 50%;
   background: var(--amber);
   flex: 0 0 auto;
 }
-/* The head is a grid on wide screens and wraps on narrow ones, so the marker
-   must be able to drop to its own line rather than squeeze the title. */
+/* The hint is decoration on an already-explicit label, so it is the part that
+   yields: it shrinks to nothing inside the tag when the column is narrow, while
+   the label and dot keep their width. This is container-driven on purpose -- a
+   viewport media query cannot see how wide the title column actually is. */
+.sec__vizhint {
+  color: var(--ink-faint); letter-spacing: .02em; text-transform: none;
+  flex: 0 1 auto; min-width: 0; overflow: hidden; white-space: nowrap;
+}
 .sec__head:hover .sec__viz,
 .sec__head:focus-visible .sec__viz { border-color: var(--amber); }
+/* Expanded: the aid is on screen with its own tag, so the header marker retires.
+   `visibility` rather than `display` keeps the transition smooth and keeps the
+   text in the accessibility tree for a screen reader reading the heading. */
+.sec:not(.is-collapsed) .sec__viz {
+  opacity: 0; transform: translateY(-.15rem); pointer-events: none;
+}
 /* A finished section reads green down its whole header: the number, the rule
    under the head and the title all shift to the trace colour, so the state is
    obvious even in a fast scroll past a list of collapsed rows. */
@@ -136,6 +184,9 @@
   font: 600 clamp(1.02rem, 1.8vw, 1.3rem)/1.3 var(--mono);
   color: var(--ink); margin: 0; letter-spacing: -.005em;
 }
+/* The title text and its chevron stay on one inline line, so a wrapped title
+   ends with the chevron rather than dropping it to a bare second row. */
+.sec__tline { display: block; }
 /* The chevron flows inline right after the title text, so on a wrapped title it
    lands at the end of the last line rather than dropping to a bare second row. */
 .sec__chev {
