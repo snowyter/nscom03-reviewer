@@ -116,8 +116,10 @@ test("the simulator bench registers and mounts every simulator", () => {
     "simulators produced no readouts");
   assert.ok(host.querySelectorAll(".wave svg").length >= 4,
     "simulators produced no diagrams");
-  assert.ok(host.querySelectorAll(".steps li").length >= 3,
+  assert.ok(host.querySelectorAll(".trace__step").length >= 3,
     "the CRC simulator produced no division steps");
+  assert.ok(host.querySelector(".trace__head"),
+    "the CRC trace is missing its dividend/generator head row");
 
   w.close();
 });

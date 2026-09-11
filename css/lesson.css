@@ -30,6 +30,7 @@
   border: 1px solid var(--rule); border-radius: var(--r-sm);
   padding: .48rem .7rem; background: transparent;
   color: var(--ink-dim); cursor: pointer;
+  min-height: 44px;                /* WCAG 2.5.5 — was 28.5px */
   font: 500 .7rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
   text-decoration: none;
 }
@@ -168,10 +169,10 @@
   border: 1px solid var(--rule);
   border-radius: var(--r-sm);
   padding: .58rem .85rem;
+  min-height: 44px;                /* WCAG 2.5.5 — was 2.4rem / 38.4px, under the floor */
   color: var(--ink); cursor: pointer;
   font: 500 .76rem/1 var(--mono);
   letter-spacing: .1em; text-transform: uppercase;
-  min-height: 2.4rem;                     /* comfortable tap target */
 }
 .mark:hover {
   border-color: var(--trace-dim); color: var(--trace);

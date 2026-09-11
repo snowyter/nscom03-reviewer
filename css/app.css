@@ -1,6 +1,6 @@
 /* NSCOM03 Instrument Bench — stylesheet index.
    Direction: Oscilloscope phosphor bench (see .impeccable/surfaces/index.md).
    Layered: base tokens/shell -> lesson typography -> drill/quiz/sims. */
-@import url("base.css");
-@import url("lesson.css");
-@import url("drill.css");
+@import url("base.css?v=e070a47b");
+@import url("lesson.css?v=a107bde8");
+@import url("drill.css?v=018a3e14");

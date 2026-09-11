@@ -151,24 +151,44 @@
 
     function paintSteps(steps, gen) {
       if (!steps.length) { stepsEl.innerHTML = ""; return; }
-      // Long division is read strictly as a column: each step's dividend and the
-      // divisor subtracted from it must start at the SAME character column, which
-      // is the column of the leftmost 1 being divided. The ⊕ belongs in its own
-      // gutter to the left, never inside the padded run, or it consumes a column
-      // and pushes the divisor one character past the bits it subtracts from.
-      // Leading spaces inside HTML collapse, so the indent is nbsp.
+
+      // Long division is ONE column of text, not a list of cards. Every step must
+      // share the same character grid, so a digit in step 4 sits in the same
+      // column as the digit it was derived from in step 1 — that shared column is
+      // what makes the subtraction readable.
+      //
+      // Requirements this layout has broken before, in order:
+      //  1. The indent is nbsp, because HTML collapses runs of plain spaces.
+      //  2. The ⊕ must not sit inside the padded run: that consumes a character
+      //     column and pushes the divisor one bit past the bits it subtracts from.
+      //  3. The ⊕ must not sit in inline flow either: the per-step indent then
+      //     drags the operator right, so the operator column drifts instead of
+      //     staying straight.
+      // So the operator is absolutely positioned in a fixed gutter (see drill.css)
+      // and the bit runs start at a matching fixed offset.
       var indent = function (n) { return "\u00a0".repeat(Math.max(0, n)); };
 
-      stepsEl.innerHTML = steps.map(function (s) {
+      // The first row is the dividend as written on paper, with the generator set
+      // to its right beyond the ruling — the divisor of the whole division.
+      var head = '<div class="trace__head">'
+        + '<span class="trace__op-gutter" aria-hidden="true"></span>'
+        + '<span class="trace__bits">' + w.RENDER.esc(steps[0].seg) + '</span>'
+        + '<span class="trace__rule" aria-hidden="true"></span>'
+        + '<span class="trace__res">' + w.RENDER.esc(gen) + '</span>'
+        + '</div>';
+
+      var body = steps.map(function (s, n) {
         var pad = indent(s.i);
-        // The operator sits in its own fixed gutter on BOTH rows, so the divisor's
-        // bit columns line up exactly with the dividend's. The gutter is an nbsp
-        // rather than a space because HTML collapses runs of plain spaces.
-        return `<li class="step">
-          <span class="step__row"><span class="step__op" aria-hidden="true">\u00a0</span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.seg)}</span></span>
-          <span class="step__row step__row--sub"><span class="step__op">⊕</span><span class="step__bits">${w.RENDER.esc(pad)}${w.RENDER.esc(s.div)}</span><span class="step__arrow">→</span><span class="step__bits">${w.RENDER.esc(s.res)}</span></span>
-        </li>`;
+        var isLast = n === steps.length - 1;
+        return '<div class="trace__step' + (isLast ? " is-last" : "") + '">'
+          + '<span class="trace__op-gutter" aria-hidden="true">\u2295</span>'
+          + '<span class="trace__bits">' + w.RENDER.esc(pad) + w.RENDER.esc(s.div) + '</span>'
+          + '<span class="trace__rule" aria-hidden="true"></span>'
+          + '<span class="trace__res">' + w.RENDER.esc(pad) + w.RENDER.esc(s.res) + '</span>'
+          + '</div>';
       }).join("");
+
+      stepsEl.innerHTML = '<div class="trace">' + head + body + '</div>';
     }
 
     function check() {

@@ -10,10 +10,10 @@
   --trace:       #7dffb2;
   --trace-dim:   #3d8f66;
   --amber:       #ffd166;
-  --amber-dim:   #8a6f33;
+  --amber-dim:   #977f49;   /* lifted from #8a6f33: AA needs 4.5:1 on --ground */
   --ink:         #cfe8dc;
   --ink-dim:     #7e9d90;
-  --ink-faint:   #4d6b5e;
+  --ink-faint:   #6e877c;   /* lifted from #4d6b5e: AA needs 4.5:1 on --ground */
   --warn:        #ff7b6b;
   --grid:        rgba(28, 74, 58, 0.55);
   --band-ink:    #0a1410;   /* text on a filled colour band (e.g. sim bands) */
@@ -38,12 +38,12 @@
   --rule:        #b9c4ae;
   --rule-soft:   #d6dcc9;
   --trace:       #17603f;
-  --trace-dim:   #6f9c85;
+  --trace-dim:   #527463;   /* lifted from #6f9c85: AA needs 4.5:1 on the light ground */
   --amber:       #8a5a00;
-  --amber-dim:   #c9a86a;
+  --amber-dim:   #7e6a43;   /* lifted from #c9a86a: AA needs 4.5:1 on the light ground */
   --ink:         #1d2b24;
   --ink-dim:     #4f6157;
-  --ink-faint:   #8a978d;
+  --ink-faint:   #656f68;   /* lifted from #8a978d: AA needs 4.5:1 on the light ground */
   --warn:        #a8321f;
   --grid:        rgba(120, 140, 118, 0.35);
   --band-ink:    #f7f5ec;
@@ -70,6 +70,7 @@ body {
 }
 
 .skip {
+  min-height: 44px; display: inline-flex; align-items: center;
   position: absolute; left: -9999px; top: 0; z-index: 90;
   background: var(--amber); color: #10100a; padding: .5rem .8rem;
   font: 600 .8rem/1 var(--mono);
@@ -128,6 +129,7 @@ a:hover { color: var(--amber); }
   background: transparent; color: var(--ink-dim);
   border: 1px solid var(--rule); border-radius: var(--r-sm);
   padding: .38rem .6rem;
+  min-height: 44px;                /* WCAG 2.5.5 — was 24.7px, too small to tap */
   font: 500 .66rem/1 var(--mono);
   letter-spacing: .12em; text-transform: uppercase;
   cursor: pointer;
@@ -166,6 +168,7 @@ a:hover { color: var(--amber); }
   display: grid; grid-template-columns: 2.5rem 1fr; gap: .5rem;
   align-items: baseline;
   padding: .48rem .9rem; text-decoration: none;
+  min-height: 44px;                /* WCAG 2.5.5 — was 33px */
   color: var(--ink-dim); border-left: 2px solid transparent;
 }
 .rail__link:hover { background: var(--ground); color: var(--ink); }
@@ -188,18 +191,35 @@ a:hover { color: var(--amber); }
   font: 500 .68rem/1.4 var(--mono);
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--ink-faint); text-decoration: none;
+  display: inline-flex; align-items: center;
+  min-height: 44px;                /* WCAG 2.5.5 — was 15.2px */
 }
 .rail__sims:hover { color: var(--trace); }
 
 /* ── The scope ──────────────────────────────────────────────────── */
+/* The graticule is the world's signature, but it must not run under body copy:
+   hairlines through text cut legibility, which the audit flagged on mobile. The
+   grid therefore sits on a masked overlay BEHIND the content, and every content
+   surface (cards, sims, the trace) paints its own solid ground on top. */
 .scope {
   position: relative; flex: 1 1 auto; min-width: 0;
   padding: clamp(1rem, 3vw, 2.2rem) clamp(1rem, 3.4vw, 3rem) 4rem;
+}
+.scope::before {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 0;
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 40px 40px, 40px 40px;
+  /* Fade the field out fast: the graticule reads as instrument chrome above the
+     fold, then leaves the text regions on plain ground. Solid for one band, gone
+     before the first content surface begins. */
+  mask-image: linear-gradient(180deg, #000 0, #000 96px, transparent 200px);
 }
+.scope > * { position: relative; z-index: 1; }
 .scope__graticule {
   position: absolute; inset: 0; pointer-events: none;
   background-image:

@@ -21,19 +21,45 @@ echo "==> stamp asset versions"
 python3 - <<'PY'
 import hashlib, pathlib, re
 root = pathlib.Path(".")
+css  = root / "css"
+
+# Stamp the @import urls inside app.css first: app.css pulls in base/lesson/drill,
+# so if only app.css itself were hashed, editing base.css would leave app.css's
+# hash unchanged and browsers would keep serving the stale imports.
+app = css / "app.css"
+if app.exists():
+    src = app.read_text()
+    def stamp_import(m):
+        fname = m.group(1)
+        f = css / fname
+        if not f.exists():
+            return m.group(0)
+        h = hashlib.sha256(f.read_bytes()).hexdigest()[:8]
+        return f'@import url("{fname}?v={h}");'
+    app.write_text(re.sub(r'@import url\("([a-z-]+\.css)"\);', stamp_import, src))
+
+# Then stamp every local js/css url in index.html. app.css gets a hash over the
+# whole CSS graph so a change in any imported sheet invalidates it.
 idx = root / "index.html"
 html = idx.read_text()
+graph = ["app.css", "base.css", "lesson.css", "drill.css"]
+h_all = hashlib.sha256(b"".join(
+    (css / n).read_bytes() for n in graph if (css / n).exists())).hexdigest()[:8]
+
 def stamp(m):
     attr, path = m.group(1), m.group(2)
+    if path == "css/app.css":
+        return f'{attr}="{path}?v={h_all}"'
     f = root / path
     if not f.exists():
         return m.group(0)
     h = hashlib.sha256(f.read_bytes()).hexdigest()[:8]
     return f'{attr}="{path}?v={h}"'
+
 new, n = re.subn(r'(src|href)="((?:js|css)/[^"?]+)"', stamp, html)
 if new != html:
     idx.write_text(new)
-print(f"  stamped {n} asset urls")
+print(f"  stamped {n} asset urls (css graph hash {h_all})")
 PY
 echo
 

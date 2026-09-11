@@ -254,46 +254,40 @@ test("CRC steps align the divisor under the dividend", () => {
   }
 });
 
-test("CRC steps align at the character level — the bug that shipped three times", () => {
-  // What matters is the character COLUMN each row's first bit starts in. An earlier
-  // test asserted span siblings and passed while the trace was visibly off by one,
-  // because ⊕ advances wider than a digit; and a span-box pixel check also read
-  // "aligned" while the glyphs did not line up. So: verify the emitted strings.
-  const src = fs.readFileSync(path.join(ROOT, "js", "sims", "sim-crc.js"), "utf8");
-
-  // The renderer must emit the gutter as a real character on BOTH rows. In the
-  // source the gutter char appears as the escape sequence \u00a0 inside a
-  // template literal, so the pattern matches a literal backslash-u sequence.
-  assert.ok(/step__op" aria-hidden="true">\\u00a0<\/span><span class="step__bits"/.test(src),
-    "the dividend row must carry a real gutter character before its bits");
-  assert.ok(/step__op">⊕<\/span><span class="step__bits"/.test(src),
-    "the subtraction row must put ⊕ in its own gutter before the padded bits");
-  // and the operator must NOT be inside the padded run (the original bug)
-  assert.ok(!/step__bits">⊕/.test(src),
-    "⊕ must never sit inside the padded bit run — that consumes a character " +
-    "column and shifts the whole divisor one bit right");
-
-  // The gutter must be pinned to exactly one character of the bit font. The ⊕
-  // glyph itself advances wider than a digit, which is the root cause.
+test("CRC long division renders as one shared character grid", () => {
+  // The trace is ONE column of text, not a list of cards. What must hold:
+  //  - every row draws from the same grid, so a digit in the last step sits in the
+  //    same column as the digit it came from in the first (CSS subgrid);
+  //  - the operator sits in a fixed left column, so the per-step indent shifts the
+  //    bits and never the operator (it drifted diagonally when in inline flow);
+  //  - the result column is FIXED, not floated after a variable-length leader, or
+  //    the remainders form a ragged edge that cannot be scanned down;
+  //  - the indent is nbsp, because HTML collapses runs of plain spaces.
+  const sim = fs.readFileSync(path.join(ROOT, "js", "sims", "sim-crc.js"), "utf8");
   const css = fs.readFileSync(path.join(ROOT, "css", "drill.css"), "utf8");
-  const opRule = /\.step__op\s*\{([\s\S]*?)\}/.exec(css);
-  assert.ok(opRule, ".step__op rule missing from drill.css");
-  assert.ok(/width:\s*2ch/.test(opRule[1]),
-    "the ⊕ column must be a fixed 2ch wide so the bits start at a known offset");
-  // The operator must also stay in a straight VERTICAL line down the trace: the
-  // per-step indent shifts the bits, never the ⊕. It is absolutely positioned in
-  // a reserved column to achieve that; inline flow would drift it right as the
-  // division shifts (the second bug the user caught in a screenshot).
-  const rowRule = /\.step__row\s*\{([\s\S]*?)\}/.exec(css);
-  assert.ok(rowRule, ".step__row rule missing from drill.css");
-  assert.ok(/position:\s*relative/.test(rowRule[1]),
-    ".step__row must be a positioning context for the operator column");
-  assert.ok(/padding-left:\s*2ch/.test(rowRule[1]),
-    ".step__row must reserve a fixed operator column via padding-left");
-  assert.ok(/position:\s*absolute/.test(opRule[1]),
-    "the ⊕ must be absolutely positioned so the indent cannot shift it");
-  assert.ok(/left:\s*0/.test(opRule[1]),
-    "the ⊕ must be pinned to the left edge of the reserved column");
+
+  // markup: one .trace field, a head row, and a step row per division step
+  assert.ok(/class="trace"/.test(sim), "the trace must be one continuous field");
+  assert.ok(/trace__head/.test(sim), "the trace needs a dividend/generator head row");
+  assert.ok(/trace__op-gutter/.test(sim), "each row needs a fixed operator gutter");
+  assert.ok(/trace__rule/.test(sim), "rows need a ruler between bits and result");
+  assert.ok(/trace__res/.test(sim), "rows need a result cell");
+  assert.ok(/\\u00a0/.test(sim),
+    "the indent must be nbsp — HTML collapses runs of plain spaces");
+
+  // grid: rows are subgrids of one shared track list, so columns are truly shared
+  const rowRule = /\.trace__head,\s*\n?\.trace__step\s*\{([\s\S]*?)\}/.exec(css);
+  assert.ok(rowRule, ".trace__head/.trace__step rule missing");
+  assert.ok(/grid-template-columns:\s*subgrid/.test(rowRule[1]),
+    "rows must use subgrid so every digit shares one character column");
+  const fieldRule = /\.trace\s*\{([\s\S]*?)\}/.exec(css);
+  assert.ok(fieldRule && /grid-template-columns:\s*2ch max-content/.test(fieldRule[1]),
+    "the trace field must define the shared column tracks");
+
+  // the result column must be a real track, not a floated tail
+  const resRule = /\.trace__step > \.trace__res\s*\{([\s\S]*?)\}/.exec(css);
+  assert.ok(resRule && /grid-column:\s*4/.test(resRule[1]),
+    "results must occupy a fixed grid column so they align down the trace");
 });
 
 test("figures used by content are drawn from figs.json", () => {
