@@ -36,11 +36,12 @@ function boot() {
   for (const c of inline) { try { w.eval(c); } catch (e) {} }
   // app.js runs its boot lazily inside a fetch promise; evaluate data and
   // libraries first, then app.js, then force a synchronous boot so tests do not
-  // depend on promise timing.
-  const appSrc = srcs.find((s) => s.endsWith("app.js"));
+  // depend on promise timing. srcs may carry a ?v=<hash> cache-buster from the
+  // deploy stamping step, so strip it before hitting the filesystem.
+  const appSrc = srcs.find((s) => s.split("?")[0].endsWith("app.js"));
   for (const s of srcs) {
     if (s === appSrc) continue;
-    try { w.eval(fs.readFileSync(path.join(ROOT, s), "utf8")); } catch (e) {}
+    try { w.eval(fs.readFileSync(path.join(ROOT, s.split("?")[0]), "utf8")); } catch (e) {}
   }
   return { dom, w, appPath: appSrc };
 }
@@ -58,7 +59,7 @@ async function bootReady() {
     return Promise.resolve({ ok: true, status: 200, text: () => Promise.resolve(body),
                              json: () => Promise.resolve(JSON.parse(body)) });
   };
-  w.eval(fs.readFileSync(path.join(ROOT, appPath), "utf8"));
+  w.eval(fs.readFileSync(path.join(ROOT, appPath.split("?")[0]), "utf8"));
   await new Promise((r) => setTimeout(r, 50));
   return ctx;
 }

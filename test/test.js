@@ -254,25 +254,34 @@ test("CRC steps align the divisor under the dividend", () => {
   }
 });
 
-test("CRC step markup keeps the divisor in the dividend's column", () => {
-  // The subtraction row must not place the ⊕ inside the padded run: that consumes
-  // a character column and shifts the whole divisor one bit right of the bits it
-  // subtracts from, which is what made the trace look misaligned.
+test("CRC steps align at the character level — the bug that shipped three times", () => {
+  // What matters is the character COLUMN each row's first bit starts in. An earlier
+  // test asserted span siblings and passed while the trace was visibly off by one,
+  // because ⊕ advances wider than a digit; and a span-box pixel check also read
+  // "aligned" while the glyphs did not line up. So: verify the emitted strings.
   const src = fs.readFileSync(path.join(ROOT, "js", "sims", "sim-crc.js"), "utf8");
-  const row = /class="step__row step__row--sub">([\s\S]*?)<\/span>\s*<\/li>/m.exec(src);
-  assert.ok(row, "could not find the subtraction row markup");
-  const markup = row[1];
-  // ⊕ and the padded bits must be separate siblings, with ⊕ first
-  assert.ok(/step__op">⊕<\/span><span class="step__bits">/.test(markup),
-    "⊕ must sit in its own gutter immediately before the padded bit span");
-  // the padded run must not be preceded by the operator inside the same span
-  assert.ok(!/step__bits">⊕/.test(markup),
-    "the ⊕ must not be inside the padded bit span");
-  // both rows must use the step__row wrapper so the gutter column exists on each
-  const rowOpeners = src.match(/class="step__row/g) || [];
-  assert.strictEqual(rowOpeners.length, 2,
-    "expected one step__row wrapper per rendered row (dividend + subtraction)");
-  assert.ok(/step__bits/.test(markup), "the subtraction row must use step__bits");
+
+  // The renderer must emit the gutter as a real character on BOTH rows. In the
+  // source the gutter char appears as the escape sequence \u00a0 inside a
+  // template literal, so the pattern matches a literal backslash-u sequence.
+  assert.ok(/step__op" aria-hidden="true">\\u00a0<\/span><span class="step__bits"/.test(src),
+    "the dividend row must carry a real gutter character before its bits");
+  assert.ok(/step__op">⊕<\/span><span class="step__bits"/.test(src),
+    "the subtraction row must put ⊕ in its own gutter before the padded bits");
+  // and the operator must NOT be inside the padded run (the original bug)
+  assert.ok(!/step__bits">⊕/.test(src),
+    "⊕ must never sit inside the padded bit run — that consumes a character " +
+    "column and shifts the whole divisor one bit right");
+
+  // The gutter must be pinned to exactly one character of the bit font. The ⊕
+  // glyph itself advances wider than a digit, which is the root cause.
+  const css = fs.readFileSync(path.join(ROOT, "css", "drill.css"), "utf8");
+  const opRule = /\.step__op\s*\{([\s\S]*?)\}/.exec(css);
+  assert.ok(opRule, ".step__op rule missing from drill.css");
+  assert.ok(/display:\s*inline-block/.test(opRule[1]),
+    "the ⊕ gutter must be inline-block so its advance can be pinned");
+  assert.ok(/width:\s*1ch/.test(opRule[1]),
+    "the ⊕ gutter must be exactly 1ch wide");
 });
 
 test("figures used by content are drawn from figs.json", () => {

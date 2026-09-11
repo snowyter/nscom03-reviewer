@@ -59,10 +59,13 @@ function boot() {
     try { w.eval(code); } catch (e) { errors.push("inline: " + e.message); }
   }
   for (const src of srcs) {
-    const p = path.join(ROOT, src);
-    if (!fs.existsSync(p)) { errors.push("missing script: " + src); continue; }
+    // srcs come from index.html and may carry a ?v=<hash> cache-buster added by
+    // the deploy stamping step; strip it before touching the filesystem.
+    const clean = src.split("?")[0];
+    const p = path.join(ROOT, clean);
+    if (!fs.existsSync(p)) { errors.push("missing script: " + clean); continue; }
     try { w.eval(fs.readFileSync(p, "utf8")); }
-    catch (e) { errors.push(src + ": " + e.message); }
+    catch (e) { errors.push(clean + ": " + e.message); }
   }
   return { dom, w, errors, srcs };
 }

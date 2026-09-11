@@ -13,6 +13,30 @@ echo "==> preflight"
 node --test test/ 2>&1 | tail -3
 echo
 
+echo "==> stamp asset versions"
+# GitHub Pages serves assets with cache-control: max-age=600, so a browser can
+# keep running an old script for ten minutes after a deploy — a hard refresh does
+# not always defeat it. Stamping every local js/css URL with a content hash makes
+# each edit a NEW url, so clients re-fetch immediately and never run stale code.
+python3 - <<'PY'
+import hashlib, pathlib, re
+root = pathlib.Path(".")
+idx = root / "index.html"
+html = idx.read_text()
+def stamp(m):
+    attr, path = m.group(1), m.group(2)
+    f = root / path
+    if not f.exists():
+        return m.group(0)
+    h = hashlib.sha256(f.read_bytes()).hexdigest()[:8]
+    return f'{attr}="{path}?v={h}"'
+new, n = re.subn(r'(src|href)="((?:js|css)/[^"?]+)"', stamp, html)
+if new != html:
+    idx.write_text(new)
+print(f"  stamped {n} asset urls")
+PY
+echo
+
 echo "==> working tree"
 if [ -n "$(git status --porcelain)" ]; then
   echo "uncommitted changes present; commit them first"; exit 1
