@@ -259,17 +259,38 @@
 
 .steps {
   counter-reset: st; list-style: none; margin: .8rem 0 0; padding: 0;
-  font: 400 .74rem/1.7 var(--mono);
 }
-.steps li {
-  counter-increment: st; padding-left: 2rem; position: relative;
-  color: var(--ink-dim); white-space: pre; overflow-x: auto;
+.steps li.step {
+  counter-increment: st;
+  display: grid;
+  grid-template-columns: 2rem 1fr;      /* badge column, then the bit grid */
+  column-gap: .7rem;
+  align-items: start;
+  font: 400 .74rem/1.55 var(--mono);
+  color: var(--ink-dim);
+  padding: .3rem 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
-.steps li::before {
-  content: counter(st); position: absolute; left: 0; top: .32rem;
-  width: 1.25rem; height: 1.25rem; border: 1px solid var(--rule);
-  color: var(--ink-faint); font-size: .6rem; text-align: center; line-height: 1.15rem;
+.steps li.step:last-child { border-bottom: 0; }
+.steps li.step::before {
+  content: counter(st);
+  grid-column: 1;
+  grid-row: 1 / span 2;                 /* badge spans both rows, stays left */
+  justify-self: start;
+  margin-top: .18rem;
+  width: 1.25rem; height: 1.25rem;
+  border: 1px solid var(--rule);
+  color: var(--ink-faint); font-size: .6rem;
+  text-align: center; line-height: 1.15rem;
 }
+.step__row {
+  grid-column: 2;
+  display: block;
+  white-space: pre;                     /* preserve the nbsp indent exactly */
+  overflow-x: auto;
+}
+.step__row--sub { color: var(--trace); }
+.step__arrow { color: var(--ink-faint); padding: 0 .55em; }
 .steps li.is-hit { color: var(--trace); }
 .steps li.is-hit::before { border-color: var(--trace); color: var(--trace); }
 

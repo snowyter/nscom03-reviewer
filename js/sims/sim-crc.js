@@ -150,10 +150,19 @@
     }
 
     function paintSteps(steps, gen) {
+      if (!steps.length) { stepsEl.innerHTML = ""; return; }
+      // Long division is read as a column: each remainder is shifted right by the
+      // position of the bit that was divided, and the divisor sits beneath it.
+      // Leading spaces inside HTML collapse, so the indent must be real
+      // characters — nbsp — or the maths does not line up.
+      var indent = function (n) { return "\u00a0".repeat(Math.max(0, n)); };
+
       stepsEl.innerHTML = steps.map(function (s, n) {
-        var pad = " ".repeat(Math.max(0, s.i));
-        return `<li>${w.RENDER.esc(pad + s.seg)}
-${w.RENDER.esc(pad + "⊕" + s.div + "  →  " + s.res)}</li>`;
+        var pad = indent(s.i);
+        return `<li class="step">
+          <span class="step__row">${w.RENDER.esc(pad)}${w.RENDER.esc(s.seg)}</span>
+          <span class="step__row step__row--sub">${w.RENDER.esc(pad)}⊕${w.RENDER.esc(s.div)}<span class="step__arrow">→</span>${w.RENDER.esc(s.res)}</span>
+        </li>`;
       }).join("");
     }
 

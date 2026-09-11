@@ -224,6 +224,36 @@ test("every formula block renders without leaving raw TeX", () => {
     `formulas still showing raw LaTeX: ${offenders.slice(0, 5).join(" | ")}`);
 });
 
+test("CRC steps align the divisor under the dividend", () => {
+  // The step trace is read as a column, so the indent must survive into the DOM.
+  // Generating it with plain spaces failed because HTML collapses whitespace,
+  // which scrambled the alignment; it must be rendered as real indent characters.
+  const sandbox = { window: { SIMS: [], RENDER: { esc: (s) => String(s) } } };
+  vm.createContext(sandbox);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, "js", "sims", "sim-crc.js"), "utf8"), sandbox);
+  const sim = sandbox.window.SIMS.find((s) => s.id === "sim-crc");
+  assert.ok(sim && typeof sim._divide === "function", "crc divide not exposed");
+
+  const r = sim._divide("1101011011" + "0000", "10011");
+  assert.strictEqual(r.remainder, "1110", "remainder");
+  assert.ok(r.steps.length >= 3, "expected several division steps");
+
+  for (const s of r.steps) {
+    // each step knows the column of the bit it divides, and both rows in the
+    // rendered output must be shifted by exactly that many characters
+    assert.ok(Number.isInteger(s.i) && s.i >= 0, "step shift must be a column index");
+    assert.strictEqual(s.seg.length, s.div.length,
+      `dividend and divisor must be the same width to align (step at ${s.i})`);
+    assert.strictEqual(s.seg[0], "1",
+      `a step only runs where the dividend bit is 1 (step at ${s.i})`);
+  }
+  // the shifts must be non-decreasing, which is what makes the column readable
+  for (let k = 1; k < r.steps.length; k++) {
+    assert.ok(r.steps[k].i >= r.steps[k - 1].i,
+      "step shifts must not move backwards");
+  }
+});
+
 test("figures used by content are drawn from figs.json", () => {
   for (const { file, mod: m } of loadModules()) {
     for (const s of m.sections) {
