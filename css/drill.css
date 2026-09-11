@@ -1,7 +1,14 @@
 /* NSCOM03 Instrument Bench — drill (flashcards), quiz, overview, simulators */
 
 /* ── Overview grid ──────────────────────────────────────────────── */
-.ov__head { max-width: var(--measure); margin-bottom: 1.8rem; }
+.ov__head {
+  max-width: var(--measure); margin-bottom: 1.8rem;
+  /* the graticule must never run through a heading: give the block its own
+     ground so the instrument field stays in the margins where it belongs */
+  background: var(--ground);
+  padding: .1rem 0 .6rem;
+  position: relative; z-index: 1;
+}
 .ov__title {
   font: 600 clamp(1.4rem, 3vw, 2.2rem)/1.15 var(--mono); margin: 0 0 .5rem;
   color: var(--ink);
@@ -378,6 +385,20 @@
   .cell { min-height: 0; }
   .q__text { font-size: .95rem; }
   .quiz__score b { font-size: 1.6rem; }
+  /* The keyboard hints (SPACE = FLIP, 1 = AGAIN, 2 = GOT IT) are desktop
+     affordances: on a phone there is no keyboard, and the string is long enough
+     to push the progress readout off the row. Drop them at phone widths. */
+  .drill__hint { display: none; }
+  /* Give the card the screen it needs and make grading a full-width pair, so the
+     tap targets sit under the thumb rather than in a small block at the top. */
+  .card { min-height: 18rem; padding: 1.4rem 1.1rem 1.2rem; }
+  .drill__grade { gap: .6rem; }
+  .drill__grade .grade { flex: 1 1 45%; }
+  /* one readout per row on a phone: two columns force bit strings to wrap and
+     leave an orphaned empty cell at the end */
+  .readout { grid-template-columns: 1fr; }
+  .readout dt { display: inline-block; min-width: 9.5rem; margin-bottom: 0; }
+  .readout div { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
   /* keep the shared column tracks; only the ruler and type shrink */
   .trace {
     font-size: .68rem;

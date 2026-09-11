@@ -220,6 +220,22 @@ a:hover { color: var(--amber); }
   mask-image: linear-gradient(180deg, #000 0, #000 96px, transparent 200px);
 }
 .scope > * { position: relative; z-index: 1; }
+
+/* Any heading that sits directly on the instrument field needs its own ground:
+   the graticule hairlines run edge to edge and will otherwise cross the letter
+   forms, which is worst on a phone where the measure is narrow. This is a
+   blanket rule rather than a per-view one so a new view cannot reintroduce it. */
+.scope h1, .scope h2, .scope h3, .scope .ov__head, .scope .les__head {
+  position: relative;
+  z-index: 1;
+}
+.scope h1, .scope h2, .scope h3 {
+  background: var(--ground);
+  box-shadow: 0 0 0 .45rem var(--ground);   /* cover the hairlines beside the text */
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+}
 .scope__graticule {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
