@@ -73,12 +73,12 @@
 
     function draw() {
       var c = CASES[active];
-      var W = Math.max(320, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Fixed height: one row of nodes plus the space its labels need above and
       // below. The case list is a tab strip in the DOM, not the canvas, so there
       // is no run-length-dependent content here and nothing can be clipped.
       var Hh = 210;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
       ctx.clearRect(0, 0, W, Hh);
 

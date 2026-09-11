@@ -59,14 +59,14 @@
     }
 
     function draw() {
-      var W = Math.max(320, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Fixed height: the status lines at the top, then the stations row with the
       // range circles (radius 150) and their captions below. The circles must NOT
       // reach the status block, or their strokes run through the text and merge
       // every line into one unreadable band -- which is what an earlier version
       // did. Status needs ~76px; the circles need 2R below that.
       var STATUS_H = 76;
-      var ctx = H.fitCanvas(cv, W, 0);          // sized below, once R is known
+      var ctx = H.fitCanvas(cv, W, 0, draw);          // sized below, once R is known
       var p = H.palette(root);
 
       A.x = 46; C.x = W - 46;
@@ -78,7 +78,7 @@
       // condition that makes hidden/exposed terminals exist at all.
       var R = Math.min(120, Math.max(48, (C.x - A.x) * RANGE_FRAC));
       var Hh = STATUS_H + R * 2 + 74;
-      ctx = H.fitCanvas(cv, W, Hh);
+      ctx = H.fitCanvas(cv, W, Hh, draw);
       ctx.clearRect(0, 0, W, Hh);
 
       // Place the station row so the circles sit fully below the status block.

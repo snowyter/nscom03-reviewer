@@ -430,6 +430,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "line-encoding",
+        },
       ],
     },
     {
@@ -532,6 +537,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "line-encoding",
+        },
       ],
     },
     {
@@ -606,6 +616,11 @@ window.NSCOM_MODULES.push({
               ],
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "line-encoding",
         },
       ],
     },
@@ -1037,6 +1052,11 @@ window.NSCOM_MODULES.push({
               text: "Both scramblers are substitutes for redundancy, not additions to it: unlike 4B/5B, neither raises the bit rate, which is exactly why DS1 and E1 carry their full nominal rates rather than 1.25 times them. The price is that the receiver must run the inverse substitution logic, which is more complex than simply reading a codebook.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "line-encoding",
         },
       ],
     },

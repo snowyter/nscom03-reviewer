@@ -68,7 +68,7 @@
 
     function draw() {
       var r = roundEl;
-      var W = Math.max(300, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Each row carries two stacked label lines, so the row has to be tall
       // enough to hold them without the lines colliding -- an earlier 30px row
       // with 10px type on a 12px leading overlapped its own labels.
@@ -78,7 +78,7 @@
       // canvas exactly one row short, which clipped the last round's row.
       var rows = r.history.length + 1;
       var Hh = padT + rows * rowH + padB;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
 
       ctx.clearRect(0, 0, W, Hh);

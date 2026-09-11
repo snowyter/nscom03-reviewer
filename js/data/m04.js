@@ -635,6 +635,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "constellation",
+        },
       ],
     },
     {
@@ -717,6 +722,11 @@ window.NSCOM_MODULES.push({
               text: "Reading the axes: on a QAM constellation the horizontal distance of a point from the vertical axis is its in-phase amplitude and its vertical distance from the horizontal axis is its quadrature amplitude. A point's radius still gives total amplitude and its angle still gives phase, exactly as for PSK — QAM just lets both vary.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "constellation",
         },
       ],
     },

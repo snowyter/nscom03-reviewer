@@ -164,6 +164,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "multiplexing",
+        },
       ],
     },
     {
@@ -415,6 +420,11 @@ window.NSCOM_MODULES.push({
               text: "The link bit rate equals the number of frames per second multiplied by the number of bits in each frame. Frame size in bits is the number of slots times the bits per slot (plus any framing bits).",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "multiplexing",
         },
       ],
     },

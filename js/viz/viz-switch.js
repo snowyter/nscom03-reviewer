@@ -63,13 +63,13 @@
     function reset() { i = 0; table = {}; lastAction = null; draw(); }
 
     function draw() {
-      var W = Math.max(320, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Fixed height: the diagram row plus the table rows. Only the table grows,
       // and it is bounded by the four known stations, so the height is computed
       // from that bound rather than from the running count -- no clipping.
       var tableRows = Object.keys(table).length;
       var Hh = 150 + Math.max(4, tableRows) * 22 + 34;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
       ctx.clearRect(0, 0, W, Hh);
 

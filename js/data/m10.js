@@ -254,6 +254,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "mwo-signature",
+        },
       ],
     },
     {
@@ -294,6 +299,11 @@ window.NSCOM_MODULES.push({
               text: "If you are asked why a MWO does not simply occupy 2.45 GHz and nothing else: because its magnetron is a free-running oscillator whose frequency is pulled by the load, and because its supply chops the tube on and off. Amplitude modulation and frequency modulation both spread energy, and a spreading interferer cannot be filtered away — it can only be avoided in time or in code.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "mwo-signature",
         },
       ],
     },

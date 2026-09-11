@@ -225,6 +225,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "sine-wave",
+        },
       ],
     },
     {
@@ -888,6 +893,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "rate-limits",
+        },
       ],
     },
     {
@@ -976,6 +986,11 @@ window.NSCOM_MODULES.push({
               text: "Procedure for combined questions: use Shannon to find the ceiling, pick a practical rate at or below it, then use Nyquist to find how many levels that rate requires. Never use the Shannon ceiling itself as the Nyquist level count — the slide deliberately selects 4 Mbps instead of 6 Mbps.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "rate-limits",
         },
       ],
     },

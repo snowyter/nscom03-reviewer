@@ -78,9 +78,9 @@
       var s = +start.value / 100;                    // slider is centi-frames
       $("[data-al-start-val]").textContent = s.toFixed(2).replace(/0$/, "") + " T";
 
-      var W = Math.max(280, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       var Hh = 210;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
 
       ctx.clearRect(0, 0, W, Hh);

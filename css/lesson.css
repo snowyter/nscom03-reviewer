@@ -394,8 +394,12 @@
   font: 400 .7rem/1.45 var(--mono); color: var(--ink-dim);
 }
 .viz__err { font: 400 .72rem/1.4 var(--mono); color: var(--amber); }
-/* A viz's own canvas fills the plate width and never overflows on a phone. */
-.viz canvas { display: block; width: 100%; height: auto; max-width: 100%; }
+/* A viz's own canvas. Each draw() measures its container and sets an explicit
+   inline width/height (accounting for devicePixelRatio), so the CSS must NOT
+   impose width:100%/height:auto — those override the inline values and squash
+   the drawing non-uniformly on a narrow screen, which is what made every aid
+   distort at phone width. max-width guards against any overshoot. */
+.viz canvas { display: block; max-width: 100%; }
 /* Controls reuse the sims' .ctlrow, but tighten the spacing inside a section. */
 .viz .ctlrow { margin-bottom: .55rem; }
 .viz .ctlrow:last-child { margin-bottom: 0; }
@@ -483,6 +487,33 @@
 .viz__fieldrow:hover { border-color: var(--rule); }
 .viz__fieldlist li.is-on .viz__fieldrow { border-color: var(--trace-dim); background: var(--ground-2); }
 .viz__fieldlist li.is-on .b { color: var(--ink-dim); }
+
+/* A select inside a viz control row. Styled to match the buttons rather than
+   left as a browser default, so the aid belongs to the same instrument panel. */
+.viz__ctl select {
+  width: 100%; padding: .38rem .5rem;
+  font: 400 .72rem/1 var(--mono); color: var(--ink);
+  background: var(--ground-2);
+  border: 1px solid var(--rule); border-radius: 2px;
+  cursor: pointer;
+}
+.viz__ctl select:hover,
+.viz__ctl select:focus-visible { border-color: var(--trace-dim); }
+
+/* The flip-a-bit row for the Hamming aid. Each bit is its own button so the
+   student clicks the exact position, rather than typing a word. */
+[data-hm-bits] {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .3rem;
+  margin-top: .7rem;
+}
+[data-hm-bits] button[data-hm-bit] {
+  font: 600 .74rem/1 var(--mono); color: var(--ink);
+  background: var(--ground-2);
+  border: 1px solid var(--rule); border-radius: 2px;
+  min-width: 1.9rem; padding: .42rem .3rem;
+  cursor: pointer;
+}
+[data-hm-bits] button[data-hm-bit]:hover { border-color: var(--trace); color: var(--trace); }
 
 /* A tab strip for a viz that switches between named cases. */
 .viz__tabs { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .6rem; }

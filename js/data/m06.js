@@ -278,6 +278,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "hamming-distance",
+        },
       ],
     },
     {
@@ -355,6 +360,11 @@ window.NSCOM_MODULES.push({
               text: "Mnemonic: parity catches odd numbers of flipped bits only, and it never repairs anything. If a question says two or four bits were corrupted, parity will accept the word silently — that is the failure mode to name.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "hamming-distance",
         },
       ],
     },
@@ -597,6 +607,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "crc-division",
+        },
       ],
     },
     {
@@ -661,6 +676,11 @@ window.NSCOM_MODULES.push({
               text: "Every remainder must be exactly deg(G) bits wide, leading zeros included. If your remainder is shorter than the degree, you have stripped a zero somewhere in the division — go back and redo it rather than padding the answer at the end, because the alignment may have been wrong too.",
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "crc-division",
         },
       ],
     },

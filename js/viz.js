@@ -36,10 +36,40 @@
 
   /* ── helpers the viz modules share ──────────────────────────────────── */
 
+  // A viz measures its container to decide how wide to draw. Reading
+  // parentNode.clientWidth directly is unreliable: at mount time the plate can
+  // still be at a stale width (the section may not have been laid out yet), and
+  // the value then disagrees with the CSS width the canvas is finally given,
+  // which squashes the drawing.
+  //
+  // The canvas's own laid-out box is authoritative. There is deliberately NO
+  // large minimum width: a floor above the real width makes the canvas wider
+  // than its plate, and the browser then scales it down non-uniformly, which is
+  // the distortion this function exists to prevent. Drawing simply reflows at
+  // narrow sizes -- every aid clamps its own label geometry.
+  function measure(cv) {
+    var box = cv.getBoundingClientRect();
+    var W = Math.round(box.width);
+    if (!W || W < 40) {
+      W = cv.parentNode ? cv.parentNode.clientWidth : 0;
+    }
+    if (!W || W < 40) W = 600;                 // last-resort sane default
+    return Math.max(160, W);
+  }
+
   // Device-pixel-ratio aware canvas sizing. Returns a 2D context already scaled
   // so drawing code can work in CSS pixels, which is what keeps the strokes
   // crisp on a phone without every viz repeating the same arithmetic.
-  function fitCanvas(cv, cssW, cssH) {
+  //
+  // It also installs a ResizeObserver on the canvas, because a window resize
+  // listener is not enough: the canvas can change width without the window
+  // changing at all (a sidebar collapsing, a phone rotating, a section
+  // expanding). When that happened the drawing kept its old width and the
+  // browser scaled it non-uniformly, which distorted the aid. The observer
+  // redraws at the true size instead.
+  var observers = (typeof WeakMap === "function") ? new WeakMap() : null;
+
+  function fitCanvas(cv, cssW, cssH, redraw) {
     var dpr = w.devicePixelRatio || 1;
     cv.width = Math.round(cssW * dpr);
     cv.height = Math.round(cssH * dpr);
@@ -47,6 +77,25 @@
     cv.style.height = cssH + "px";
     var ctx = cv.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    if (redraw && observers && typeof w.ResizeObserver === "function") {
+      var prev = observers.get(cv);
+      if (!prev) {
+        var ob = new w.ResizeObserver(function () {
+          var want = Math.round(cv.getBoundingClientRect().width);
+          var have = Math.round(parseFloat(cv.style.width) || 0);
+          if (want > 0 && Math.abs(want - have) > 2) {
+            // Redraw on the next frame, not inside the observer callback: the
+            // redraw resizes the canvas, which would re-enter the observer and
+            // produce "ResizeObserver loop completed with undelivered
+            // notifications". Deferring breaks that cycle.
+            (w.requestAnimationFrame || function (fn) { setTimeout(fn, 16); })(redraw);
+          }
+        });
+        ob.observe(cv);
+        observers.set(cv, ob);
+      }
+    }
     return ctx;
   }
 
@@ -141,7 +190,7 @@
 
   var api = {
     register: register, get: get,
-    fitCanvas: fitCanvas, palette: palette,
+    fitCanvas: fitCanvas, palette: palette, measure: measure,
     reducedMotion: reducedMotion, slider: slider,
     scan: scan, mountInto: mountInto, unmountAll: unmountAll
   };

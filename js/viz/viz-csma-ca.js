@@ -41,11 +41,11 @@
     function reset() { state = { step: 0, cw: 15, picked: null, waiting: 0 }; draw(); }
 
     function draw() {
-      var W = Math.max(320, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Fixed height. The timeline is a fixed 5-lane chart; the only variable
       // text is the verdict, which lives in the DOM below the canvas.
       var Hh = 250;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
       ctx.clearRect(0, 0, W, Hh);
 

@@ -76,9 +76,9 @@
       var start = +$("[data-cs-when]").value;
       $("[data-cs-when-val]").textContent = "t = " + start;
 
-      var W = Math.max(280, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       var Hh = 286;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
       ctx.clearRect(0, 0, W, Hh);
 

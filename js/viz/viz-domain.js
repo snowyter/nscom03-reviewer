@@ -46,11 +46,11 @@
     ];
 
     function draw() {
-      var W = Math.max(320, cv.parentNode.clientWidth - 2);
+      var W = H.measure(cv);
       // Height is fixed: four stations, two rows, with room for the labels that
       // sit above and below each node. No growing content, so no clip risk.
       var Hh = 266;
-      var ctx = H.fitCanvas(cv, W, Hh);
+      var ctx = H.fitCanvas(cv, W, Hh, draw);
       var p = H.palette(root);
       ctx.clearRect(0, 0, W, Hh);
 
