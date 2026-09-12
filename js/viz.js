@@ -36,25 +36,36 @@
 
   /* ── helpers the viz modules share ──────────────────────────────────── */
 
-  // A viz measures its container to decide how wide to draw. Reading
-  // parentNode.clientWidth directly is unreliable: at mount time the plate can
-  // still be at a stale width (the section may not have been laid out yet), and
-  // the value then disagrees with the CSS width the canvas is finally given,
-  // which squashes the drawing.
+  // A viz measures its container to decide how wide to draw.
   //
-  // The canvas's own laid-out box is authoritative. There is deliberately NO
-  // large minimum width: a floor above the real width makes the canvas wider
-  // than its plate, and the browser then scales it down non-uniformly, which is
-  // the distortion this function exists to prevent. Drawing simply reflows at
-  // narrow sizes -- every aid clamps its own label geometry.
+  // The width an aid must draw at is the width of the plate it sits in -- its
+  // PARENT'S CONTENT BOX. Measuring the canvas itself is circular, and that is
+  // not theoretical: before the first draw a canvas with no inline width
+  // reports the HTML default of 300px, so `measure` returned 300, `fitCanvas`
+  // then wrote 300px as the canvas's inline width, and every aid on the site
+  // drew a 300px picture inside an 894px plate. The old "inline width equals
+  // rendered width" check passed the whole time, because a 300px canvas really
+  // is 300px wide -- the drawing was simply a third of the size it should be.
+  //
+  // The parent is only unreliable when it is not laid out yet, and that shows
+  // up as a zero or absurd reading, which the fallbacks handle. There is
+  // deliberately NO large minimum width: a floor above the real width makes the
+  // canvas wider than its plate, and the browser then scales it down
+  // non-uniformly, which is the distortion this function exists to prevent.
+  // Drawing simply reflows at narrow sizes -- every aid clamps its own labels.
   function measure(cv) {
-    var box = cv.getBoundingClientRect();
-    var W = Math.round(box.width);
-    if (!W || W < 40) {
-      W = cv.parentNode ? cv.parentNode.clientWidth : 0;
+    var plate = cv.parentNode;
+    if (plate && typeof w.getComputedStyle === "function") {
+      var cs = w.getComputedStyle(plate);
+      var pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+      var bor = (parseFloat(cs.borderLeftWidth) || 0) + (parseFloat(cs.borderRightWidth) || 0);
+      var inner = plate.getBoundingClientRect().width - pad - bor;
+      if (inner >= 40) return Math.round(inner);
     }
-    if (!W || W < 40) W = 600;                 // last-resort sane default
-    return Math.max(160, W);
+    var own = cv.getBoundingClientRect().width;
+    if (own >= 40) return Math.round(own);
+    if (plate && plate.clientWidth >= 40) return Math.round(plate.clientWidth);
+    return 600;                                // last-resort sane default
   }
 
   // Device-pixel-ratio aware canvas sizing. Returns a 2D context already scaled
@@ -79,10 +90,17 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     if (redraw && observers && typeof w.ResizeObserver === "function") {
+      // Observe the PLATE, not the canvas. The canvas is `max-width:100%`, so
+      // when the plate SHRINKS the canvas is clamped and its own box changes --
+      // but when the plate GROWS the canvas keeps its old inline width and its
+      // own box does not change at all. An observer on the canvas therefore
+      // never fires on a widening window, and the aid would stay stuck at its
+      // old size. Watching the plate catches both directions.
+      var plate = cv.parentNode || cv;
       var prev = observers.get(cv);
       if (!prev) {
         var ob = new w.ResizeObserver(function () {
-          var want = Math.round(cv.getBoundingClientRect().width);
+          var want = measure(cv);
           var have = Math.round(parseFloat(cv.style.width) || 0);
           if (want > 0 && Math.abs(want - have) > 2) {
             // Redraw on the next frame, not inside the observer callback: the
@@ -92,7 +110,7 @@
             (w.requestAnimationFrame || function (fn) { setTimeout(fn, 16); })(redraw);
           }
         });
-        ob.observe(cv);
+        ob.observe(plate);
         observers.set(cv, ob);
       }
     }

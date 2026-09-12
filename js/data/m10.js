@@ -566,6 +566,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "line-duty",
+        },
       ],
     },
     {

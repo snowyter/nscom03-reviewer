@@ -327,6 +327,85 @@ test("no literal unicode escape sequences leak into rendered text", () => {
     `modules with literal escape leaks: ${leaks.join(", ")}`);
 });
 
+test("every viz id is used at least once, and every aid is reachable", () => {
+  // A registered aid that no section references is dead code: it ships in
+  // index.html, costs a request on every page load, and no student can ever see
+  // it. That is the failure mode this catches -- an aid written and then not
+  // wired into any section body.
+  const dir = path.join(ROOT, "js", "viz");
+  const registered = new Map();
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".js"))) {
+    const src = fs.readFileSync(path.join(dir, f), "utf8");
+    for (const m of src.matchAll(/VIZ\.register\(\s*"([^"]+)"/g)) registered.set(m[1], f);
+  }
+
+  const used = new Set();
+  const walk = (blocks) => {
+    for (const b of blocks) {
+      if (b.type === "viz") used.add(b.viz);
+      if (b.type === "deep" && Array.isArray(b.body)) walk(b.body);
+    }
+  };
+  for (const { mod: m } of loadModules()) {
+    for (const s of m.sections) walk(s.body);
+  }
+
+  const unused = [...registered.keys()].filter((id) => !used.has(id));
+  assert.deepStrictEqual(unused, [],
+    `these visual aids are registered but no section uses them, so they are dead ` +
+    `weight on every page load: ${unused.join(", ")}`);
+});
+
+test("the m10 duty aid's arithmetic matches the paper it teaches", () => {
+  // The aid's whole point is the arithmetic of the 50/100% trade, so recompute
+  // it independently here rather than trusting the drawing. Numbers from Taher
+  // et al., 'Microwave Oven Signal Interference Mitigation for Wi-Fi
+  // Communication Systems' (IEEE CCNC 2008): a 60 Hz line, an ON cycle of less
+  // than half the 0.017 s period, 128-bit packets at 363.3 kbps, transients 2 ms
+  // either side of the AC zero crossings, and a mitigated rate of 181.7 kbps.
+  const geo = (hz, onPct, bits, kbps, guardMs = 2) => {
+    const T = 1000 / hz;                 // line period, ms
+    const offT = T - T * (onPct / 100);  // silent gap, ms
+    const windowT = (offT - guardMs * 2) / 2;   // ONE usable window, ms
+    return { T, offT, windowT, airtime: bits / kbps };
+  };
+
+  const paper = geo(60, 45, 128, 363.3);
+
+  // The paper's own quoted period.
+  assert.ok(Math.abs(paper.T - 16.7) < 0.1,
+    `60 Hz line period is ${paper.T.toFixed(2)} ms; the paper quotes 0.017 s`);
+
+  // The paper's ON claim: "less than half of the 0.017 s 60 Hz period".
+  assert.ok(paper.T * 0.45 < paper.T / 2,
+    "the aid's default ON share must stay under half the line period, as the paper states");
+
+  // The paper's packet: 128 bits at 363.3 kbps is ~352 us.
+  assert.ok(Math.abs(paper.airtime - 0.352) < 0.002,
+    `128 bits at 363.3 kbps is ${paper.airtime.toFixed(4)} ms; the paper says ~352 us`);
+
+  // The default must FIT -- a teaching aid that opens in its failure state
+  // teaches the wrong thing first.
+  assert.ok(paper.airtime <= paper.windowT,
+    "the aid's default state must fit the window");
+
+  // And the failure case must be REACHABLE by dragging the packet slider, or
+  // the aid cannot show the thing it exists to show.
+  const big = geo(60, 45, 1024, 363.3);
+  assert.ok(big.airtime > big.windowT,
+    "a 1024-bit packet must overrun the window, or the aid's failure case is unreachable");
+
+  // The paper's headline: the mitigated rate is about half the full rate.
+  const duty = 181.7 / 363.3;
+  assert.ok(Math.abs(duty - 0.5) < 0.01,
+    `181.7/363.3 = ${duty.toFixed(3)}; the paper reports a 100% -> 50% trade`);
+
+  // A 50 Hz line has a longer period, so its window must be wider than 60 Hz.
+  const fifty = geo(50, 45, 128, 363.3);
+  assert.ok(fifty.windowT > paper.windowT,
+    "a 50 Hz line has a longer period, so its usable window must be wider");
+});
+
 test("section ids are namespaced by module in study state", () => {
   // Section ids are only unique within a module (every module has s1..sN), so
   // read state keyed by the bare id made marking 16 sections mark 16 sections of

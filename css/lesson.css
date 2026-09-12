@@ -663,6 +663,86 @@
 .seg button:hover { color: var(--ink); }
 .seg button.is-on { background: var(--trace); color: var(--ground); }
 
+/* ── The layer-placement drill (m01) ──────────────────────────────
+   A two-column grid: the seven OSI rows on the left, the Internet model's four
+   layers on the right as cells that span the OSI rows they cover. The span IS
+   the mapping, so it is expressed in layout rather than in a caption. */
+.ly__ask {
+  display: flex; flex-direction: column; gap: .25rem;
+  padding: .55rem .7rem; margin-bottom: .7rem;
+  border: 1px solid var(--rule); border-left: 2px solid var(--amber);
+  background: var(--ground);
+}
+.ly__k {
+  font: 600 .56rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ly__q { font: 400 .86rem/1.45 var(--sans); color: var(--ink); }
+
+.ly { display: grid; grid-template-columns: 1fr; gap: 0; }
+/* The header row is the grid's own first row, so it must sit above the rows
+   the renderer assigns by line number. It is therefore a separate element with
+   its own two columns, not a grid item. */
+.ly__hrow {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: .3rem; margin-bottom: .3rem;
+}
+.ly__h {
+  font: 600 .56rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ly [data-lp-rows] {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  /* Every row gets the same floor. A cell spanning three rows carries two lines
+     of text, and without a floor that cell stretches its three rows taller than
+     the single-row ones, so the seven OSI rows came out at two different heights
+     (31px and 41px) and the column read as misaligned. The floor is the height a
+     two-line TCP cell needs, so no row can be stretched by its neighbour. */
+  grid-auto-rows: minmax(2.75rem, auto);
+  gap: .3rem;
+}
+.ly__row { display: flex; }
+.ly__btn {
+  display: flex; align-items: center; gap: .5rem; width: 100%;
+  padding: .45rem .55rem; text-align: left;
+  font: 500 .74rem/1.2 var(--mono); color: var(--ink);
+  background: var(--ground); border: 1px solid var(--rule); border-radius: 2px;
+  cursor: pointer;
+}
+.ly__btn:hover:not(:disabled) { border-color: var(--trace-dim); color: var(--trace); }
+.ly__btn:focus-visible { outline: 1px solid var(--trace); outline-offset: 1px; }
+.ly__btn:disabled { cursor: default; }
+.ly__n {
+  flex: 0 0 auto; width: 1.1rem; text-align: center;
+  font-weight: 700; color: var(--amber); font-variant-numeric: tabular-nums;
+}
+.ly__nm { flex: 1 1 auto; min-width: 0; }
+/* The marked states. Colour alone is not enough — each carries a border weight
+   change and a glyph, so the result is legible without colour perception. */
+.ly__row.is-right .ly__btn { border-color: var(--trace); color: var(--trace); background: rgba(125,255,178,.07); }
+.ly__row.is-right .ly__btn .ly__nm::after { content: " ✓"; }
+.ly__row.is-wrong .ly__btn { border-color: var(--warn); color: var(--warn); }
+.ly__row.is-wrong .ly__btn .ly__nm::after { content: " ✕"; }
+
+.ly__tcp {
+  display: flex; flex-direction: column; justify-content: center; gap: .18rem;
+  padding: .4rem .55rem; border: 1px solid var(--rule-soft);
+  background: var(--ground-2);
+}
+.ly__tcpn { font: 500 .74rem/1.2 var(--mono); color: var(--ink-dim); }
+.ly__tcpl { font: 400 .58rem/1 var(--mono); color: var(--ink-faint); }
+/* The peer of the correct answer lights up, which is the mapping being taught. */
+.ly__tcp.is-hit { border-color: var(--trace-dim); background: rgba(125,255,178,.06); }
+.ly__tcp.is-hit .ly__tcpn { color: var(--trace); }
+
+/* The two-column layout is measured to hold down to a 278px plate (a 320px
+   phone), so there is no narrow-width fallback: the TCP cells carry inline
+   `grid-row: N / span M` to express the mapping, and collapsing the grid to one
+   column would place those cells in the SAME column as the OSI rows and overlap
+   them. Verified at 278px: two columns, 144px + 107px, no overlap, no clipped
+   labels. */
+
 /* Lightbox */
 .lbox {
   position: fixed; inset: 0; z-index: 80;

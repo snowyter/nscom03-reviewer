@@ -145,6 +145,11 @@ window.NSCOM_MODULES.push({
             },
           ],
         },
+      
+        {
+          type: "viz",
+          viz: "layer-place",
+        },
       ],
     },
     {
@@ -225,6 +230,11 @@ window.NSCOM_MODULES.push({
               ],
             },
           ],
+        },
+      
+        {
+          type: "viz",
+          viz: "layer-place",
         },
       ],
     },

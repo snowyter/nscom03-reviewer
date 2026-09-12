@@ -224,3 +224,53 @@ test("the router renders each route without throwing", () => {
   assert.deepStrictEqual(fatal, [], `route errors: ${fatal.slice(0, 3).join(" | ")}`);
   w.close();
 });
+
+test("a viz measures its plate, not its own canvas", () => {
+  // This is a regression test for a bug that shipped to every aid on the site.
+  //
+  // `measure(cv)` used to read `cv.getBoundingClientRect().width`. That is
+  // circular: a canvas with no inline width reports the HTML default of 300px
+  // before its first draw, so measure returned 300, fitCanvas then WROTE 300px
+  // as the canvas's inline width, and the aid stayed 300px forever inside an
+  // 894px plate. The previous check -- "inline width equals rendered width" --
+  // passed the whole time, because a 300px canvas really is 300px wide; the
+  // drawing was simply a third of the size it should be.
+  //
+  // jsdom has no layout engine, so getBoundingClientRect() is all zeros there
+  // and cannot reproduce the bug directly. What CAN be pinned is the contract
+  // that prevents it: measure() must consult the PARENT's box, so it returns the
+  // plate width even when the canvas itself reports nothing.
+  const { w } = boot();
+
+  const plate = w.document.createElement("div");
+  plate.style.width = "800px";
+  w.document.body.appendChild(plate);
+  const cv = w.document.createElement("canvas");
+  plate.appendChild(cv);
+
+  // Stub the plate's box: a real layout would give it 800px.
+  plate.getBoundingClientRect = () => ({ width: 800, height: 200, top: 0, left: 0, right: 800, bottom: 200 });
+  // And leave the canvas reporting the browser default, exactly as it would
+  // before its first draw. If measure() reads this, the test fails below.
+  cv.getBoundingClientRect = () => ({ width: 300, height: 150, top: 0, left: 0, right: 300, bottom: 150 });
+
+  const measured = w.VIZ.measure(cv);
+  assert.ok(measured > 400,
+    `measure() returned ${measured} for a canvas inside an 800px plate; ` +
+    `it is reading the canvas's own 300px default width, which is the bug that ` +
+    `shrank every aid on the site`);
+
+  // A plate with padding must yield the CONTENT box, not the border box, or the
+  // canvas overflows by the padding and the browser scales the drawing down.
+  plate.style.paddingLeft = "10px";
+  plate.style.paddingRight = "10px";
+  w.getComputedStyle = (el) => (el === plate
+    ? { paddingLeft: "10px", paddingRight: "10px", borderLeftWidth: "0px", borderRightWidth: "0px" }
+    : { paddingLeft: "0px", paddingRight: "0px", borderLeftWidth: "0px", borderRightWidth: "0px" });
+  const inner = w.VIZ.measure(cv);
+  assert.ok(Math.abs(inner - 780) < 2,
+    `measure() returned ${inner}; a padded plate must yield its content box (780px), ` +
+    `so the canvas cannot be wider than the space it sits in`);
+
+  w.close();
+});
